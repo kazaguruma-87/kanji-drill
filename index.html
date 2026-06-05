@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0259)file:///C:/Users/User/Documents/%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A/H%E5%8C%97%E6%B4%8B%E5%A4%A7%E5%AD%A6/26%E5%B9%B4%E5%BA%A6/%E6%BC%A2%E5%AD%97%E3%82%A2%E3%83%97%E3%83%AA%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88/Up%E7%94%A8/index.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>漢字練習ドリル（編集機能付き）</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="file:///C:/Users/User/Documents/%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A/H%E5%8C%97%E6%B4%8B%E5%A4%A7%E5%AD%A6/26%E5%B9%B4%E5%BA%A6/%E6%BC%A2%E5%AD%97%E3%82%A2%E3%83%97%E3%83%AA%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88/Up%E7%94%A8/manifest.json">
 <style>
 body { font-family: sans-serif; text-align: center; background: #f5f5f5; margin: 0; padding: 0; }
 .tab-bar { display: flex; overflow-x: auto; background: #333; color: white; }
@@ -52,10 +52,10 @@ td button { background: #f44336; color: white; border: none; padding: 5px 10px; 
   <button id="tab10" onclick="selectLevel(10)">L10</button>
 </div>
 <div class="mode-bar">
-  <button id="modeDrill" class="active" onclick="switchMode('drill')">🎯 ドリルをやる</button>
-  <button id="modeEdit" onclick="switchMode('edit')">✍️ 単語を入力する</button>
+  <button id="modeDrill" class="" onclick="switchMode(&#39;drill&#39;)">🎯 ドリルをやる</button>
+  <button id="modeEdit" onclick="switchMode(&#39;edit&#39;)" class="active">✍️ 単語を入力する</button>
 </div>
-<div id="idMain" class="screen active">
+<div id="idMain" class="screen">
   <div id="startScreen" class="sub-screen">
     <button id="startBtn" onclick="startDrill()">スタート</button>
   </div>
@@ -63,17 +63,17 @@ td button { background: #f44336; color: white; border: none; padding: 5px 10px; 
     <div class="displayBox" id="boxTop"></div>
     <div class="displayBox" id="boxBottom"></div>
     <div class="buttonRow">
-      <button id="btnK2H" class="actionBtn" onclick="clickAction('K2H')">漢字→かな</button>
-      <button id="btnH2K" class="actionBtn" onclick="clickAction('H2K')">かな→漢字</button>
+      <button id="btnK2H" class="actionBtn" onclick="clickAction(&#39;K2H&#39;)">漢字→かな</button>
+      <button id="btnH2K" class="actionBtn" onclick="clickAction(&#39;H2K&#39;)">かな→漢字</button>
     </div>
   </div>
 </div>
-<div id="editorScreen" class="screen">
+<div id="editorScreen" class="screen active">
   <h2>語彙入力エディタ</h2>
   <div id="status"></div>
   <table id="vocabTable">
     <thead><tr><th style="width:45%;">漢字</th><th style="width:45%;">よみ</th><th style="width:10%;">削除</th></tr></thead>
-    <tbody></tbody>
+    <tbody><tr><td><input type="text" value="代表的"></td><td><input type="text" value="だいひょうてき"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="代わりに"></td><td><input type="text" value="か（わりに）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="発表"></td><td><input type="text" value="はっぴょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="表す"></td><td><input type="text" value="あらわ（す）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="目的"></td><td><input type="text" value="もくてき"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="最近"></td><td><input type="text" value="さいきん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="最も"></td><td><input type="text" value="もっと（も）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="近所"></td><td><input type="text" value="きんじょ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="近い"></td><td><input type="text" value="ちか（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="近く"></td><td><input type="text" value="ちか（く）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="牛丼"></td><td><input type="text" value="ぎゅうどん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="牛肉"></td><td><input type="text" value="ぎゅうにく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="牛乳"></td><td><input type="text" value="ぎゅうにゅう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="発音"></td><td><input type="text" value="はつおん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="発見"></td><td><input type="text" value="はっけん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="発明"></td><td><input type="text" value="はつめい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="１兆円"></td><td><input type="text" value="いっちょうえん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="使う"></td><td><input type="text" value="つか（う）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="使用禁止"></td><td><input type="text" value="しようきんし"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="使用中"></td><td><input type="text" value="しようちゅう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="理由"></td><td><input type="text" value="りゆう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="料理"></td><td><input type="text" value="りょうり"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="自由に"></td><td><input type="text" value="じゆう（に）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="安い"></td><td><input type="text" value="やす（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="安心"></td><td><input type="text" value="あんしん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="安全な"></td><td><input type="text" value="あんぜん（な）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="手軽に"></td><td><input type="text" value="てがる（に）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="手"></td><td><input type="text" value="て"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="手帳"></td><td><input type="text" value="てちょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="手伝う"></td><td><input type="text" value="てつだ（う）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="歌手"></td><td><input type="text" value="かしゅ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="上手な"></td><td><input type="text" value="じょうず（な）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="下手な"></td><td><input type="text" value="へた（な）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="軽い"></td><td><input type="text" value="かる（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="利用"></td><td><input type="text" value="りよう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="便利な"></td><td><input type="text" value="べんり（な）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="店"></td><td><input type="text" value="みせ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="支店"></td><td><input type="text" value="してん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="明るい"></td><td><input type="text" value="あか（るい）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="説明"></td><td><input type="text" value="せつめい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="物"></td><td><input type="text" value="もの"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="食べ物"></td><td><input type="text" value="た（べ）もの"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="飲み物"></td><td><input type="text" value="の（み）もの"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="動物"></td><td><input type="text" value="どうぶつ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="荷物"></td><td><input type="text" value="にもつ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="生活"></td><td><input type="text" value="せいかつ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="活動"></td><td><input type="text" value="かつどう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="始める"></td><td><input type="text" value="はじ（める）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="始まる"></td><td><input type="text" value="はじ（まる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
   </table>
   <div class="edit-actions">
     <button id="addRow" class="action" onclick="addRow()">行を追加</button>
@@ -194,5 +194,5 @@ function loadEditorTable() {
 function clearAll() { if (!confirm("このレベルの単語をすべて削除しますか？")) return; levels[currentLevel] = []; localStorage.removeItem("L" + currentLevel); loadEditorTable(); alert("削除しました"); }
 initApp();
 </script>
-</body>
-</html>
+
+</body></html>
