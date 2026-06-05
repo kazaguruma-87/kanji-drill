@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>漢字練習ドリル（編集機能付き）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="manifest" href="manifest.json">
+<style>
+body { font-family: sans-serif; text-align: center; background: #f5f5f5; margin: 0; padding: 0; }
+.tab-bar { display: flex; overflow-x: auto; background: #333; color: white; }
+.tab-bar button { flex: 1 0 auto; padding: 14px 20px; border: none; background: #444; color: white; font-size: 16px; font-weight: bold; }
+.tab-bar button.active { background: #ff9800; }
+.mode-bar { display: flex; background: #e0e0e0; }
+.mode-bar button { flex: 1; padding: 10px; border: none; font-size: 14px; font-weight: bold; background: #ccc; color: #333; }
+.mode-bar button.active { background: #2196f3; color: white; }
+.screen { display: none; }
+.screen.active { display: block; }
+#startScreen { margin-top: 100px; }
+#startBtn { font-size: 28px; padding: 18px 40px; background: #ff5722; color: white; border: none; border-radius: 12px; cursor: pointer; }
+#drillScreen { margin-top: 20px; padding: 0 15px; }
+.displayBox { box-sizing: border-box; width: 100%; margin: 12px auto; padding: 10px; height: 140px; background: white; border-radius: 12px; border: 3px solid #333; font-size: 42px; font-weight: bold; display: flex; justify-content: center; align-items: center; word-break: break-all; }
+.buttonRow { margin-top: 25px; display: flex; justify-content: space-between; }
+.actionBtn { width: 48%; padding: 18px 0; font-size: 20px; font-weight: bold; border: none; border-radius: 12px; color: white; cursor: pointer; }
+#btnK2H { background: #4caf50; }
+#btnH2K { background: #9c27b0; }
+.actionBtn.selected { outline: 4px solid #333; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+#editorScreen { padding: 15px; text-align: left; }
+#editorScreen h2 { text-align: center; margin: 10px 0; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; }
+th, td { border: 1px solid #ccc; padding: 8px; font-size: 18px; text-align: center; }
+td input { width: 90%; font-size: 18px; padding: 5px; box-sizing: border-box; }
+.edit-actions { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 15px; }
+.action { margin: 5px; padding: 10px 15px; font-size: 16px; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; }
+#addRow { background: #4caf50; }
+#save { background: #2196f3; }
+#clear { background: #f44336; }
+#status { text-align: center; font-weight: bold; color: #4caf50; height: 20px; }
+td button { background: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="tab-bar">
+  <button id="tab1" class="active" onclick="selectLevel(1)">L1</button>
+  <button id="tab2" onclick="selectLevel(2)">L2</button>
+  <button id="tab3" onclick="selectLevel(3)">L3</button>
+  <button id="tab4" onclick="selectLevel(4)">L4</button>
+  <button id="tab5" onclick="selectLevel(5)">L5</button>
+  <button id="tab6" onclick="selectLevel(6)">L6</button>
+  <button id="tab7" onclick="selectLevel(7)">L7</button>
+  <button id="tab8" onclick="selectLevel(8)">L8</button>
+  <button id="tab9" onclick="selectLevel(9)">L9</button>
+  <button id="tab10" onclick="selectLevel(10)">L10</button>
+</div>
+<div class="mode-bar">
+  <button id="modeDrill" class="active" onclick="switchMode('drill')">🎯 ドリルをやる</button>
+  <button id="modeEdit" onclick="switchMode('edit')">✍️ 単語を入力する</button>
+</div>
+<div id="idMain" class="screen active">
+  <div id="startScreen" class="sub-screen">
+    <button id="startBtn" onclick="startDrill()">スタート</button>
+  </div>
+  <div id="drillScreen" class="sub-screen" style="display:none;">
+    <div class="displayBox" id="boxTop"></div>
+    <div class="displayBox" id="boxBottom"></div>
+    <div class="buttonRow">
+      <button id="btnK2H" class="actionBtn" onclick="clickAction('K2H')">漢字→かな</button>
+      <button id="btnH2K" class="actionBtn" onclick="clickAction('H2K')">かな→漢字</button>
+    </div>
+  </div>
+</div>
+<div id="editorScreen" class="screen">
+  <h2>語彙入力エディタ</h2>
+  <div id="status"></div>
+  <table id="vocabTable">
+    <thead><tr><th style="width:45%;">漢字</th><th style="width:45%;">よみ</th><th style="width:10%;">削除</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div class="edit-actions">
+    <button id="addRow" class="action" onclick="addRow()">行を追加</button>
+    <button id="save" class="action" onclick="saveData()">保存する</button>
+    <button id="clear" class="action" onclick="clearAll()">全削除</button>
+  </div>
+</div>
+<script>
+const defaultL1 = [
+  { kanji: "代表的", yomi: "だいひょうてき" },
+  { kanji: "代わりに", yomi: "か（わりに）" },
+  { kanji: "発表", yomi: "はっぴょう" },
+  { kanji: "表す", yomi: "あらわ（す）" },
+  { kanji: "目的", yomi: "もくてき" },
+  { kanji: "最近", yomi: "さいきん" },
+  { kanji: "最も", yomi: "もっと（も）" }
+];
+let levels = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [] };
+let currentLevel = 1; let currentMode = 'drill'; let order = []; let index = 0; let clickCount = 0;
+let currentDrillMode = "";
+
+const boxTop = document.getElementById("boxTop"); const boxBottom = document.getElementById("boxBottom");
+
+function initApp() {
+  for (let i = 1; i <= 10; i++) {
+    const raw = localStorage.getItem("L" + i);
+    if (raw) { levels[i] = JSON.parse(raw); } else if (i === 1) { levels[1] = defaultL1; localStorage.setItem("L1", JSON.stringify(defaultL1)); }
+  }
+  loadEditorTable();
+}
+function switchMode(mode) {
+  currentMode = mode;
+  document.getElementById("modeDrill").classList.remove("active"); document.getElementById("modeEdit").classList.remove("active");
+  document.getElementById("idMain").classList.remove("active"); document.getElementById("editorScreen").classList.remove("active");
+  if (mode === 'drill') {
+    document.getElementById("modeDrill").classList.add("active"); document.getElementById("idMain").classList.add("active"); resetDrillScreens();
+  } else {
+    document.getElementById("modeEdit").classList.add("active"); document.getElementById("editorScreen").classList.add("active"); loadEditorTable();
+  }
+}
+function selectLevel(n) {
+  currentLevel = n; document.querySelectorAll(".tab-bar button").forEach(btn => btn.classList.remove("active")); document.getElementById("tab" + n).classList.add("active");
+  if (currentMode === 'drill') { resetDrillScreens(); } else { loadEditorTable(); }
+}
+function startDrill() {
+  const data = levels[currentLevel];
+  if (!data || data.length === 0) { alert("このレベルにはまだ語彙が登録されていません。「単語を入力する」タブから追加してください。"); return; }
+  document.getElementById("startScreen").style.display = "none"; document.getElementById("drillScreen").style.display = "block";
+  order = [...Array(data.length).keys()]; shuffle(order); index = 0; clickCount = 0; currentDrillMode = "";
+  document.getElementById("btnK2H").classList.remove("selected"); document.getElementById("btnH2K").classList.remove("selected");
+  clearBoxes();
+  boxTop.textContent = "モードを選んでね";
+  boxBottom.textContent = "👇";
+}
+function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } }
+
+function clickAction(btnMode) {
+  const data = levels[currentLevel]; 
+  if (!data || data.length === 0) return;
+
+  if (clickCount === 0 || currentDrillMode !== btnMode) {
+    currentDrillMode = btnMode;
+    document.getElementById("btnK2H").classList.remove("selected");
+    document.getElementById("btnH2K").classList.remove("selected");
+    document.getElementById("btn" + btnMode).classList.add("selected");
+    
+    const item = data[order[index]];
+    boxTop.textContent = (currentDrillMode === "K2H") ? item.kanji : item.yomi; 
+    boxBottom.textContent = ""; 
+    clickCount = 1; 
+    return; 
+  }
+  
+  if (clickCount === 1) { 
+    const item = data[order[index]];
+    boxBottom.textContent = (currentDrillMode === "K2H") ? item.yomi : item.kanji; 
+    clickCount = 2; 
+    return; 
+  }
+  
+  if (clickCount === 2) {
+    index++; 
+    if (index >= data.length) { shuffle(order); index = 0; } 
+    const item = data[order[index]]; 
+    boxTop.textContent = (currentDrillMode === "K2H") ? item.kanji : item.yomi; 
+    boxBottom.textContent = ""; 
+    clickCount = 1;
+  }
+}
+
+function clearBoxes() { boxTop.textContent = ""; boxBottom.textContent = ""; }
+function resetDrillScreens() { document.getElementById("startScreen").style.display = "block"; document.getElementById("drillScreen").style.display = "none"; clearBoxes(); clickCount = 0; currentDrillMode = ""; }
+function addRow(kanji = "", yomi = "") {
+  const tbody = document.querySelector("#vocabTable tbody"); const tr = document.createElement("tr");
+  tr.innerHTML = `<td><input type="text" value="${kanji}"></td><td><input type="text" value="${yomi}"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td>`;
+  tbody.appendChild(tr);
+}
+function saveData() {
+  const rows = document.querySelectorAll("#vocabTable tbody tr"); const data = [];
+  rows.forEach(row => {
+    const kanji = row.children[0].querySelector("input").value.trim(); const yomi = row.children[1].querySelector("input").value.trim();
+    if (kanji !== "" || yomi !== "") { data.push({ kanji, yomi }); }
+  });
+  levels[currentLevel] = data; localStorage.setItem("L" + currentLevel, JSON.stringify(data)); 
+  alert("保存しました！"); // 案1：確実なアラート通知に変更
+}
+function loadEditorTable() { 
+  const tbody = document.querySelector("#vocabTable tbody"); tbody.innerHTML = ""; 
+  const data = levels[currentLevel]; 
+  
+  // もしデータが空っぽ（0件）なら、最初から50行の空行を作る
+  if (!data || data.length === 0) {
+    for (let k = 0; k < 50; k++) { addRow(); }
+  } else {
+    data.forEach(item => addRow(item.kanji, item.yomi)); 
+  }
+}
+function clearAll() { if (!confirm("このレベルの単語をすべて削除しますか？")) return; levels[currentLevel] = []; localStorage.removeItem("L" + currentLevel); loadEditorTable(); alert("削除しました"); }
+initApp();
+</script>
+</body>
+</html>
