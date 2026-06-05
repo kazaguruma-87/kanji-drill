@@ -23,6 +23,31 @@
 
         #drillScreen { margin-top: 20px; padding: 0 15px; }
         .displayBox { box-sizing: border-box; width: 100%; max-width: 600px; margin: 15px auto; padding: 20px; height: 160px; background: white; border-radius: 12px; border: 3px solid #333; font-size: 42px; font-weight: bold; display: flex; justify-content: center; align-items: center; word-break: break-all; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        .buttonRow { max-width: 600px; margin: 30px auto 0; display: flex; justify-content: space-between; }
+        .actionBtn { width: 48%; padding: 20px 0; font-size: 22px; font-weight: bold; border: none; border-radius: 12px; color: white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        #btnK2H { background: #4caf50; }
+        #btnH2K { background: #9c27b0; }
+        .actionBtn.selected { outline: 4px solid #333; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+
+        #editorScreen { padding: 15px; text-align: left; max-width: 800px; margin: 0 auto; }
+        #editorScreen h2 { text-align: center; margin: 15px 0; color: #333; }
+
+        .table-container { width: 100%; overflow-x: auto; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #eee; padding: 10px; font-size: 18px; text-align: center; }
+        th { background: #f9f9f9; color: #555; }
+        td input { width: 95%; font-size: 18px; padding: 6px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        td input:focus { border-color: #2196f3; outline: none; }
+
+        .edit-actions { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; padding-bottom: 40px; }
+        .action { margin: 8px; padding: 12px 25px; font-size: 16px; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        #addRow { background: #4caf50; }
+        #save { background: #2196f3; }
+        #clear { background: #f44336; }
+
+        td button { background: #ff5252; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        td button:hover { background: #d32f2f; }
     </style>
 
     <script>
@@ -31,35 +56,6 @@
 
 </head>
 
-
-        
-        .buttonRow { max-width: 600px; margin: 30px auto 0; display: flex; justify-content: space-between; }
-        .actionBtn { width: 48%; padding: 20px 0; font-size: 22px; font-weight: bold; border: none; border-radius: 12px; color: white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        #btnK2H { background: #4caf50; }
-        #btnH2K { background: #9c27b0; }
-        .actionBtn.selected { outline: 4px solid #333; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
-        
-        #editorScreen { padding: 15px; text-align: left; max-width: 800px; margin: 0 auto; }
-        #editorScreen h2 { text-align: center; margin: 15px 0; color: #333; }
-        
-        .table-container { width: 100%; overflow-x: auto; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #eee; padding: 10px; font-size: 18px; text-align: center; }
-        th { background: #f9f9f9; color: #555; }
-        td input { width: 95%; font-size: 18px; padding: 6px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        td input:focus { border-color: #2196f3; outline: none; }
-        
-        .edit-actions { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; padding-bottom: 40px; }
-        .action { margin: 8px; padding: 12px 25px; font-size: 16px; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        #addRow { background: #4caf50; }
-        #save { background: #2196f3; }
-        #clear { background: #f44336; }
-        
-        td button { background: #ff5252; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        td button:hover { background: #d32f2f; }
-    </style>
-</head>
-<body>
 
 <div class="tab-bar">
     <button id="tab1" class="active" onclick="selectLevel(1)">L1</button>
