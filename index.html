@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>漢字練習ドリル</title>
-<link rel="manifest" href="manifest.json">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<style>
-    body { font-family: sans-serif; text-align: center; background: #f5f5f5; margin: 0; padding: 0; }
-    .tab-bar { display: flex; overflow-x: auto; background: #333; color: white; }
-    .tab-bar button { flex: 1 0 auto; padding: 14px 20px; border: none; background: #444; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
-    .tab-bar button.active { background: #ff9800; }
-    .mode-bar { display: flex; background: #e0e0e0; }
-    .mode-bar button { flex: 1; padding: 12px; border: none; font-size: 15px; font-weight: bold; background: #ccc; color: #333; cursor: pointer; }
-    .mode-bar button.active { background: #2196f3; color: white; 
-        
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #f5f5f5; margin: 0; padding: 0; }
+        .tab-bar { display: flex; overflow-x: auto; background: #333; color: white; }
+        .tab-bar button { flex: 1 0 auto; padding: 14px 20px; border: none; background: #444; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .tab-bar button.active { background: #ff9800; }
+        .mode-bar { display: flex; background: #e0e0e0; }
+        .mode-bar button { flex: 1; padding: 12px; border: none; font-size: 15px; font-weight: bold; background: #ccc; color: #333; cursor: pointer; }
+        .mode-bar button.active { background: #2196f3; color: white; }
         .screen { display: none; }
         .screen.active { display: block; }
-        
+
+        /* ← 本来ここに入るべきだった CSS を戻した */
         #startScreen { margin-top: 80px; }
         #startBtn { font-size: 28px; padding: 18px 50px; background: #ff5722; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         #startBtn:active { transform: scale(0.98); }
-        
+
         #drillScreen { margin-top: 20px; padding: 0 15px; }
         .displayBox { box-sizing: border-box; width: 100%; max-width: 600px; margin: 15px auto; padding: 20px; height: 160px; background: white; border-radius: 12px; border: 3px solid #333; font-size: 42px; font-weight: bold; display: flex; justify-content: center; align-items: center; word-break: break-all; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    </style>
+
+    <script>
+        navigator.serviceWorker.register('service-worker.js');
+    </script>
+
+</head>
+
         
         .buttonRow { max-width: 600px; margin: 30px auto 0; display: flex; justify-content: space-between; }
         .actionBtn { width: 48%; padding: 20px 0; font-size: 22px; font-weight: bold; border: none; border-radius: 12px; color: white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
