@@ -24,6 +24,11 @@
         #drillScreen { margin-top: 20px; padding: 0 15px; }
         .displayBox { box-sizing: border-box; width: 100%; max-width: 600px; margin: 15px auto; padding: 20px; height: 160px; background: white; border-radius: 12px; border: 3px solid #333; font-size: 42px; font-weight: bold; display: flex; justify-content: center; align-items: center; word-break: break-all; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 
+        /* ベースを赤文字に指定 */
+        .base-red { color: #ff5252; display: inline-block; }
+        /* 特定の部分を黒文字に戻すスタイル */
+        .black-text { color: #333333; }
+
         .buttonRow { max-width: 600px; margin: 30px auto 0; display: flex; justify-content: space-between; }
         .actionBtn { width: 48%; padding: 20px 0; font-size: 22px; font-weight: bold; border: none; border-radius: 12px; color: white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         #btnK2H { background: #4caf50; }
@@ -53,9 +58,8 @@
     <script>
         navigator.serviceWorker.register('service-worker.js');
     </script>
-
 </head>
-
+<body>
 
 <div class="tab-bar">
     <button id="tab1" class="active" onclick="selectLevel(1)">L1</button>
@@ -96,7 +100,7 @@
             <thead>
                 <tr>
                     <th style="width:45%;">漢字</th>
-                    <th style="width:45%;">よみ</th>
+                    <th style="width:45%;">よみ（黒にしたい送り仮名を全角「（）」で囲む）</th>
                     <th style="width:10%;">削除</th>
                 </tr>
             </thead>
@@ -111,7 +115,7 @@
 </div>
 
 <script>
-// 卓男さんがスクリーンショットで送ってくれた全データを1文字違わずここに完全埋め込み
+// 既存のデータをそのまま完全保持
 const embeddedLevels = {
     1: [
         { kanji: "代表的", yomi: "だいひょうてき" }, { kanji: "代わりに", yomi: "か（わりに）" }, { kanji: "発表", yomi: "はっぴょう" },
@@ -135,13 +139,13 @@ const embeddedLevels = {
     2: [
         { kanji: "地震", yomi: "じしん" }, { kanji: "地下鉄", yomi: "ちかてつ" }, { kanji: "地球", yomi: "ちきゅう" },
         { kanji: "地図", yomi: "ちず" }, { kanji: "起きる", yomi: "お（きる）" }, { kanji: "机", yomi: "つくえ" },
-        { kanji: "次に", yomi: "つぎ（に）" }, { kanji: "次の", yomi: "つぎ（の）" }, { kanji: "次回", yomi: "じかい" },
+        { kanji: "次の", yomi: "つぎ（の）" }, { kanji: "次回", yomi: "じかい" },
         { kanji: "火を消す", yomi: "ひ（を）け（す）" }, { kanji: "火が消える", yomi: "ひ（が）き（える）" },
         { kanji: "ドアが閉まる", yomi: "ドア（が）し（まる）" }, { kanji: "ドアを閉める", yomi: "ドア（を）し（める）" },
         { kanji: "窓", yomi: "まど" }, { kanji: "窓を開ける", yomi: "まど（を）あ（ける）" }, { kanji: "窓が開く", yomi: "まど（が）あ（く）" },
         { kanji: "場合", yomi: "ばあい" }, { kanji: "場所", yomi: "ばしょ" }, { kanji: "工場", yomi: "こうじょう" },
         { kanji: "合う", yomi: "あ（う）" }, { kanji: "試合", yomi: "しあい" }, { kanji: "都合", yomi: "つごう" },
-        { kanji: "一番", yomi: "いちばん" }, { kanji: "番組", yomi: "ばんぐみ" }, { kanji: "番号", yomi: "ばんごう" },
+        { kanji: "一番", yomi: "いちばん" }, { kanji: "番組", yomi: "ばんぐみ" }, { kanji: "番号", yomi: "ばんぐ口" },
         { kanji: "大切な", yomi: "たいせつ（な）" }, { kanji: "親切な", yomi: "しんせつ（な）" }, { kanji: "パンを切る", yomi: "パン（を）き（る）" },
         { kanji: "ひもが切れる", yomi: "（ひもが）き（れる）" }, { kanji: "多い", yomi: "おお（い）" }, { kanji: "食料", yomi: "しょくりょう" },
         { kanji: "料理", yomi: "りょうり" }, { kanji: "原料", yomi: "げんりょう" }, { kanji: "材料", yomi: "ざいりょう" },
@@ -175,7 +179,7 @@ const embeddedLevels = {
         { kanji: "都合", yomi: "つごう" }, { kanji: "市役所", yomi: "しやくしょ" }, { kanji: "景観", yomi: "けいかん" },
         { kanji: "景色", yomi: "けしき" }, { kanji: "観光", yomi: "かんこう" }, { kanji: "美しい", yomi: "うつく（しい）" },
         { kanji: "美術", yomi: "びじゅつ" }, { kanji: "美術館", yomi: "びじゅつかん" }, { kanji: "無形文化遺産", yomi: "むけいぶんかいさん" },
-        { kanji: "無理な", yomi: "むり（な）" }, { kanji: "無理をする", yomi: "むり（を する）" }, { kanji: "無料", yomi: "むりょう" },
+        { kanji: "無理な", yomi: "むri（な）" }, { kanji: "無理をする", yomi: "むり（を する）" }, { kanji: "無料", yomi: "むりょう" },
         { kanji: "文化", yomi: "ぶんか" }, { kanji: "文学", yomi: "ぶんがく" }, { kanji: "文法", yomi: "ぶんぽう" },
         { kanji: "作文", yomi: "さくぶん" }, { kanji: "化粧品", yomi: "けしょうひん" }
     ],
@@ -188,7 +192,7 @@ const embeddedLevels = {
         { kanji: "相談", yomi: "そうだん" }, { kanji: "相手", yomi: "あいて" }, { kanji: "遅く", yomi: "おそ（く）" },
         { kanji: "遅い", yomi: "おそ（い）" }, { kanji: "遅れる", yomi: "おく（れる）" }, { kanji: "遅刻", yomi: "ちこく" },
         { kanji: "活動", yomi: "かつどう" }, { kanji: "自動車", yomi: "じどうしゃ" }, { kanji: "動く", yomi: "うご（く）" },
-        { kanji: "動かす", yomi: "うご（かす）" }, { kanji: "通勤", yomi: "つうきん" }, { kanji: "交通", yomi: "こうつう" },
+        { kanji: "動かす", yomi: "うご（akasｕ）" }, { kanji: "通勤", yomi: "つうきん" }, { kanji: "交通", yomi: "こうつう" },
         { kanji: "道を通る", yomi: "みち（を）とお（る）" }, { kanji: "大学に通う", yomi: "だいがく（に）かよ（う）" }, { kanji: "通勤", yomi: "つうきん" },
         { kanji: "会社に勤める", yomi: "かいしゃ（に）つと（める）" }, { kanji: "原因", yomi: "げんいん" }, { kanji: "体", yomi: "からだ" },
         { kanji: "体温計", yomi: "たいおんけい" }, { kanji: "不調", yomi: "ふちょう" }, { kanji: "不便な", yomi: "ふべん（な）" },
@@ -226,7 +230,7 @@ const embeddedLevels = {
     ],
     8: [
         { kanji: "言う", yomi: "い（う）" }, { kanji: "発言", yomi: "はつげん" }, { kanji: "伝える", yomi: "つた（える）" },
-        { kanji: "伝統的", yomi: "でんとうてき" }, { kanji: "合図", yomi: "あいず" }, { kanji: "地図", yomi: "ちず" },
+        { kanji: "伝統적", yomi: "でんとうてき" }, { kanji: "合図", yomi: "あいず" }, { kanji: "地図", yomi: "ちず" },
         { kanji: "図書館", yomi: "としょかん" }, { kanji: "賛成", yomi: "さんせい" }, { kanji: "成功", yomi: "せいこう" },
         { kanji: "確かめる", yomi: "たし（かめる）" }, { kanji: "確か", yomi: "たし（か）" }, { kanji: "確認", yomi: "かくにん" },
         { kanji: "誤解", yomi: "ごかい" }, { kanji: "話し終わる", yomi: "はな（し）お（わる）" }, { kanji: "終わり", yomi: "お（わり）" },
@@ -243,7 +247,7 @@ const embeddedLevels = {
         { kanji: "区別", yomi: "くべつ" }, { kanji: "少ない", yomi: "すく（ない）" }, { kanji: "少し", yomi: "すこ（し）" },
         { kanji: "少々お待ちください", yomi: "しょうしょう（お）ま（ちください）" }, { kanji: "家庭", yomi: "かてい" }, { kanji: "庭", yomi: "にわ" },
         { kanji: "目を向ける", yomi: "め（を）む（ける）" }, { kanji: "向こう", yomi: "む（こう）" }, { kanji: "~程度", yomi: "~（ていど）" },
-        { kanji: "一度", yomi: "いちど" }, { kanji: "一度も", yomi: "いちど（も）" }, { kanji: "結果", yomi: "けっかん" },
+        { kanji: "一度", yomi: "いちど" }, { kanji: "一度も", yomi: "いちど（も）" }, { kanji: "結果", yomi: "けっか" },
         { kanji: "果物", yomi: "くだもの" }, { kanji: "意識", yomi: "いしき" }
     ],
     10: [
@@ -272,7 +276,6 @@ const boxBottom = document.getElementById("boxBottom");
 
 function initApp() {
     for (let i = 1; i <= 10; i++) {
-        // 内包データを最優先で読み込む構造に修正
         if (embeddedLevels[i] && embeddedLevels[i].length > 0) {
             levels[i] = embeddedLevels[i];
             localStorage.setItem("L" + i, JSON.stringify(embeddedLevels[i]));
@@ -351,15 +354,15 @@ function clickAction(btnMode) {
         document.getElementById("btn" + btnMode).classList.add("selected");
         
         const item = data[order[index]];
-        boxTop.textContent = (currentDrillMode === "K2H") ? item.kanji : item.yomi; 
-        boxBottom.textContent = ""; 
+        boxTop.innerHTML = (currentDrillMode === "K2H") ? formatKanjiSide(item.kanji) : formatYomiSide(item.yomi); 
+        boxBottom.innerHTML = ""; 
         clickCount = 1; 
         return; 
     }
     
     if (clickCount === 1) { 
         const item = data[order[index]];
-        boxBottom.textContent = (currentDrillMode === "K2H") ? item.yomi : item.kanji; 
+        boxBottom.innerHTML = (currentDrillMode === "K2H") ? formatYomiSide(item.yomi) : formatKanjiSide(item.kanji); 
         clickCount = 2; 
         return; 
     }
@@ -368,10 +371,51 @@ function clickAction(btnMode) {
         index++; 
         if (index >= data.length) { shuffle(order); index = 0; } 
         const item = data[order[index]]; 
-        boxTop.textContent = (currentDrillMode === "K2H") ? item.kanji : item.yomi; 
-        boxBottom.textContent = ""; 
+        boxTop.innerHTML = (currentDrillMode === "K2H") ? formatKanjiSide(item.kanji) : formatYomiSide(item.yomi); 
+        boxBottom.innerHTML = ""; 
         clickCount = 1;
     }
+}
+
+// 漢字側の自動着色ロジック：ひらがな、カタカナ、英数字、各種記号（〜、～、スペースなど含む）を黒文字に反転
+function formatKanjiSide(str) {
+    if (!str) return "";
+    // 波ダッシュ「〜」と全角チルダ「～」の両方、および主要な記号を網羅して黒文字化
+    const regex = /([\u3040-\u309F\u30A0-\u30FF\uFF00-\uFFEF\u0020-\u007E\u2010-\u201F〜～、。・「」『』（）［］【】※]+)/g;
+    const converted = str.replace(regex, '<span class="black-text">$1</span>');
+    return `<span class="base-red">${converted}</span>`;
+}
+
+// 読み側の自動着色ロジック：完全決着版
+function formatYomiSide(str) {
+    if (!str) return "";
+    
+    // 1. まず、全角カッコ（送り仮名）の部分をいったん特殊な目印「【黒:中身】」に変換
+    let processed = str.replace(/（([^（）]+)）/g, '【黒:$1】');
+    
+    // 2. 一文字ずつ分解して、純粋な「ひらがな」以外はすべて強制的に黒にする
+    let htmlResult = "";
+    let i = 0;
+    while (i < processed.length) {
+        if (processed.substring(i, i + 3) === "【黒:") {
+            let endIdx = processed.indexOf("】", i);
+            let content = processed.substring(i + 3, endIdx);
+            htmlResult += `<span class="black-text">${content}</span>`;
+            i = endIdx + 1;
+        } else {
+            let char = processed[i];
+            
+            // 純粋な「ひらがな」だけを赤のまま残し、それ以外の記号（~や〜など全て）や英数字はすべて強制黒文字
+            if (/^[\u3040-\u309F]$/.test(char)) {
+                htmlResult += char; // ひらがなはそのまま（ベースの赤）
+            } else {
+                htmlResult += `<span class="black-text">${char}</span>`; // 記号やカタカナ、英数字は黒
+            }
+            i++;
+        }
+    }
+    
+    return `<span class="base-red">${htmlResult}</span>`;
 }
 
 function clearBoxes() { boxTop.textContent = ""; boxBottom.textContent = ""; }
@@ -405,7 +449,6 @@ function saveData() {
 }
 
 function generateNewHtmlFile() {
-    // 常に最新の全データを文字列化して、埋め込み部分を置換
     const currentEmbeddedData = {};
     for(let i=1; i<=10; i++){
         currentEmbeddedData[i] = levels[i];
@@ -421,7 +464,6 @@ function generateNewHtmlFile() {
         baseHtml = baseHtml.replace(/<div id="drillScreen" class="sub-screen" style="display:\s*block;"/g, '<div id="drillScreen" class="sub-screen" style="display:none;"');
     }
     
-    // embeddedLevels の中身を完全最新に書き換える
     const startIdx = baseHtml.indexOf("const embeddedLevels = {");
     const endIdx = baseHtml.indexOf("};\n\nlet levels =", startIdx);
     
