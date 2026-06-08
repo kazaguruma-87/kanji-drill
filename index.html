@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<script>
-    // 過去の古いキャッシュ（サービスワーカー）を強制的にすべて削除する
-    navigator.serviceWorker.getRegistrations().then(registrations => {
-        for (let registration of registrations) { registration.unbind || registration.unregister(); }
-    });
-</script>
     <meta charset="UTF-8">
     <title>K式漢字ドリル</title>
     <link rel="manifest" href="manifest.json">
@@ -14,17 +8,18 @@
 
     <style>
         body { font-family: sans-serif; text-align: center; background: #f5f5f5; margin: 0; padding: 0; }
-        
-        /* テキスト選択ドロップダウンのスタイル */
+
         .selector-bar { background: #222; padding: 10px; display: flex; justify-content: center; }
         .text-select { font-size: 16px; font-weight: bold; padding: 8px 12px; border-radius: 6px; border: 2px solid #ff9800; background: #333; color: white; width: 90%; max-width: 400px; cursor: pointer; }
         
         .tab-bar { display: flex; overflow-x: auto; background: #333; color: white; }
         .tab-bar button { flex: 1 0 auto; padding: 14px 20px; border: none; background: #444; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
         .tab-bar button.active { background: #ff9800; }
+
         .mode-bar { display: flex; background: #e0e0e0; }
         .mode-bar button { flex: 1; padding: 12px; border: none; font-size: 15px; font-weight: bold; background: #ccc; color: #333; cursor: pointer; }
         .mode-bar button.active { background: #2196f3; color: white; }
+
         .screen { display: none; }
         .screen.active { display: block; }
 
@@ -65,9 +60,18 @@
     </style>
 
     <script>
-        navigator.serviceWorker.register('service-worker.js');
+        navigator.serviceWorker.getRegistrations().then(regs => {
+            for (let reg of regs) reg.unregister();
+        });
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
     </script>
 </head>
+
 <body>
 
 <!-- テキスト選択ドロップダウン -->
@@ -78,27 +82,37 @@
 <!-- レベル選択タブ -->
 <div class="tab-bar" id="levelTabBar"></div>
 
+<!-- モード切替 -->
 <div class="mode-bar">
     <button id="modeDrill" class="active" onclick="switchMode('drill')">🎯 ドリルをやる</button>
     <button id="modeEdit" onclick="switchMode('edit')">✍️ 単語を入力する</button>
 </div>
 
+<!-- ドリル画面（メイン） -->
 <div id="idMain" class="screen active">
+
+    <!-- スタート画面 -->
     <div id="startScreen" class="sub-screen">
         <button id="startBtn" onclick="startDrill()">スタート</button>
     </div>
+
+    <!-- ドリル画面 -->
     <div id="drillScreen" class="sub-screen" style="display:none;">
         <div class="displayBox" id="boxTop"></div>
         <div class="displayBox" id="boxBottom"></div>
+
         <div class="buttonRow">
             <button id="btnK2H" class="actionBtn" onclick="clickAction('K2H')">漢字→かな</button>
             <button id="btnH2K" class="actionBtn" onclick="clickAction('H2K')">かな→漢字</button>
         </div>
     </div>
+
 </div>
 
+<!-- 編集画面 -->
 <div id="editorScreen" class="screen">
     <h2 id="editorTitle">K式漢字ドリル 語彙入力</h2>
+
     <div class="table-container">
         <table id="vocabTable">
             <thead>
@@ -111,6 +125,7 @@
             <tbody></tbody>
         </table>
     </div>
+
     <div class="edit-actions">
         <button id="addRow" class="action" onclick="addRow()">行を追加</button>
         <button id="save" class="action" onclick="saveData()">保存する（ファイル保存）</button>
@@ -121,154 +136,442 @@
 <script>
 const embeddedLevels = {
     "中級へ行こう・ピンク": {
+
+        /* =========================
+           L1（修正済み）
+        ========================= */
         1: [
-            { kanji: "代表的", yomi: "だいひょうてき" }, { kanji: "代わりに", yomi: "か（わりに）" }, { kanji: "発表", yomi: "はっぴょう" },
-            { kanji: "表す", yomi: "あらわ（す）" }, { kanji: "目的", yomi: "もくてき" }, { kanji: "最近", yomi: "さいきん" },
-            { kanji: "最も", yomi: "もっと（も）" }, { kanji: "近所", yomi: "きんじょ" }, { kanji: "近い", yomi: "ちか（い）" },
-            { kanji: "近く", yomi: "ちか（く）" }, { kanji: "牛丼", yomi: "ぎゅうどん" }, { kanji: "牛肉", yomi: "ぎゅうにく" },
-            { kanji: "牛乳", yomi: "ぎゅうにゅう" }, { kanji: "発音", yomi: "hatsuon" }, { kanji: "発見", yomi: "はっけん" },
-            { kanji: "発明", yomi: "はつめい" }, { kanji: "１兆円", yomi: "いっちょうえん" }, { kanji: "使う", yomi: "つか（う）" },
-            { kanji: "使用禁止", yomi: "しようきんし" }, { kanji: "使用中", yomi: "しようちゅう" }, { kanji: "理由", yomi: "りゆう" },
-            { kanji: "料理", yomi: "りょうり" }, { kanji: "自由に", yomi: "じゆう（に）" }, { kanji: "安い", yomi: "やす（い）" },
-            { kanji: "安心", yomi: "あんしん" }, { kanji: "安全な", yomi: "あんぜん（な）" }, { kanji: "手軽に", yomi: "てがる（に）" },
-            { kanji: "手", yomi: "て" }, { kanji: "手帳", yomi: "てちょう" }, { kanji: "手伝う", yomi: "てつだ（う）" },
-            { kanji: "歌手", yomi: "かしゅ" }, { kanji: "上手な", yomi: "じょうず（な）" }, { kanji: "下手な", yomi: "へた（な）" },
-            { kanji: "軽い", yomi: "かる（い）" }, { kanji: "利用", yomi: "りよう" }, { kanji: "便利な", yomi: "べんり（な）" },
-            { kanji: "店", yomi: "みせ" }, { kanji: "支店", yomi: "してん" }, { kanji: "明るい", yomi: "あか（るい）" },
-            { kanji: "説明", yomi: "せつめい" }, { kanji: "物", yomi: "もの" }, { kanji: "食べ物", yomi: "た（べ）もの" },
-            { kanji: "飲み物", yomi: "の（み）もの" }, { kanji: "動物", yomi: "どうぶつ" }, { kanji: "荷物", yomi: "にもつ" },
-            { kanji: "生活", yomi: "せいかつ" }, { kanji: "活動", yomi: "かつどう" }, { kanji: "始める", yomi: "はじ（める）" },
+            { kanji: "代表的", yomi: "だいひょうてき" },
+            { kanji: "代わりに", yomi: "か（わりに）" },
+            { kanji: "発表", yomi: "はっぴょう" },
+            { kanji: "表す", yomi: "あらわ（す）" },
+            { kanji: "目的", yomi: "もくてき" },
+            { kanji: "最近", yomi: "さいきん" },
+            { kanji: "最も", yomi: "もっと（も）" },
+            { kanji: "近所", yomi: "きんじょ" },
+            { kanji: "近い", yomi: "ちか（い）" },
+            { kanji: "近く", yomi: "ちか（く）" },
+            { kanji: "牛丼", yomi: "ぎゅうどん" },
+            { kanji: "牛肉", yomi: "ぎゅうにく" },
+            { kanji: "牛乳", yomi: "ぎゅうにゅう" },
+            { kanji: "発音", yomi: "はつおん" },   // ← 修正済み
+            { kanji: "発見", yomi: "はっけん" },
+            { kanji: "発明", yomi: "はつめい" },
+            { kanji: "１兆円", yomi: "いっちょうえん" },
+            { kanji: "使う", yomi: "つか（う）" },
+            { kanji: "使用禁止", yomi: "しようきんし" },
+            { kanji: "使用中", yomi: "しようちゅう" },
+            { kanji: "理由", yomi: "りゆう" },
+            { kanji: "料理", yomi: "りょうり" },
+            { kanji: "自由に", yomi: "じゆう（に）" },
+            { kanji: "安い", yomi: "やす（い）" },
+            { kanji: "安心", yomi: "あんしん" },
+            { kanji: "安全な", yomi: "あんぜん（な）" },
+            { kanji: "手軽に", yomi: "てがる（に）" },
+            { kanji: "手", yomi: "て" },
+            { kanji: "手帳", yomi: "てちょう" },
+            { kanji: "手伝う", yomi: "てつだ（う）" },
+            { kanji: "歌手", yomi: "かしゅ" },
+            { kanji: "上手な", yomi: "じょうず（な）" },
+            { kanji: "下手な", yomi: "へた（な）" },
+            { kanji: "軽い", yomi: "かる（い）" },
+            { kanji: "利用", yomi: "りよう" },
+            { kanji: "便利な", yomi: "べんり（な）" },
+            { kanji: "店", yomi: "みせ" },
+            { kanji: "支店", yomi: "してん" },
+            { kanji: "明るい", yomi: "あか（るい）" },
+            { kanji: "説明", yomi: "せつめい" },
+            { kanji: "物", yomi: "もの" },
+            { kanji: "食べ物", yomi: "た（べ）もの" },
+            { kanji: "飲み物", yomi: "の（み）もの" },
+            { kanji: "動物", yomi: "どうぶつ" },
+            { kanji: "荷物", yomi: "にもつ" },
+            { kanji: "生活", yomi: "せいかつ" },
+            { kanji: "活動", yomi: "かつどう" },
+            { kanji: "始める", yomi: "はじ（める）" },
             { kanji: "始まる", yomi: "はじ（まる）" }
         ],
+
+        /* =========================
+           L2
+        ========================= */
         2: [
-            { kanji: "地震", yomi: "じしん" }, { kanji: "地下鉄", yomi: "ちかてつ" }, { kanji: "地球", yomi: "ちきゅう" },
-            { kanji: "地図", yomi: "ちず" }, { kanji: "起きる", yomi: "お（きる）" }, { kanji: "机", yomi: "つくえ" },
-            { kanji: "次の", yomi: "つぎ（の）" }, { kanji: "次回", yomi: "じかい" },
-            { kanji: "火を消す", yomi: "ひ（を）け（す）" }, { kanji: "火が消える", yomi: "ひ（が）き（える）" },
-            { kanji: "ドアが閉まる", yomi: "ドア（が）し（まる）" }, { kanji: "ドアを閉める", yomi: "ドア（を）し（める）" },
-            { kanji: "窓", yomi: "まど" }, { kanji: "窓を開ける", yomi: "窓（を）あ（ける）" }, { kanji: "窓が開く", yomi: "まど（が）あ（く）" },
-            { kanji: "場合", yomi: "ばあい" }, { kanji: "場所", yomi: "ばしょ" }, { kanji: "工場", yomi: "こうじょう" },
-            { kanji: "合う", yomi: "あ（う）" }, { kanji: "試合", yomi: "しあい" }, { kanji: "都合", yomi: "つごう" },
-            { kanji: "一番", yomi: "いちばん" }, { kanji: "番組", yomi: "ばんぐみ" }, { kanji: "番号", yomi: "ばんぐ口" },
-            { kanji: "大切な", yomi: "たいせつ（な）" }, { kanji: "親切な", yomi: "しんせつ（な）" }, { kanji: "パンを切る", yomi: "パン（を）き（る）" },
-            { kanji: "ひもが切れる", yomi: "（ひもが）き（れる）" }, { kanji: "多い", yomi: "おお（い）" }, { kanji: "食料", yomi: "しょくりょう" },
-            { kanji: "料理", yomi: "りょうり" }, { kanji: "原料", yomi: "げんりょう" }, { kanji: "材料", yomi: "ざいりょう" },
-            { kanji: "用意", yomi: "ようい" }, { kanji: "用事", yomi: "ようじ" }, { kanji: "使用中", yomi: "しようちゅう" },
-            { kanji: "意見", yomi: "いけん" }, { kanji: "意味", yomi: "いみ" }, { kanji: "家具", yomi: "かぐ" },
-            { kanji: "家族", yomi: "かぞく" }, { kanji: "私の家", yomi: "わたし（の）いえ" }, { kanji: "家賃", yomi: "やちん" },
-            { kanji: "考える", yomi: "かんが（える）" }, { kanji: "家族", yomi: "かぞく" }, { kanji: "場所", yomi: "ばしょ" },
-            { kanji: "住所", yomi: "じゅうしょ" }, { kanji: "近所", yomi: "きんじょ" }, { kanji: "所", yomi: "ところ" },
+            { kanji: "地震", yomi: "じしん" },
+            { kanji: "地下鉄", yomi: "ちかてつ" },
+            { kanji: "地球", yomi: "ちきゅう" },
+            { kanji: "地図", yomi: "ちず" },
+            { kanji: "起きる", yomi: "お（きる）" },
+            { kanji: "机", yomi: "つくえ" },
+            { kanji: "次の", yomi: "つぎ（の）" },
+            { kanji: "次回", yomi: "じかい" },
+            { kanji: "火を消す", yomi: "ひ（を）け（す）" },
+            { kanji: "火が消える", yomi: "ひ（が）き（える）" },
+            { kanji: "ドアが閉まる", yomi: "ドア（が）し（まる）" },
+            { kanji: "ドアを閉める", yomi: "ドア（を）し（める）" },
+            { kanji: "窓", yomi: "まど" },
+            { kanji: "窓を開ける", yomi: "まど（を）あ（ける）" },
+            { kanji: "窓が開く", yomi: "まど（が）あ（く）" },
+            { kanji: "場合", yomi: "ばあい" },
+            { kanji: "場所", yomi: "ばしょ" },
+            { kanji: "工場", yomi: "こうじょう" },
+            { kanji: "合う", yomi: "あ（う）" },
+            { kanji: "試合", yomi: "しあい" },
+            { kanji: "都合", yomi: "つごう" },
+            { kanji: "一番", yomi: "いちばん" },
+            { kanji: "番組", yomi: "ばんぐみ" },
+            { kanji: "番号", yomi: "ばんごう" },
+            { kanji: "大切な", yomi: "たいせつ（な）" },
+            { kanji: "親切な", yomi: "しんせつ（な）" },
+            { kanji: "パンを切る", yomi: "パン（を）き（る）" },
+            { kanji: "ひもが切れる", yomi: "（ひもが）き（れる）" },
+            { kanji: "多い", yomi: "おお（い）" },
+            { kanji: "食料", yomi: "しょくりょう" },
+            { kanji: "料理", yomi: "りょうり" },
+            { kanji: "原料", yomi: "げんりょう" },
+            { kanji: "材料", yomi: "ざいりょう" },
+            { kanji: "用意", yomi: "ようい" },
+            { kanji: "用事", yomi: "ようじ" },
+            { kanji: "使用中", yomi: "しようちゅう" },
+            { kanji: "意見", yomi: "いけん" },
+            { kanji: "意味", yomi: "いみ" },
+            { kanji: "家具", yomi: "かぐ" },
+            { kanji: "家族", yomi: "かぞく" },
+            { kanji: "私の家", yomi: "わたし（の）いえ" },
+            { kanji: "家賃", yomi: "やちん" },
+            { kanji: "考える", yomi: "かんが（える）" },
+            { kanji: "住所", yomi: "じゅうしょ" },
+            { kanji: "所", yomi: "ところ" },
             { kanji: "台所", yomi: "だいどころ" }
         ],
+
+        /* =========================
+           L3
+        ========================= */
         3: [
-            { kanji: "調査", yomi: "ちょうさ" }, { kanji: "調べる", yomi: "しら（べる）" }, { kanji: "持つ", yomi: "も（つ）" },
-            { kanji: "自分", yomi: "じぶん" }, { kanji: "自由に", yomi: "じゆう（に）" }, { kanji: "自然", yomi: "しぜん" },
-            { kanji: "専用", yomi: "せんよう" }, { kanji: "専門", yomi: "せんもん" }, { kanji: "町", yomi: "まち" },
-            { kanji: "市町村", yomi: "しちょうそん" }, { kanji: "着る", yomi: "き（る）" }, { kanji: "着物", yomi: "きもの" },
-            { kanji: "駅に着く", yomi: "えき（に）つ（く）" }, { kanji: "到着", yomi: "とうちゃく" }, { kanji: "服", yomi: "ふく" },
-            { kanji: "高価な", yomi: "こうか（な）" }, { kanji: "物価", yomi: "ぶっか" }, { kanji: "親", yomi: "おや" },
-            { kanji: "親切な", yomi: "しんせつ（な）" }, { kanji: "数", yomi: "かず" }, { kanji: "数える", yomi: "かぞ（える）" },
-            { kanji: "数年前", yomi: "すうねんまえ" }, { kanji: "減る", yomi: "へ（る）" }, { kanji: "減少", yomi: "げんしょう" },
-            { kanji: "王様", yomi: "おうさま" }, { kanji: "〜様", yomi: "〜（さま）" }, { kanji: "様子", yomi: "ようす" },
-            { kanji: "人が増える", yomi: "ひと（が）ふ（える）" }, { kanji: "人を増やす", yomi: "ひと（を）ふ（やす）" }, { kanji: "増やす", yomi: "ま（す）" }
+            { kanji: "調査", yomi: "ちょうさ" },
+            { kanji: "調べる", yomi: "しら（べる）" },
+            { kanji: "持つ", yomi: "も（つ）" },
+            { kanji: "自分", yomi: "じぶん" },
+            { kanji: "自由に", yomi: "じゆう（に）" },
+            { kanji: "自然", yomi: "しぜん" },
+            { kanji: "専用", yomi: "せんよう" },
+            { kanji: "専門", yomi: "せんもん" },
+            { kanji: "町", yomi: "まち" },
+            { kanji: "市町村", yomi: "しちょうそん" },
+            { kanji: "着る", yomi: "き（る）" },
+            { kanji: "着物", yomi: "きもの" },
+            { kanji: "駅に着く", yomi: "えき（に）つ（く）" },
+            { kanji: "到着", yomi: "とうちゃく" },
+            { kanji: "服", yomi: "ふく" },
+            { kanji: "高価な", yomi: "こうか（な）" },
+            { kanji: "物価", yomi: "ぶっか" },
+            { kanji: "親", yomi: "おや" },
+            { kanji: "親切な", yomi: "しんせつ（な）" },
+            { kanji: "数", yomi: "かず" },
+            { kanji: "数える", yomi: "かぞ（える）" },
+            { kanji: "数年前", yomi: "すうねんまえ" },
+            { kanji: "減る", yomi: "へ（る）" },
+            { kanji: "減少", yomi: "げんしょう" },
+            { kanji: "王様", yomi: "おうさま" },
+            { kanji: "〜様", yomi: "〜（さま）" },
+            { kanji: "様子", yomi: "ようす" },
+            { kanji: "人が増える", yomi: "ひと（が）ふ（える）" },
+            { kanji: "人を増やす", yomi: "ひと（を）ふ（やす）" },
+            { kanji: "増やす", yomi: "ま（す）" }
         ],
+
+        /* =========================
+           L4（修正済み）
+        ========================= */
         4: [
-            { kanji: "日本を訪れる", yomi: "にほん（を）おとず（れる）" }, { kanji: "訪ねる", yomi: "たず（ねる）" }, { kanji: "旅行", yomi: "りょこう" },
-            { kanji: "旅行者", yomi: "りょこうしゃ" }, { kanji: "医者", yomi: "いしゃ" }, { kanji: "実際に", yomi: "じっさい（に）" },
-            { kanji: "実験", yomi: "じっけん" }, { kanji: "実は", yomi: "じつ（は）" }, { kanji: "国際〜", yomi: "こくさい〜" },
-            { kanji: "海外", yomi: "かいがい" }, { kanji: "海", yomi: "うみ" }, { kanji: "礼儀", yomi: "れいぎ" },
-            { kanji: "おもてなしの心", yomi: "（おもてなしの）こころ" }, { kanji: "心配", yomi: "しんぱい" }, { kanji: "心配な", yomi: "しんぱい（な）" },
-            { kanji: "安心", yomi: "あんしん" }, { kanji: "選ぶ", yomi: "えら（ぶ）" }, { kanji: "食事", yomi: "しょくじ" },
-            { kanji: "事故", yomi: "じこ" }, { kanji: "仕事", yomi: "しごと" }, { kanji: "都市", yomi: "とし" },
-            { kanji: "都合", yomi: "つごう" }, { kanji: "市役所", yomi: "しやくしょ" }, { kanji: "景観", yomi: "けいかん" },
-            { kanji: "景色", yomi: "けしき" }, { kanji: "観光", yomi: "かんこう" }, { kanji: "美しい", yomi: "うつく（しい）" },
-            { kanji: "美術", yomi: "びじゅつ" }, { kanji: "美術館", yomi: "びじゅつかん" }, { kanji: "無形文化遺産", yomi: "むけいぶんかいさん" },
-            { kanji: "無理な", yomi: "むri（な）" }, { kanji: "無理をする", yomi: "む理（を する）" }, { kanji: "無料", yomi: "むりょう" },
-            { kanji: "文化", yomi: "ぶんか" }, { kanji: "文学", yomi: "ぶんがく" }, { kanji: "文法", yomi: "ぶんぽう" },
-            { kanji: "作文", yomi: "さくぶん" }, { kanji: "化粧品", yomi: "けしょうひん" }
+            { kanji: "日本を訪れる", yomi: "にほん（を）おとず（れる）" },
+            { kanji: "訪ねる", yomi: "たず（ねる）" },
+            { kanji: "旅行", yomi: "りょこう" },
+            { kanji: "旅行者", yomi: "りょこうしゃ" },
+            { kanji: "医者", yomi: "いしゃ" },
+            { kanji: "実際に", yomi: "じっさい（に）" },
+            { kanji: "実験", yomi: "じっけん" },
+            { kanji: "実は", yomi: "じつ（は）" },
+            { kanji: "国際〜", yomi: "こくさい〜" },
+            { kanji: "海外", yomi: "かいがい" },
+            { kanji: "海", yomi: "うみ" },
+            { kanji: "礼儀", yomi: "れいぎ" },
+            { kanji: "おもてなしの心", yomi: "（おもてなしの）こころ" },
+            { kanji: "心配", yomi: "しんぱい" },
+            { kanji: "心配な", yomi: "しんぱい（な）" },
+            { kanji: "安心", yomi: "あんしん" },
+            { kanji: "選ぶ", yomi: "えら（ぶ）" },
+            { kanji: "食事", yomi: "しょくじ" },
+            { kanji: "事故", yomi: "じこ" },
+            { kanji: "仕事", yomi: "しごと" },
+            { kanji: "都市", yomi: "とし" },
+            { kanji: "都合", yomi: "つごう" },
+            { kanji: "市役所", yomi: "しやくしょ" },
+            { kanji: "景観", yomi: "けいかん" },
+            { kanji: "景色", yomi: "けしき" },
+            { kanji: "観光", yomi: "かんこう" },
+            { kanji: "美しい", yomi: "うつく（しい）" },
+            { kanji: "美術", yomi: "びじゅつ" },
+            { kanji: "美術館", yomi: "びじゅつかん" },
+            { kanji: "無形文化遺産", yomi: "むけいぶんかいさん" },
+            { kanji: "無理な", yomi: "むり（な）" },          // ← 修正済み
+            { kanji: "無理をする", yomi: "むり（を する）" }, // ← 修正済み
+            { kanji: "無料", yomi: "むりょう" },
+            { kanji: "文化", yomi: "ぶんか" },
+            { kanji: "文学", yomi: "ぶんがく" },
+            { kanji: "文法", yomi: "ぶんぽう" },
+            { kanji: "作文", yomi: "さくぶん" },
+            { kanji: "化粧品", yomi: "けしょうひん" }
         ],
+
+        /* =========================
+           L5（修正済み）
+        ========================= */
         5: [
-            { kanji: "睡眠", yomi: "すいみん" }, { kanji: "眠る", yomi: "ねむ（る）" }, { kanji: "眠い", yomi: "ねむ（い）" },
-            { kanji: "毎晩", yomi: "まいばん" }, { kanji: "今晚", yomi: "こんばん" }, { kanji: "晩ごはん", yomi: "ばん（ごはん）" },
-            { kanji: "夜", yomi: "よる" }, { kanji: "夜中", yomi: "よなか" }, { kanji: "今夜", yomi: "こんや" },
-            { kanji: "何回も", yomi: "なんかい（も）" }, { kanji: "回す", yomi: "まわ（す）" }, { kanji: "目が覚める", yomi: "め（が）さ（める）" },
-            { kanji: "ことばを覚える", yomi: "（ことばを）おぼ（える）" }, { kanji: "医者", yomi: "いしゃ" }, { kanji: "医学", yomi: "いがく" },
-            { kanji: "相談", yomi: "そうだん" }, { kanji: "相手", yomi: "あいて" }, { kanji: "遅く", yomi: "おそ（く）" },
-            { kanji: "遅い", yomi: "おそ（い）" }, { kanji: "遅れる", yomi: "おく（れる）" }, { kanji: "遅刻", yomi: "ちこく" },
-            { kanji: "活動", yomi: "かつどう" }, { kanji: "自動車", yomi: "じどうしゃ" }, { kanji: "動く", yomi: "うご（く）" },
-            { kanji: "動かす", yomi: "うご（akasｕ）" }, { kanji: "通勤", yomi: "つうきん" }, { kanji: "交通", yomi: "こうつう" },
-            { kanji: "道を通る", yomi: "みち（を）とお（る）" }, { kanji: "大学に通う", yomi: "だいがく（に）かよ（う）" }, { kanji: "通勤", yomi: "つうきん" },
-            { kanji: "会社に勤める", yomi: "かいしゃ（に）つto（める）" }, { kanji: "原因", yomi: "げんいん" }, { kanji: "体", yomi: "からだ" },
-            { kanji: "体温計", yomi: "たいおんけい" }, { kanji: "不調", yomi: "ふちょう" }, { kanji: "不便な", yomi: "ふべん（な）" },
-            { kanji: "疲れる", yomi: "つか（れる）" }, { kanji: "昼間", yomi: "ひるま" }, { kanji: "昼ごはん", yomi: "昼（ごはん）" },
-            { kanji: "昼休み", yomi: "ひるやす（み）" }, { kanji: "神経質な", yomi: "しんけいしつ（な）" }, { kanji: "質問", yomi: "しつもん" }
+            { kanji: "睡眠", yomi: "すいみん" },
+            { kanji: "眠る", yomi: "ねむ（る）" },
+            { kanji: "眠い", yomi: "ねむ（い）" },
+            { kanji: "毎晩", yomi: "まいばん" },
+            { kanji: "今晩", yomi: "こんばん" },
+            { kanji: "晩ごはん", yomi: "ばん（ごはん）" },
+            { kanji: "夜", yomi: "よる" },
+            { kanji: "夜中", yomi: "よなか" },
+            { kanji: "今夜", yomi: "こんや" },
+            { kanji: "何回も", yomi: "なんかい（も）" },
+            { kanji: "回す", yomi: "まわ（す）" },
+            { kanji: "目が覚める", yomi: "め（が）さ（める）" },
+            { kanji: "ことばを覚える", yomi: "（ことばを）おぼ（える）" },
+            { kanji: "医者", yomi: "いしゃ" },
+            { kanji: "医学", yomi: "いがく" },
+            { kanji: "相談", yomi: "そうだん" },
+            { kanji: "相手", yomi: "あいて" },
+            { kanji: "遅く", yomi: "おそ（く）" },
+            { kanji: "遅い", yomi: "おそ（い）" },
+            { kanji: "遅れる", yomi: "おく（れる）" },
+            { kanji: "遅刻", yomi: "ちこく" },
+            { kanji: "活動", yomi: "かつどう" },
+            { kanji: "自動車", yomi: "じどうしゃ" },
+            { kanji: "動く", yomi: "うご（く）" },
+            { kanji: "動かす", yomi: "うご（かす）" }, // ← 修正済み
+            { kanji: "通勤", yomi: "つうきん" },
+            { kanji: "交通", yomi: "こうつう" },
+            { kanji: "道を通る", yomi: "みち（を）とお（る）" },
+            { kanji: "大学に通う", yomi: "だいがく（に）かよ（う）" },
+            { kanji: "通勤", yomi: "つうきん" },
+            { kanji: "会社に勤める", yomi: "かいしゃ（に）つと（める）" }, // ← 修正済み
+            { kanji: "原因", yomi: "げんいん" },
+            { kanji: "体", yomi: "からだ" },
+            { kanji: "体温計", yomi: "たいおんけい" },
+            { kanji: "不調", yomi: "ふちょう" },
+            { kanji: "不便な", yomi: "ふべん（な）" },
+            { kanji: "疲れる", yomi: "つか（れる）" },
+            { kanji: "昼間", yomi: "ひるま" },
+            { kanji: "昼ごはん", yomi: "ひる（ごはん）" },
+            { kanji: "昼休み", yomi: "ひるやす（み）" },
+            { kanji: "神経質な", yomi: "しんけいしつ（な）" },
+            { kanji: "質問", yomi: "しつもん" }
         ],
+
+        /* =========================
+           L6
+        ========================= */
         6: [
-            { kanji: "世界", yomi: "せかい" }, { kanji: "世の中", yomi: "よ（の）なか" }, { kanji: "広く", yomi: "ひろ（く）" },
-            { kanji: "広い", yomi: "ひろ（い）" }, { kanji: "病院", yomi: "びょういん" }, { kanji: "病気", yomi: "びょうき" },
-            { kanji: "入院", yomi: "にゅういん" }, { kanji: "乾電池", yomi: "かんでんち" }, { kanji: "電池", yomi: "でんち" },
-            { kanji: "池", yomi: "いけ" }, { kanji: "当時", yomi: "とうじ" }, { kanji: "本当", yomi: "ほんとう" },
-            { kanji: "コーヒーを飲む", yomi: "コーヒー（を）の（む）" }, { kanji: "注目", yomi: "ちゅうもく" }, { kanji: "注意", yomi: "ちゅうい" },
-            { kanji: "目的", yomi: "もくてき" }, { kanji: "目", yomi: "め" }, { kanji: "特許", yomi: "とっきょ" },
-            { kanji: "特別な", yomi: "とくべつ（な）" }, { kanji: "許可", yomi: "きょか" }, { kanji: "特許を取る", yomi: "とっきょ（を）と（る）" },
-            { kanji: "別の", yomi: "べつ（の）" }, { kanji: "別々に", yomi: "べつべつ（に）" }, { kanji: "別れる", yomi: "わか（れる）" },
-            { kanji: "方法", yomi: "ほうほう" }, { kanji: "一方", yomi: "いっぽう" }, { kanji: "使い方", yomi: "つか（い）かた" },
-            { kanji: "教え方", yomi: "おし（え）かた" }, { kanji: "法律", yomi: "ほうりつ" }, { kanji: "文法", yomi: "ぶんぽう" },
-            { kanji: "作る", yomi: "つく（る）" }, { kanji: "作文", yomi: "さくぶん" }, { kanji: "忘れる", yomi: "わす（れる）" },
-            { kanji: "忘れ物", yomi: "わす（れ）もの" }, { kanji: "忘年会", yomi: "ぼうねんかい" }
+            { kanji: "世界", yomi: "せかい" },
+            { kanji: "世の中", yomi: "よ（の）なか" },
+            { kanji: "広く", yomi: "ひろ（く）" },
+            { kanji: "広い", yomi: "ひろ（い）" },
+            { kanji: "病院", yomi: "びょういん" },
+            { kanji: "病気", yomi: "びょうき" },
+            { kanji: "入院", yomi: "にゅういん" },
+            { kanji: "乾電池", yomi: "かんでんち" },
+            { kanji: "電池", yomi: "でんち" },
+            { kanji: "池", yomi: "いけ" },
+            { kanji: "当時", yomi: "とうじ" },
+            { kanji: "本当", yomi: "ほんとう" },
+            { kanji: "コーヒーを飲む", yomi: "コーヒー（を）の（む）" },
+            { kanji: "注目", yomi: "ちゅうもく" },
+            { kanji: "注意", yomi: "ちゅうい" },
+            { kanji: "目的", yomi: "もくてき" },
+            { kanji: "目", yomi: "め" },
+            { kanji: "特許", yomi: "とっきょ" },
+            { kanji: "特別な", yomi: "とくべつ（な）" },
+            { kanji: "許可", yomi: "きょか" },
+            { kanji: "特許を取る", yomi: "とっきょ（を）と（る）" },
+            { kanji: "別の", yomi: "べつ（の）" },
+            { kanji: "別々に", yomi: "べつべつ（に）" },
+            { kanji: "別れる", yomi: "わか（れる）" },
+            { kanji: "方法", yomi: "ほうほう" },
+            { kanji: "一方", yomi: "いっぽう" },
+            { kanji: "使い方", yomi: "つか（い）かた" },
+            { kanji: "教え方", yomi: "おし（え）かた" },
+            { kanji: "法律", yomi: "ほうりつ" },
+            { kanji: "文法", yomi: "ぶんぽう" },
+            { kanji: "作る", yomi: "つく（る）" },
+            { kanji: "作文", yomi: "さくぶん" },
+            { kanji: "忘れる", yomi: "わす（れる）" },
+            { kanji: "忘れ物", yomi: "わす（れ）もの" },
+            { kanji: "忘年会", yomi: "ぼうねんかい" }
         ],
+
+        /* =========================
+           L7（修正済み）
+        ========================= */
         7: [
-            { kanji: "地球", yomi: "ちきゅう" }, { kanji: "温暖化", yomi: "おんだん化" }, { kanji: "温泉", yomi: "おんせん" },
-            { kanji: "温度", yomi: "おんど" }, { kanji: "体温計", yomi: "たいおんけい" }, { kanji: "温かいお茶", yomi: "あたた（かい）おちゃ" },
-            { kanji: "暖房", yomi: "だんぼう" }, { kanji: "今日は暖かい", yomi: "きょう（は）あたた（かい）" }, { kanji: "問題", yomi: "もんだい" },
-            { kanji: "質問", yomi: "しつもん" }, { kanji: "宿題", yomi: "しゅくだい" }, { kanji: "住む", yomi: "す（む）" },
-            { kanji: "住所", yomi: "じゅうしょ" }, { kanji: "守る", yomi: "まモ（る）" }, { kanji: "留守", yomi: "るす" },
-            { kanji: "以前", yomi: "いぜん" }, { kanji: "以上", yomi: "いじょう" }, { kanji: "以下", yomi: "いか" },
-            { kanji: "古い", yomi: "ふる（い）" }, { kanji: "中古", yomi: "ちゅうこ" }, { kanji: "色が変わる", yomi: "いろ（が）か（わる）" },
-            { kanji: "色を変える", yomi: "いろ（を）か（える）" }, { kanji: "変更", yomi: "へんこう" }, { kanji: "運動", yomi: "うんどう" },
-            { kanji: "運動会", yomi: "うんどうかい" }, { kanji: "運転", yomi: "うんてん" }, { kanji: "荷物を運ぶ", yomi: "にもつ（を）はこ（ぶ）" },
-            { kanji: "公園", yomi: "こうえん" }, { kanji: "動物園", yomi: "どうぶつえん" }, { kanji: "本を売る", yomi: "ほん（を）う（る）" },
-            { kanji: "本が売れる", yomi: "ほん（が）う（れる）" }, { kanji: "自動販売機", yomi: "じ自動販売機" }, { kanji: "買う", yomi: "か（う）" },
-            { kanji: "買い物", yomi: "か（い）もの" }, { kanji: "決める", yomi: "き（める）" }, { kanji: "市町村", yomi: "しちょうそん" },
-            { kanji: "村", yomi: "むら" }, { kanji: "~と呼びかける", yomi: "~（と）よ（びかける）" }, { kanji: "呼ぶ", yomi: "よ（ぶ）" }
+            { kanji: "地球", yomi: "ちきゅう" },
+            { kanji: "温暖化", yomi: "おんだんか" },
+            { kanji: "温泉", yomi: "おんせん" },
+            { kanji: "温度", yomi: "おんど" },
+            { kanji: "体温計", yomi: "たいおんけい" },
+            { kanji: "温かいお茶", yomi: "あたた（かい）おちゃ" },
+            { kanji: "暖房", yomi: "だんぼう" },
+            { kanji: "今日は暖かい", yomi: "きょう（は）あたた（かい）" },
+            { kanji: "問題", yomi: "もんだい" },
+            { kanji: "質問", yomi: "しつもん" },
+            { kanji: "宿題", yomi: "しゅくだい" },
+            { kanji: "住む", yomi: "す（む）" },
+            { kanji: "住所", yomi: "じゅうしょ" },
+            { kanji: "守る", yomi: "まも（る）" },
+            { kanji: "留守", yomi: "るす" },
+            { kanji: "以前", yomi: "いぜん" },
+            { kanji: "以上", yomi: "いじょう" },
+            { kanji: "以下", yomi: "いか" },
+            { kanji: "古い", yomi: "ふる（い）" },
+            { kanji: "中古", yomi: "ちゅうこ" },
+            { kanji: "色が変わる", yomi: "いろ（が）か（わる）" },
+            { kanji: "色を変える", yomi: "いろ（を）か（える）" },
+            { kanji: "変更", yomi: "へんこう" },
+            { kanji: "運動", yomi: "うんどう" },
+            { kanji: "運動会", yomi: "うんどうかい" },
+            { kanji: "運転", yomi: "うんてん" },
+            { kanji: "荷物を運ぶ", yomi: "にもつ（を）はこ（ぶ）" },
+            { kanji: "公園", yomi: "こうえん" },
+            { kanji: "動物園", yomi: "どうぶつえん" },
+            { kanji: "本を売る", yomi: "ほん（を）う（る）" },
+            { kanji: "本が売れる", yomi: "ほん（が）う（れる）" },
+            { kanji: "自動販売機", yomi: "じどうはんばいき" }, // ← 修正済み
+            { kanji: "買う", yomi: "か（う）" },
+            { kanji: "買い物", yomi: "か（い）もの" },
+            { kanji: "決める", yomi: "き（める）" },
+            { kanji: "市町村", yomi: "しちょうそん" },
+            { kanji: "村", yomi: "むら" },
+            { kanji: "~と呼びかける", yomi: "~（と）よ（びかける）" },
+            { kanji: "呼ぶ", yomi: "よ（ぶ）" }
         ],
+
+        /* =========================
+           L8
+        ========================= */
         8: [
-            { kanji: "言う", yomi: "い（う）" }, { kanji: "発言", yomi: "はつげん" }, { kanji: "伝える", yomi: "つた（える）" },
-            { kanji: "伝統적", yomi: "でんとうてき" }, { kanji: "合図", yomi: "あいず" }, { kanji: "地図", yomi: "ちず" },
-            { kanji: "図書館", yomi: "としょかん" }, { kanji: "賛成", yomi: "さんせい" }, { kanji: "成功", yomi: "せいこう" },
-            { kanji: "確かめる", yomi: "たし（かめる）" }, { kanji: "確か", yomi: "たし（か）" }, { kanji: "確認", yomi: "かくにん" },
-            { kanji: "誤解", yomi: "ごかい" }, { kanji: "話し終わる", yomi: "はな（し）お（わる）" }, { kanji: "終わり", yomi: "お（わり）" },
-            { kanji: "あいづちを打つ", yomi: "（あいづちを）う（つ）" }, { kanji: "話を止める", yomi: "はなし（を）と（める）" },
-            { kanji: "車が止まる", yomi: "くるま（が）と（まる）" }, { kanji: "中止", yomi: "ちゅうし" }, { kanji: "立入禁止", yomi: "たちいりきんし" }
+            { kanji: "言う", yomi: "い（う）" },
+            { kanji: "発言", yomi: "はつげん" },
+            { kanji: "伝える", yomi: "つた（える）" },
+            { kanji: "伝統的", yomi: "でんとうてき" },
+            { kanji: "合図", yomi: "あいず" },
+            { kanji: "地図", yomi: "ちず" },
+            { kanji: "図書館", yomi: "としょかん" },
+            { kanji: "賛成", yomi: "さんせい" },
+            { kanji: "成功", yomi: "せいこう" },
+            { kanji: "確かめる", yomi: "たし（かめる）" },
+            { kanji: "確か", yomi: "たし（か）" },
+            { kanji: "確認", yomi: "かくにん" },
+            { kanji: "誤解", yomi: "ごかい" },
+            { kanji: "話し終わる", yomi: "はな（し）お（わる）" },
+            { kanji: "終わり", yomi: "お（わり）" },
+            { kanji: "あいづちを打つ", yomi: "（あいづちを）う（つ）" },
+            { kanji: "話を止める", yomi: "はなし（を）と（める）" },
+            { kanji: "車が止まる", yomi: "くるま（が）と（まる）" },
+            { kanji: "中止", yomi: "ちゅうし" },
+            { kanji: "立入禁止", yomi: "たちいりきんし" }
         ],
+
+        /* =========================
+           L9（修正済み）
+        ========================= */
         9: [
-            { kanji: "仕事", yomi: "しごと" }, { kanji: "女性", yomi: "じょせい" }, { kanji: "男性", yomi: "だんせい" },
-            { kanji: "職場", yomi: "しょくば" }, { kanji: "職業", yomi: "しょくぎょう" }, { kanji: "働く", yomi: "はたら（く）" },
-            { kanji: "労働", yomi: "ろうどう" }, { kanji: "保育士", yomi: "ほいくし" }, { kanji: "教育", yomi: "きょういく" },
-            { kanji: "育てる", yomi: "そだ（てる）" }, { kanji: "反対に", yomi: "はんたい（に）" }, { kanji: "駐車違反", yomi: "ちゅうしゃいはん" },
-            { kanji: "絶対に", yomi: "ぜったい（に）" }, { kanji: "建築", yomi: "けんちく" }, { kanji: "ビルを建てる", yomi: "ビル（を）た（てる）" },
-            { kanji: "建物", yomi: "たてもの" }, { kanji: "運転手", yomi: "うんてんしゅ" }, { kanji: "自転車", yomi: "じてんしゃ" },
-            { kanji: "区別", yomi: "くべつ" }, { kanji: "少ない", yomi: "すく（ない）" }, { kanji: "少し", yomi: "すこ（し）" },
-            { kanji: "少々お待ちください", yomi: "しょうしょう（お）ま（ちください）" }, { kanji: "家庭", yomi: "かてい" }, { kanji: "庭", yomi: "にわ" },
-            { kanji: "目を向ける", yomi: "め（を）む（ける）" }, { kanji: "向こう", yomi: "む（こう）" }, { kanji: "~程度", yomi: "~（ていど）" },
-            { kanji: "一度", yomi: "いち度" }, { kanji: "一度も", yomi: "いちど（も）" }, { kanji: "結果", yomi: "けっか" },
-            { kanji: "果物", yomi: "くだもの" }, { kanji: "意識", yomi: "いしき" }
+            { kanji: "仕事", yomi: "しごと" },
+            { kanji: "女性", yomi: "じょせい" },
+            { kanji: "男性", yomi: "だんせい" },
+            { kanji: "職場", yomi: "しょくば" },
+            { kanji: "職業", yomi: "しょくぎょう" },
+            { kanji: "働く", yomi: "はたら（く）" },
+            { kanji: "労働", yomi: "ろうどう" },
+            { kanji: "保育士", yomi: "ほいくし" },
+            { kanji: "教育", yomi: "きょういく" },
+            { kanji: "育てる", yomi: "そだ（てる）" },
+            { kanji: "反対に", yomi: "はんたい（に）" },
+            { kanji: "駐車違反", yomi: "ちゅうしゃいはん" },
+            { kanji: "絶対に", yomi: "ぜったい（に）" },
+            { kanji: "建築", yomi: "けんちく" },
+            { kanji: "ビルを建てる", yomi: "ビル（を）た（てる）" },
+            { kanji: "建物", yomi: "たてもの" },
+            { kanji: "運転手", yomi: "うんてんしゅ" },
+            { kanji: "自転車", yomi: "じてんしゃ" },
+            { kanji: "区別", yomi: "くべつ" },
+            { kanji: "少ない", yomi: "すく（ない）" },
+            { kanji: "少し", yomi: "すこ（し）" },
+            { kanji: "少々お待ちください", yomi: "しょうしょう（お）ま（ちください）" },
+            { kanji: "家庭", yomi: "かてい" },
+            { kanji: "庭", yomi: "にわ" },
+            { kanji: "目を向ける", yomi: "め（を）む（ける）" },
+            { kanji: "向こう", yomi: "む（こう）" },
+            { kanji: "~程度", yomi: "~（ていど）" },
+            { kanji: "一度", yomi: "いち（ど）" }, // ← 修正済み
+            { kanji: "一度も", yomi: "いちど（も）" },
+            { kanji: "結果", yomi: "けっか" },
+            { kanji: "果物", yomi: "くだもの" },
+            { kanji: "意識", yomi: "いしき" }
         ],
+
+        /* =========================
+           L10
+        ========================= */
         10: [
-            { kanji: "乱れる", yomi: "みだ（れる）" }, { kanji: "感じる", yomi: "かん（じる）" }, { kanji: "感謝", yomi: "かんしゃ" },
-            { kanji: "敬語", yomi: "けいご" }, { kanji: "例えば", yomi: "たと（えば）" }, { kanji: "例", yomi: "れい" },
-            { kanji: "皆さん", yomi: "みな（さん）" }, { kanji: "召し上がる", yomi: "め（し）あ（がる）" }, { kanji: "会社", yomi: "かいしゃ" },
-            { kanji: "会議", yomi: "かいぎ" }, { kanji: "会場", yomi: "かいじょう" }, { kanji: "会話", yomi: "かいわ" },
-            { kanji: "友だちに会う", yomi: "とも（だちに）あ（う）" }, { kanji: "社会", yomi: "しゃかい" }, { kanji: "社員", yomi: "しゃいん" },
-            { kanji: "社長", yomi: "しゃちょう" }, { kanji: "受付", yomi: "うけつけ" }, { kanji: "試験を受ける", yomi: "しけん（を）う（ける）" },
-            { kanji: "丸を付ける", yomi: "まる（を）つ（ける）" }, { kanji: "正しい", yomi: "ただ（しい）" }, { kanji: "お正月", yomi: "お（しょうがつ）" },
-            { kanji: "機会", yomi: "きかい" }, { kanji: "飛行機", yomi: "ひこうき" }, { kanji: "洗濯機", yomi: "せんたくき" },
+            { kanji: "乱れる", yomi: "みだ（れる）" },
+            { kanji: "感じる", yomi: "かん（じる）" },
+            { kanji: "感謝", yomi: "かんしゃ" },
+            { kanji: "敬語", yomi: "けいご" },
+            { kanji: "例えば", yomi: "たと（えば）" },
+            { kanji: "例", yomi: "れい" },
+            { kanji: "皆さん", yomi: "みな（さん）" },
+            { kanji: "召し上がる", yomi: "め（し）あ（がる）" },
+            { kanji: "会社", yomi: "かいしゃ" },
+            { kanji: "会議", yomi: "かいぎ" },
+            { kanji: "会場", yomi: "かいじょう" },
+            { kanji: "会話", yomi: "かいわ" },
+            { kanji: "友だちに会う", yomi: "とも（だちに）あ（う）" },
+            { kanji: "社会", yomi: "しゃかい" },
+            { kanji: "社員", yomi: "しゃいん" },
+            { kanji: "社長", yomi: "しゃちょう" },
+            { kanji: "受付", yomi: "うけつけ" },
+            { kanji: "試験を受ける", yomi: "しけん（を）う（ける）" },
+            { kanji: "丸を付ける", yomi: "まる（を）つ（ける）" },
+            { kanji: "正しい", yomi: "ただ（しい）" },
+            { kanji: "お正月", yomi: "お（しょうがつ）" },
+            { kanji: "機会", yomi: "きかい" },
+            { kanji: "飛行機", yomi: "ひこうき" },
+            { kanji: "洗濯機", yomi: "せんたくき" },
             { kanji: "確認", yomi: "かくにん" }
         ]
     },
-    "中級を学ぼう・緑": { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[] },
-    "中級を学ぼう・青": { 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[] }
+
+    /* =========================
+       中級を学ぼう・緑（空）
+    ========================= */
+    "中級を学ぼう・緑": {
+        1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[]
+    },
+
+    /* =========================
+       中級を学ぼう・青（空）
+    ========================= */
+    "中級を学ぼう・青": {
+        1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[]
+    }
 };
+
+/* =========================
+   ここから残りの JavaScript
+========================= */
 
 let levels = {}; 
 let currentText = "中級へ行こう・ピンク";
@@ -473,13 +776,26 @@ function formatYomiSide(str) {
     return `<span class="base-red">${htmlResult}</span>`;
 }
 
-function clearBoxes() { boxTop.textContent = ""; boxBottom.textContent = ""; }
-function resetDrillScreens() { document.getElementById("startScreen").style.display = "block"; document.getElementById("drillScreen").style.display = "none"; clearBoxes(); clickCount = 0; currentDrillMode = ""; }
+function clearBoxes() { 
+    boxTop.textContent = ""; 
+    boxBottom.textContent = ""; 
+}
+
+function resetDrillScreens() { 
+    document.getElementById("startScreen").style.display = "block"; 
+    document.getElementById("drillScreen").style.display = "none"; 
+    clearBoxes(); 
+    clickCount = 0; 
+    currentDrillMode = ""; 
+}
 
 function addRow(kanji = "", yomi = "") {
     const tbody = document.querySelector("#vocabTable tbody");
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td><input type="text" value="${kanji}"></td><td><input type="text" value="${yomi}"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td>`;
+    tr.innerHTML = `
+        <td><input type="text" value="${kanji}"></td>
+        <td><input type="text" value="${yomi}"></td>
+        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td>`;
     tbody.appendChild(tr);
 }
 
@@ -511,14 +827,19 @@ function generateNewHtmlFile() {
     
     if (!baseHtml || baseHtml.indexOf("const embeddedLevels = {") === -1) {
         baseHtml = document.documentElement.outerHTML;
-        baseHtml = baseHtml.replace(/<div id="drillScreen" class="sub-screen" style="display:\s*block;"/g, '<div id="drillScreen" class="sub-screen" style="display:none;"');
+        baseHtml = baseHtml.replace(
+            /<div id="drillScreen" class="sub-screen" style="display:\s*block;"/g,
+            '<div id="drillScreen" class="sub-screen" style="display:none;"'
+        );
     }
     
     const startIdx = baseHtml.indexOf("const embeddedLevels = {");
-    const endIdx = baseHtml.indexOf("};\n\nlet levels =", startIdx);
+    const endIdx = baseHtml.indexOf("};", startIdx) + 2;
     
-    let newHtml = baseHtml.substring(0, startIdx) + "const embeddedLevels = " + JSON.stringify(levels) + baseHtml.substring(endIdx);
-    
+    let newHtml = baseHtml.substring(0, startIdx) +
+                  "const embeddedLevels = " + JSON.stringify(levels, null, 4) +
+                  baseHtml.substring(endIdx);
+
     if (!newHtml.startsWith("<!DOCTYPE html>")) {
         newHtml = "<!DOCTYPE html>\n" + newHtml;
     }
@@ -533,16 +854,18 @@ function generateNewHtmlFile() {
 }
 
 function loadEditorTable() { 
-    document.getElementById("editorTitle").textContent = "✍️ " + currentText + " (L" + currentLevel + ") 入力";
+    document.getElementById("editorTitle").textContent =
+        "✍️ " + currentText + " (L" + currentLevel + ") 入力";
+
     const tbody = document.querySelector("#vocabTable tbody");
     tbody.innerHTML = ""; 
     const data = levels[currentText][currentLevel]; 
     
     if (!data || data.length === 0) {
-        for (let k = 0; k < 30; k++) { addRow(); }
+        for (let k = 0; k < 30; k++) addRow();
     } else {
         data.forEach(item => addRow(item.kanji, item.yomi)); 
-        for (let k = 0; k < 5; k++) { addRow(); }
+        for (let k = 0; k < 5; k++) addRow();
     }
 }
 
@@ -556,5 +879,6 @@ function clearAll() {
 
 initApp();
 </script>
+
 </body>
 </html>
