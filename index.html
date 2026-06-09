@@ -74,11 +74,11 @@
 </div>
 
 <div id="idMain" class="screen active">
-    <div id="startScreen" class="sub-screen">
+    <div id="startScreen" class="sub-screen" style="display: block;">
         <button id="startBtn" onclick="startDrill()">スタート</button>
     </div>
 
-    <div id="drillScreen" class="sub-screen" style="display:none;">
+    <div id="drillScreen" class="sub-screen" style="display: none;">
         <div class="displayBox" id="boxTop"></div>
         <div class="displayBox" id="boxBottom"></div>
 
@@ -90,7 +90,7 @@
 </div>
 
 <div id="editorScreen" class="screen">
-    <h2 id="editorTitle">K式漢字ドリル 語彙入力</h2>
+    <h2 id="editorTitle">✍️ 単語入力</h2>
 
     <div class="table-container">
         <table id="vocabTable">
@@ -113,7 +113,7 @@
 </div>
 
 <script>
-// 📦 卓男さんの手入力データを1文字も変えずに完全復元
+// START_DATA_MARKER
 const embeddedLevels = {
     "中級へ行こう・ピンク": {
         1: [
@@ -136,7 +136,7 @@ const embeddedLevels = {
             { "kanji": "1兆円", "yomi": "いっちょうえん" },
             { "kanji": "使う", "yomi": "つか（う）" },
             { "kanji": "使用禁止", "yomi": "しようきんし" },
-            { "kanji": "使用中", "yomi": "しようchuu" },
+            { "kanji": "使用中", "yomi": "しようちゅう" },
             { "kanji": "理由", "yomi": "りゆう" },
             { "kanji": "料理", "yomi": "りょうり" },
             { "kanji": "自由に", "yomi": "じゆう（に）" },
@@ -181,7 +181,7 @@ const embeddedLevels = {
             { "kanji": "ドアが閉まる", "yomi": "ドア（が）し（まる）" },
             { "kanji": "ドアを閉める", "yomi": "ドア（を）し（める）" },
             { "kanji": "窓", "yomi": "まど" },
-            { "kanji": "窓を開ける", "yomi": "窓（を）あ（ける）" },
+            { "kanji": "窓を開ける", "yomi": "まど（を）あ（ける）" },
             { "kanji": "窓が開く", "yomi": "まど（が）あ（く）" },
             { "kanji": "場合", "yomi": "ばあい" },
             { "kanji": "場所", "yomi": "ばしょ" },
@@ -192,7 +192,7 @@ const embeddedLevels = {
             { "kanji": "一番", "yomi": "いちばん" },
             { "kanji": "番組", "yomi": "ばんぐみ" },
             { "kanji": "番号", "yomi": "ばんごう" },
-            { "kanji": "大拙な", "yomi": "たいせつ（な）" },
+            { "kanji": "大切な", "yomi": "たいせつ（な）" },
             { "kanji": "親切な", "yomi": "しんせつ（な）" },
             { "kanji": "パンを切る", "yomi": "パン（を）き（る）" },
             { "kanji": "ひもが切れる", "yomi": "ひも（が）き（れる）" },
@@ -323,9 +323,9 @@ const embeddedLevels = {
             { "kanji": "体温計", "yomi": "たいおんけい" },
             { "kanji": "不調", "yomi": "ふちょう" },
             { "kanji": "不便な", "yomi": "ふべん（な）" },
-            { "kanji": "疲れる", "yomi": "つか（れる）" },
+            { "kanji": "疲れる", "yomi": "つかれる" },
             { "kanji": "昼間", "yomi": "ひるま" },
-            { "kanji": "昼ごはん", "yomi": "昼（ごはん）" },
+            { "kanji": "昼ごはん", "yomi": "ひる（ごはん）" },
             { "kanji": "昼休み", "yomi": "ひるやす（み）" },
             { "kanji": "神経質な", "yomi": "しんけいしつ（な）" },
             { "kanji": "質問", "yomi": "しつもん" }
@@ -344,7 +344,7 @@ const embeddedLevels = {
             { "kanji": "当時", "yomi": "とうじ" },
             { "kanji": "本当", "yomi": "ほんとう" },
             { "kanji": "コーヒーを飲む", "yomi": "コーヒー（を）の（む）" },
-            { "kanji": "注目", "yomi": "ちゅう目" },
+            { "kanji": "注目", "yomi": "ちゅうもく" },
             { "kanji": "注意", "yomi": "ちゅうい" },
             { "kanji": "目的", "yomi": "もくてき" },
             { "kanji": "目", "yomi": "め" },
@@ -381,7 +381,7 @@ const embeddedLevels = {
             { "kanji": "宿題", "yomi": "しゅくだい" },
             { "kanji": "住む", "yomi": "す（む）" },
             { "kanji": "住所", "yomi": "じゅうしょ" },
-            { "kanji": "守る", "yomi": "まモ（る）" },
+            { "kanji": "守る", "yomi": "まもる" },
             { "kanji": "留守", "yomi": "るす" },
             { "kanji": "以前", "yomi": "いぜん" },
             { "kanji": "以上", "yomi": "いじょう" },
@@ -427,7 +427,7 @@ const embeddedLevels = {
             { "kanji": "あいづちを打つ", "yomi": "（あいづちを）う（つ）" },
             { "kanji": "話を止める", "yomi": "はなし（を）と（める）" },
             { "kanji": "車が止まる", "yomi": "くるま（が）と（まる）" },
-            { "kanji": "中止", "yomi": "ちゅうし" },
+            { "kanji": "中止", "yomi": "中止" },
             { "kanji": "立入禁止", "yomi": "たちいりきんし" }
         ],
         9: [
@@ -519,7 +519,7 @@ const embeddedLevels = {
             { "kanji": "小鳥", "yomi": "ことり" },
             { "kanji": "焼き鳥", "yomi": "や（き）とり" },
             { "kanji": "鳴く", "yomi": "な（く）" },
-            { "kanji": "鳴き声", "yomi": "な（ki）ごえ" },
+            { "kanji": "鳴き声", "yomi": "な（き）ごえ" },
             { "kanji": "声", "yomi": "こえ" },
             { "kanji": "歌", "yomi": "うた" },
             { "kanji": "歌う", "yomi": "うた（う）" },
@@ -565,7 +565,7 @@ const embeddedLevels = {
             { "kanji": "満足する", "yomi": "まんぞく（する）" },
             { "kanji": "満足度", "yomi": "まんぞくど" },
             { "kanji": "酒", "yomi": "さけ" },
-            { "kanji": "日本酒", "yomi": "ねほんしゅ" },
+            { "kanji": "日本酒", "yomi": "にほんしゅ" },
             { "kanji": "臭い", "yomi": "くさ（い）" },
             { "kanji": "配る", "yomi": "くば（る）" },
             { "kanji": "宅配便", "yomi": "たくはいびん" },
@@ -581,8 +581,8 @@ const embeddedLevels = {
             { "kanji": "座席", "yomi": "ざせき" },
             { "kanji": "席を外す", "yomi": "せき（を）はず（す）" },
             { "kanji": "出席する", "yomi": "しゅっせき（する）" },
-            { "kanji": "思う", "yomi": "おmo（う）" },
-            { "kanji": "思い出す", "yomi": "おmo（い）だ（す）" },
+            { "kanji": "思う", "yomi": "おも（う）" },
+            { "kanji": "思い出す", "yomi": "おも（い）だ（す）" },
             { "kanji": "反対側", "yomi": "はんたいがわ" },
             { "kanji": "～側", "yomi": "～がわ" },
             { "kanji": "右側", "yomi": "みぎがわ" },
@@ -600,12 +600,19 @@ const embeddedLevels = {
             { "kanji": "会議", "yomi": "かいぎ" },
             { "kanji": "暮らす", "yomi": "く（らす）" }
         ],
-        4: [], 5: [], 6: [], 7: [], 8: []
+        4: [
+            { "kanji": "太陽", "yomi": "たいよう" },
+            { "kanji": "太い", "yomi": "ふと（い）" },
+            { "kanji": "光", "yomi": "ひかり" },
+            { "kanji": "暗い", "yomi": "くら（い）" }
+        ],
+        5: [], 6: [], 7: [], 8: []
     },
     "中級を学ぼう・青": {
-        1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[]
+        1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: []
     }
 };
+// END_DATA_MARKER
 
 let levels = {}; 
 let currentText = "中級へ行こう・ピンク";
@@ -615,7 +622,6 @@ let order = [];
 let index = 0; 
 let clickCount = 0;
 let currentDrillMode = "";
-
 let boxTop, boxBottom;
 
 function initApp() {
@@ -631,7 +637,7 @@ function initApp() {
         textSelector.appendChild(opt);
     });
     textSelector.value = currentText;
-
+    
     Object.keys(embeddedLevels).forEach(textName => {
         levels[textName] = {};
         Object.keys(embeddedLevels[textName]).forEach(lvl => {
@@ -647,22 +653,17 @@ function initApp() {
             }
         });
     });
-
     renderTabButtons();
     loadEditorTable();
+    resetDrillScreens();
 }
 
 function selectText(textName) {
     currentText = textName;
     const availableLevels = Object.keys(levels[currentText]);
     currentLevel = parseInt(availableLevels[0]) || 1;
-    
     renderTabButtons();
-    if (currentMode === 'drill') { 
-        resetDrillScreens(); 
-    } else { 
-        loadEditorTable(); 
-    }
+    if (currentMode === 'drill') { resetDrillScreens(); } else { loadEditorTable(); }
 }
 
 function renderTabButtons() {
@@ -670,7 +671,6 @@ function renderTabButtons() {
     if (!tabBar) return;
     tabBar.innerHTML = "";
     const availableLevels = Object.keys(levels[currentText]);
-    
     availableLevels.forEach(lvl => {
         const btn = document.createElement("button");
         btn.id = "tab" + lvl;
@@ -686,12 +686,7 @@ function selectLevel(n) {
     document.querySelectorAll("#levelTabBar button").forEach(btn => btn.classList.remove("active"));
     const activeBtn = document.getElementById("tab" + n);
     if (activeBtn) activeBtn.classList.add("active");
-    
-    if (currentMode === 'drill') { 
-        resetDrillScreens(); 
-    } else { 
-        loadEditorTable(); 
-    }
+    if (currentMode === 'drill') { resetDrillScreens(); } else { loadEditorTable(); }
 }
 
 function switchMode(mode) {
@@ -699,19 +694,16 @@ function switchMode(mode) {
         const password = prompt("暗証番号を入力してください：");
         if (password !== "1206") {
             alert("暗証番号が違います。エディタは開けません。");
-            document.getElementById("modeDrill").classList.add("active");
-            document.getElementById("modeEdit").classList.remove("active");
             return;
         }
     }
-
     currentMode = mode;
     document.getElementById("modeDrill").classList.remove("active");
     document.getElementById("modeEdit").classList.remove("active");
     document.getElementById("idMain").classList.remove("active");
     document.getElementById("editorScreen").classList.remove("active");
-    
     if (mode === 'drill') {
+        document.getElementById("modeDrill").classList.add("add");
         document.getElementById("modeDrill").classList.add("active");
         document.getElementById("idMain").classList.add("active");
         resetDrillScreens();
@@ -724,10 +716,7 @@ function switchMode(mode) {
 
 function startDrill() {
     const data = levels[currentText][currentLevel];
-    if (!data || data.length === 0) { 
-        alert("このレベルには語彙が登録されていません。エディタ画面から登録してください。"); 
-        return; 
-    }
+    if (!data || data.length === 0) { alert("このレベルには語彙が登録されていません。"); return; }
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("drillScreen").style.display = "block";
     order = [...Array(data.length).keys()];
@@ -742,38 +731,28 @@ function startDrill() {
     boxBottom.textContent = "👇";
 }
 
-function shuffle(arr) { 
-    for (let i = arr.length - 1; i > 0; i--) { 
-        const j = Math.floor(Math.random() * (i + 1)); 
-        [arr[i], arr[j]] = [arr[j], arr[i]]; 
-    } 
-}
+function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } }
 
 function clickAction(btnMode) {
     const data = levels[currentText][currentLevel]; 
     if (!data || data.length === 0) return;
-
     if (clickCount === 0 || currentDrillMode !== btnMode) {
         currentDrillMode = btnMode;
         document.getElementById("btnK2H").classList.remove("selected");
         document.getElementById("btnH2K").classList.remove("selected");
         document.getElementById("btn" + btnMode).classList.add("selected");
-        
         const item = data[order[index]];
         boxTop.innerHTML = (currentDrillMode === "K2H") ? formatKanjiSide(item.kanji) : formatYomiSide(item.yomi); 
         boxBottom.innerHTML = ""; 
         clickCount = 1; 
         return; 
     }
-    
     if (clickCount === 1) { 
         const item = data[order[index]];
-        // 🛠️ タイポ(boxOh)を「boxBottom」に修正
         boxBottom.innerHTML = (currentDrillMode === "K2H") ? formatYomiSide(item.yomi) : formatKanjiSide(item.kanji); 
         clickCount = 2; 
         return; 
     }
-    
     if (clickCount === 2) {
         index++; 
         if (index >= data.length) { shuffle(order); index = 0; } 
@@ -787,8 +766,7 @@ function clickAction(btnMode) {
 function formatKanjiSide(str) {
     if (!str) return "";
     const regex = /([\u3040-\u309F\u30A0-\u30FF\uFF00-\uFFEF\u0020-\u007E\u2010-\u201F〜～、。・「」『』（）［］【】※]+)/g;
-    const converted = str.replace(regex, '<span class="black-text">$1</span>');
-    return `<span class="base-red">${converted}</span>`;
+    return `<span class="base-red">${str.replace(regex, '<span class="black-text">$1</span>')}</span>`;
 }
 
 function formatYomiSide(str) {
@@ -799,43 +777,25 @@ function formatYomiSide(str) {
     while (i < processed.length) {
         if (processed.substring(i, i + 3) === "【黒:") {
             let endIdx = processed.indexOf("】", i);
-            let content = processed.substring(i + 3, endIdx);
-            htmlResult += `<span class="black-text">${content}</span>`;
+            htmlResult += `<span class="black-text">${processed.substring(i + 3, endIdx)}</span>`;
             i = endIdx + 1;
         } else {
             let char = processed[i];
-            if (/^[\u3040-\u309F]$/.test(char)) {
-                htmlResult += char;
-            } else {
-                htmlResult += `<span class="black-text">${char}</span>`;
-            }
+            htmlResult += /^[\u3040-\u309F]$/.test(char) ? char : `<span class="black-text">${char}</span>`;
             i++;
         }
     }
     return `<span class="base-red">${htmlResult}</span>`;
 }
 
-function clearBoxes() { 
-    if(boxTop) boxTop.textContent = ""; 
-    if(boxBottom) boxBottom.textContent = ""; 
-}
-
-function resetDrillScreens() { 
-    document.getElementById("startScreen").style.display = "block"; 
-    document.getElementById("drillScreen").style.display = "none"; 
-    clearBoxes(); 
-    clickCount = 0; 
-    currentDrillMode = ""; 
-}
+function clearBoxes() { if(boxTop) boxTop.textContent = ""; if(boxBottom) boxBottom.textContent = ""; }
+function resetDrillScreens() { document.getElementById("startScreen").style.display = "block"; document.getElementById("drillScreen").style.display = "none"; clearBoxes(); clickCount = 0; currentDrillMode = ""; }
 
 function addRow(kanji = "", yomi = "") {
     const tbody = document.querySelector("#vocabTable tbody");
     if (!tbody) return;
     const tr = document.createElement("tr");
-    tr.innerHTML = `
-        <td><input type="text" value="${kanji}"></td>
-        <td><input type="text" value="${yomi}"></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td>`;
+    tr.innerHTML = `<td><input type="text" value="${kanji}"></td><td><input type="text" value="${yomi}"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td>`;
     tbody.appendChild(tr);
 }
 
@@ -847,10 +807,8 @@ function saveData() {
         const yomi = row.children[1].querySelector("input").value.trim();
         if (kanji !== "" || yomi !== "") { data.push({ kanji, yomi }); }
     });
-    
     levels[currentText][currentLevel] = data; 
     localStorage.setItem("DATA_" + currentText + "_L" + currentLevel, JSON.stringify(data)); 
-    
     try {
         generateNewHtmlFile();
         alert("ブラウザへの保存と同時に、全データを内包した新しい「index.html」を自動ダウンロードしました！\n\nGitHubへアップロード（上書き）してください。");
@@ -859,34 +817,67 @@ function saveData() {
     }
 }
 
-// 🛠️ 外部通信を100%排除し、PCローカルでもGitHub上でも絶対に安全に動くファイル書き出しロジック
 function generateNewHtmlFile() {
-    let baseHtml = document.documentElement.outerHTML;
+    // 画面の汚れたHTMLではなく、現在稼働している自身のサーバー上の生のクリーンHTMLをフェッチして読み込む
+    fetch(window.location.href)
+    .then(response => response.text())
+    .then(cleanHtmlText => {
+        const dataString = JSON.stringify(levels, null, 4);
+        const startMarker = "// START_DATA_MARKER\nconst embeddedLevels = ";
+        const endMarker = ";\n// END_DATA_MARKER";
+        
+        let startIdx = cleanHtmlText.indexOf(startMarker);
+        let endIdx = cleanHtmlText.indexOf(endMarker);
+        
+        let newHtml = "";
+        if (startIdx !== -1 && endIdx !== -1) {
+            newHtml = cleanHtmlText.substring(0, startIdx + startMarker.length) + 
+                      dataString + 
+                      cleanHtmlText.substring(endIdx);
+        } else {
+            alert("テンプレート構造の解析に失敗しました。元のHTMLデータ構造を確認してください。");
+            return;
+        }
+
+        // 強制的にDOCTYPE宣言をクリーンな状態に保つ
+        if (!newHtml.startsWith("<!DOCTYPE html>")) {
+            newHtml = "<!DOCTYPE html>\n" + newHtml.replace(/^[\s\S]*?<html/, "<html");
+        }
+
+        const blob = new Blob([newHtml], { type: "text/html;charset=utf-8" });
+        const a = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = "index.html";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+    })
+    .catch(err => {
+        console.error(err);
+        alert("生ソースファイルの取得に失敗したため、旧方式（outerHTML）でバックアップ書き出しを試みます。");
+        fallbackGenerateHtml();
+    });
+}
+
+function fallbackGenerateHtml() {
+    const fullHtmlText = document.documentElement.outerHTML;
+    const dataString = JSON.stringify(levels, null, 4);
+    const startMarker = "// START_DATA_MARKER\nconst embeddedLevels = ";
+    const endMarker = ";\n// END_DATA_MARKER";
     
-    // ドリル画面が開いた状態のHTMLのまま保存されないよう、非表示状態に強制置換
-    baseHtml = baseHtml.replace(
-        /id="startScreen"\s+style="display:\s*none;"/g,
-        'id="startScreen" style="display:block;"'
-    );
-    baseHtml = baseHtml.replace(
-        /id="drillScreen"\s+style="display:\s*block;"/g,
-        'id="drillScreen" style="display:none;"'
-    );
-    
-    const startIdx = baseHtml.indexOf("const embeddedLevels = {");
-    if (startIdx === -1) {
-        alert("プログラムの書き換え位置が見つかりませんでした。");
+    let startIdx = fullHtmlText.indexOf(startMarker);
+    let endIdx = fullHtmlText.indexOf(endMarker);
+    let newHtml = "";
+    if (startIdx !== -1 && endIdx !== -1) {
+        newHtml = fullHtmlText.substring(0, startIdx + startMarker.length) + dataString + fullHtmlText.substring(endIdx);
+    } else {
+        alert("バックアップ書き出しも失敗しました。");
         return;
     }
-    const endIdx = baseHtml.indexOf("};", startIdx) + 2;
-    
-    let newHtml = baseHtml.substring(0, startIdx) +
-                  "const embeddedLevels = " + JSON.stringify(levels, null, 4) +
-                  baseHtml.substring(endIdx);
-
-    if (!newHtml.startsWith("<!DOCTYPE html>")) {
-        newHtml = "<!DOCTYPE html>\n" + newHtml;
-    }
+    newHtml = newHtml.replace(/<select id="textSelector" class="text-select">[\s\S]*?<\/select>/i, '<select id="textSelector" class="text-select" onchange="selectText(this.value)"></select>');
+    newHtml = newHtml.replace(/<div class="tab-bar" id="levelTabBar">[\s\S]*?<\/div>/i, '<div class="tab-bar" id="levelTabBar"></div>');
+    newHtml = newHtml.replace(/<table id="vocabTable">[\s\S]*?<\/table>/i, '<table id="vocabTable"><thead><tr><th style="width:45%;">漢字</th><th style="width:45%;">よみ（黒にしたい送り仮名を全角「（）」で囲む）</th><th style="width:10%;">削除</th></tr></thead><tbody></tbody></table>');
     
     const blob = new Blob([newHtml], { type: "text/html;charset=utf-8" });
     const a = document.createElement("a");
@@ -895,24 +886,16 @@ function generateNewHtmlFile() {
     a.download = "index.html";
     document.body.appendChild(a);
     a.click();
-    
-    setTimeout(() => {
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }, 100);
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
 }
 
 function loadEditorTable() { 
     const title = document.getElementById("editorTitle");
-    if (title) {
-        title.textContent = "✍️ " + currentText + " (L" + currentLevel + ") 入力";
-    }
-
+    if (title) { title.textContent = "✍️ " + currentText + " (L" + currentLevel + ") 入力"; }
     const tbody = document.querySelector("#vocabTable tbody");
     if (!tbody) return;
     tbody.innerHTML = ""; 
     const data = levels[currentText][currentLevel]; 
-    
     if (!data || data.length === 0) {
         for (let k = 0; k < 30; k++) addRow();
     } else {
@@ -931,11 +914,8 @@ function clearAll() {
 
 window.onload = () => {
     initApp();
-
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(regs => {
-            for (let reg of regs) reg.unregister();
-        });
+        navigator.serviceWorker.getRegistrations().then(regs => { for (let reg of regs) reg.unregister(); });
         navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('Service Worker Registered'))
         .catch(err => console.error('Service Worker Failed', err));
