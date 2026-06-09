@@ -2255,9 +2255,9 @@ function saveData() {
 }
 
 // 🛠️ 大容量データでも確実にクラッシュを回避するセーフティ版ファイル生成ロジック
-// 🛠️ 外部通信を排除し、スマホやPWA環境でも確実に動くセーフティ版ファイル生成ロジック
+// 🛠️ 外部通信を100%排除し、ローカル(file:///)環境でも絶対にクラッシュしないファイル生成ロジック
 function generateNewHtmlFile() {
-    // 自身へのXMLHttpRequestを廃止し、現在のDOMからベースHTMLを取得
+    // 自身へのXMLHttpRequest（通信）を完全に廃止し、メモリ上のDOMからベースHTMLを取得
     let baseHtml = document.documentElement.outerHTML;
     
     // ドリル画面が開いた状態のHTMLのまま保存されないよう、非表示状態に強制置換
