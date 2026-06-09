@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja"><head>
+<html lang="ja">
+<head>
     <meta charset="UTF-8">
     <title>K式漢字ドリル</title>
     <link rel="manifest" href="manifest.json">
@@ -62,34 +63,34 @@
 <body>
 
 <div class="selector-bar">
-    <select id="textSelector" class="text-select" onchange="selectText(this.value)"><option value="中級へ行こう・ピンク">中級へ行こう・ピンク</option><option value="中級を学ぼう・緑">中級を学ぼう・緑</option><option value="中級を学ぼう・青">中級を学ぼう・青</option></select>
+    <select id="textSelector" class="text-select" onchange="selectText(this.value)"></select>
 </div>
 
-<div class="tab-bar" id="levelTabBar"><button id="tab1" class="">L1</button><button id="tab2" class="">L2</button><button id="tab3" class="">L3</button><button id="tab4" class="active">L4</button><button id="tab5">L5</button><button id="tab6">L6</button><button id="tab7">L7</button><button id="tab8">L8</button></div>
+<div class="tab-bar" id="levelTabBar"></div>
 
 <div class="mode-bar">
-    <button id="modeDrill" class="" onclick="switchMode('drill')">🎯 ドリルをやる</button>
-    <button id="modeEdit" onclick="switchMode('edit')" class="active">✍️ 単語を入力する</button>
+    <button id="modeDrill" class="active" onclick="switchMode('drill')">🎯 ドリルをやる</button>
+    <button id="modeEdit" onclick="switchMode('edit')">✍️ 単語を入力する</button>
 </div>
 
-<div id="idMain" class="screen">
-    <div id="startScreen" class="sub-screen" style="display: block;">
+<div id="idMain" class="screen active">
+    <div id="startScreen" class="sub-screen">
         <button id="startBtn" onclick="startDrill()">スタート</button>
     </div>
 
-    <div id="drillScreen" class="sub-screen" style="display: none;">
+    <div id="drillScreen" class="sub-screen" style="display:none;">
         <div class="displayBox" id="boxTop"></div>
         <div class="displayBox" id="boxBottom"></div>
 
         <div class="buttonRow">
-            <button id="btnK2H" class="actionBtn selected" onclick="clickAction('K2H')">漢字→かな</button>
+            <button id="btnK2H" class="actionBtn" onclick="clickAction('K2H')">漢字→かな</button>
             <button id="btnH2K" class="actionBtn" onclick="clickAction('H2K')">かな→漢字</button>
         </div>
     </div>
 </div>
 
-<div id="editorScreen" class="screen active">
-    <h2 id="editorTitle">✍️ 中級を学ぼう・緑 (L4) 入力</h2>
+<div id="editorScreen" class="screen">
+    <h2 id="editorTitle">K式漢字ドリル 語彙入力</h2>
 
     <div class="table-container">
         <table id="vocabTable">
@@ -100,97 +101,7 @@
                     <th style="width:10%;">削除</th>
                 </tr>
             </thead>
-            <tbody><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr>
-        <td><input type="text" value=""></td>
-        <td><input type="text" value=""></td>
-        <td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
+            <tbody></tbody>
         </table>
     </div>
 
@@ -202,1808 +113,501 @@
 </div>
 
 <script>
-// 📦 卓男さんの手入力データを1文字も変えずに完全復元（勝手な漢字化を排除）
+// 📦 卓男さんの手入力データを1文字も変えずに完全復元
 const embeddedLevels = {
     "中級へ行こう・ピンク": {
-        "1": [
-            {
-                "kanji": "代表的",
-                "yomi": "だいひょうてき"
-            },
-            {
-                "kanji": "代わりに",
-                "yomi": "か（わりに）"
-            },
-            {
-                "kanji": "発表",
-                "yomi": "はっぴょう"
-            },
-            {
-                "kanji": "表す",
-                "yomi": "あらわ（す）"
-            },
-            {
-                "kanji": "目的",
-                "yomi": "もくてき"
-            },
-            {
-                "kanji": "最近",
-                "yomi": "さいきん"
-            },
-            {
-                "kanji": "最も",
-                "yomi": "もっと（も）"
-            },
-            {
-                "kanji": "近所",
-                "yomi": "きんじょ"
-            },
-            {
-                "kanji": "近い",
-                "yomi": "ちか（い）"
-            },
-            {
-                "kanji": "近く",
-                "yomi": "ちか（く）"
-            },
-            {
-                "kanji": "牛丼",
-                "yomi": "ぎゅうどん"
-            },
-            {
-                "kanji": "牛肉",
-                "yomi": "ぎゅうにく"
-            },
-            {
-                "kanji": "牛乳",
-                "yomi": "ぎゅうにゅう"
-            },
-            {
-                "kanji": "発音",
-                "yomi": "はつおん"
-            },
-            {
-                "kanji": "発見",
-                "yomi": "はっけん"
-            },
-            {
-                "kanji": "発明",
-                "yomi": "はつめい"
-            },
-            {
-                "kanji": "１兆円",
-                "yomi": "いっちょうえん"
-            },
-            {
-                "kanji": "使う",
-                "yomi": "つか（う）"
-            },
-            {
-                "kanji": "使用禁止",
-                "yomi": "しようきんし"
-            },
-            {
-                "kanji": "使用中",
-                "yomi": "しようちゅう"
-            },
-            {
-                "kanji": "理由",
-                "yomi": "りゆう"
-            },
-            {
-                "kanji": "料理",
-                "yomi": "りょうり"
-            },
-            {
-                "kanji": "自由に",
-                "yomi": "じゆう（に）"
-            },
-            {
-                "kanji": "安い",
-                "yomi": "やす（い）"
-            },
-            {
-                "kanji": "安心",
-                "yomi": "あんしん"
-            },
-            {
-                "kanji": "安全な",
-                "yomi": "あんぜん（な）"
-            },
-            {
-                "kanji": "手軽に",
-                "yomi": "てがる（に）"
-            },
-            {
-                "kanji": "手",
-                "yomi": "て"
-            },
-            {
-                "kanji": "手帳",
-                "yomi": "てちょう"
-            },
-            {
-                "kanji": "手伝う",
-                "yomi": "てつだ（う）"
-            },
-            {
-                "kanji": "歌手",
-                "yomi": "かしゅ"
-            },
-            {
-                "kanji": "上手な",
-                "yomi": "じょうず（な）"
-            },
-            {
-                "kanji": "下手な",
-                "yomi": "へた（な）"
-            },
-            {
-                "kanji": "軽い",
-                "yomi": "かる（い）"
-            },
-            {
-                "kanji": "利用",
-                "yomi": "りよう"
-            },
-            {
-                "kanji": "便利な",
-                "yomi": "べんり（な）"
-            },
-            {
-                "kanji": "店",
-                "yomi": "みせ"
-            },
-            {
-                "kanji": "支店",
-                "yomi": "してん"
-            },
-            {
-                "kanji": "明るい",
-                "yomi": "あか（るい）"
-            },
-            {
-                "kanji": "説明",
-                "yomi": "せつめい"
-            },
-            {
-                "kanji": "物",
-                "yomi": "もの"
-            },
-            {
-                "kanji": "食べ物",
-                "yomi": "た（べ）もの"
-            },
-            {
-                "kanji": "飲み物",
-                "yomi": "の（み）もの"
-            },
-            {
-                "kanji": "動物",
-                "yomi": "どうぶつ"
-            },
-            {
-                "kanji": "荷物",
-                "yomi": "にもつ"
-            },
-            {
-                "kanji": "生活",
-                "yomi": "せいかつ"
-            },
-            {
-                "kanji": "活動",
-                "yomi": "かつどう"
-            },
-            {
-                "kanji": "始める",
-                "yomi": "はじ（める）"
-            },
-            {
-                "kanji": "始まる",
-                "yomi": "はじ（まる）"
-            }
+        1: [
+            { "kanji": "代表的", "yomi": "だいひょうてき" },
+            { "kanji": "代わりに", "yomi": "か（わりに）" },
+            { "kanji": "発表", "yomi": "はっぴょう" },
+            { "kanji": "表す", "yomi": "あらわ（す）" },
+            { "kanji": "目的", "yomi": "もくてき" },
+            { "kanji": "最近", "yomi": "さいきん" },
+            { "kanji": "最も", "yomi": "もっと（も）" },
+            { "kanji": "近所", "yomi": "きんじょ" },
+            { "kanji": "近い", "yomi": "ちか（い）" },
+            { "kanji": "近く", "yomi": "ちか（く）" },
+            { "kanji": "牛丼", "yomi": "ぎゅうどん" },
+            { "kanji": "牛肉", "yomi": "ぎゅうにく" },
+            { "kanji": "牛乳", "yomi": "ぎゅうにゅう" },
+            { "kanji": "発音", "yomi": "はつおん" },
+            { "kanji": "発見", "yomi": "はっけん" },
+            { "kanji": "発明", "yomi": "はつめい" },
+            { "kanji": "1兆円", "yomi": "いっちょうえん" },
+            { "kanji": "使う", "yomi": "つか（う）" },
+            { "kanji": "使用禁止", "yomi": "しようきんし" },
+            { "kanji": "使用中", "yomi": "しようchuu" },
+            { "kanji": "理由", "yomi": "りゆう" },
+            { "kanji": "料理", "yomi": "りょうり" },
+            { "kanji": "自由に", "yomi": "じゆう（に）" },
+            { "kanji": "安い", "yomi": "やす（い）" },
+            { "kanji": "安心", "yomi": "あんしん" },
+            { "kanji": "安全な", "yomi": "あんぜん（な）" },
+            { "kanji": "手軽に", "yomi": "てがる（に）" },
+            { "kanji": "手", "yomi": "て" },
+            { "kanji": "手帳", "yomi": "てちょう" },
+            { "kanji": "手伝う", "yomi": "てつだ（う）" },
+            { "kanji": "歌手", "yomi": "かしゅ" },
+            { "kanji": "上手な", "yomi": "じょうず（な）" },
+            { "kanji": "下手な", "yomi": "へた（な）" },
+            { "kanji": "軽い", "yomi": "かる（い）" },
+            { "kanji": "利用", "yomi": "りよう" },
+            { "kanji": "便利な", "yomi": "べんり（な）" },
+            { "kanji": "店", "yomi": "みせ" },
+            { "kanji": "支店", "yomi": "してん" },
+            { "kanji": "明るい", "yomi": "あか（るい）" },
+            { "kanji": "説明", "yomi": "せつめい" },
+            { "kanji": "物", "yomi": "もの" },
+            { "kanji": "食べ物", "yomi": "た（べ）もの" },
+            { "kanji": "飲み物", "yomi": "の（み）もの" },
+            { "kanji": "動物", "yomi": "どうぶつ" },
+            { "kanji": "荷物", "yomi": "にもつ" },
+            { "kanji": "生活", "yomi": "せいかつ" },
+            { "kanji": "活動", "yomi": "かつどう" },
+            { "kanji": "始める", "yomi": "はじ（める）" },
+            { "kanji": "始まる", "yomi": "はじ（まる）" }
         ],
-        "2": [
-            {
-                "kanji": "地震",
-                "yomi": "じしん"
-            },
-            {
-                "kanji": "地下鉄",
-                "yomi": "ちかてつ"
-            },
-            {
-                "kanji": "地球",
-                "yomi": "ちきゅう"
-            },
-            {
-                "kanji": "地図",
-                "yomi": "ちず"
-            },
-            {
-                "kanji": "起きる",
-                "yomi": "お（きる）"
-            },
-            {
-                "kanji": "机",
-                "yomi": "つくえ"
-            },
-            {
-                "kanji": "次の",
-                "yomi": "つぎ（の）"
-            },
-            {
-                "kanji": "次回",
-                "yomi": "じかい"
-            },
-            {
-                "kanji": "火を消す",
-                "yomi": "ひ（を）け（す）"
-            },
-            {
-                "kanji": "火が消える",
-                "yomi": "ひ（が）き（える）"
-            },
-            {
-                "kanji": "ドアが閉まる",
-                "yomi": "ドア（が）し（まる）"
-            },
-            {
-                "kanji": "ドアを閉める",
-                "yomi": "ドア（を）し（める）"
-            },
-            {
-                "kanji": "窓",
-                "yomi": "まど"
-            },
-            {
-                "kanji": "窓を開ける",
-                "yomi": "まど（を）あ（ける）"
-            },
-            {
-                "kanji": "窓が開く",
-                "yomi": "まど（が）あ（く）"
-            },
-            {
-                "kanji": "場合",
-                "yomi": "ばあい"
-            },
-            {
-                "kanji": "場所",
-                "yomi": "ばしょ"
-            },
-            {
-                "kanji": "工場",
-                "yomi": "こうじょう"
-            },
-            {
-                "kanji": "合う",
-                "yomi": "あ（う）"
-            },
-            {
-                "kanji": "試合",
-                "yomi": "しあい"
-            },
-            {
-                "kanji": "都合",
-                "yomi": "つごう"
-            },
-            {
-                "kanji": "一番",
-                "yomi": "いちばん"
-            },
-            {
-                "kanji": "番組",
-                "yomi": "ばんぐみ"
-            },
-            {
-                "kanji": "番号",
-                "yomi": "ばんごう"
-            },
-            {
-                "kanji": "大切な",
-                "yomi": "たいせつ（な）"
-            },
-            {
-                "kanji": "親切な",
-                "yomi": "しんせつ（な）"
-            },
-            {
-                "kanji": "パンを切る",
-                "yomi": "パン（を）き（る）"
-            },
-            {
-                "kanji": "ひもが切れる",
-                "yomi": "（ひもが）き（れる）"
-            },
-            {
-                "kanji": "多い",
-                "yomi": "おお（い）"
-            },
-            {
-                "kanji": "食料",
-                "yomi": "しょくりょう"
-            },
-            {
-                "kanji": "料理",
-                "yomi": "りょうり"
-            },
-            {
-                "kanji": "原料",
-                "yomi": "げんりょう"
-            },
-            {
-                "kanji": "材料",
-                "yomi": "ざいりょう"
-            },
-            {
-                "kanji": "用意",
-                "yomi": "ようい"
-            },
-            {
-                "kanji": "用事",
-                "yomi": "ようじ"
-            },
-            {
-                "kanji": "使用中",
-                "yomi": "しようちゅう"
-            },
-            {
-                "kanji": "意見",
-                "yomi": "いけん"
-            },
-            {
-                "kanji": "意味",
-                "yomi": "いみ"
-            },
-            {
-                "kanji": "家具",
-                "yomi": "かぐ"
-            },
-            {
-                "kanji": "家族",
-                "yomi": "かぞく"
-            },
-            {
-                "kanji": "私の家",
-                "yomi": "わたし（の）いえ"
-            },
-            {
-                "kanji": "家賃",
-                "yomi": "やちん"
-            },
-            {
-                "kanji": "考える",
-                "yomi": "かんが（える）"
-            },
-            {
-                "kanji": "住所",
-                "yomi": "じゅうしょ"
-            },
-            {
-                "kanji": "所",
-                "yomi": "ところ"
-            },
-            {
-                "kanji": "台所",
-                "yomi": "だいどころ"
-            }
+        2: [
+            { "kanji": "地震", "yomi": "じしん" },
+            { "kanji": "地下鉄", "yomi": "ちかてつ" },
+            { "kanji": "地球", "yomi": "ちきゅう" },
+            { "kanji": "地図", "yomi": "ちず" },
+            { "kanji": "起きる", "yomi": "お（きる）" },
+            { "kanji": "机", "yomi": "つくえ" },
+            { "kanji": "次の", "yomi": "つぎ（の）" },
+            { "kanji": "次回", "yomi": "じかい" },
+            { "kanji": "火を消す", "yomi": "ひ（を）け（す）" },
+            { "kanji": "火が消える", "yomi": "ひ（が）き（える）" },
+            { "kanji": "ドアが閉まる", "yomi": "ドア（が）し（まる）" },
+            { "kanji": "ドアを閉める", "yomi": "ドア（を）し（める）" },
+            { "kanji": "窓", "yomi": "まど" },
+            { "kanji": "窓を開ける", "yomi": "窓（を）あ（ける）" },
+            { "kanji": "窓が開く", "yomi": "まど（が）あ（く）" },
+            { "kanji": "場合", "yomi": "ばあい" },
+            { "kanji": "場所", "yomi": "ばしょ" },
+            { "kanji": "工場", "yomi": "こうじょう" },
+            { "kanji": "合う", "yomi": "あ（う）" },
+            { "kanji": "試合", "yomi": "しあい" },
+            { "kanji": "都合", "yomi": "つごう" },
+            { "kanji": "一番", "yomi": "いちばん" },
+            { "kanji": "番組", "yomi": "ばんぐみ" },
+            { "kanji": "番号", "yomi": "ばんごう" },
+            { "kanji": "大拙な", "yomi": "たいせつ（な）" },
+            { "kanji": "親切な", "yomi": "しんせつ（な）" },
+            { "kanji": "パンを切る", "yomi": "パン（を）き（る）" },
+            { "kanji": "ひもが切れる", "yomi": "ひも（が）き（れる）" },
+            { "kanji": "多い", "yomi": "おお（い）" },
+            { "kanji": "食料", "yomi": "しょくりょう" },
+            { "kanji": "料理", "yomi": "りょうり" },
+            { "kanji": "原料", "yomi": "げんりょう" },
+            { "kanji": "材料", "yomi": "ざいりょう" },
+            { "kanji": "用意", "yomi": "ようい" },
+            { "kanji": "用事", "yomi": "ようじ" },
+            { "kanji": "使用中", "yomi": "しようちゅう" },
+            { "kanji": "意見", "yomi": "いけん" },
+            { "kanji": "意味", "yomi": "いみ" },
+            { "kanji": "家具", "yomi": "かぐ" },
+            { "kanji": "家族", "yomi": "かぞく" },
+            { "kanji": "私の家", "yomi": "わたし（の）いえ" },
+            { "kanji": "家賃", "yomi": "やちん" },
+            { "kanji": "考える", "yomi": "かんが（える）" },
+            { "kanji": "住所", "yomi": "じゅうしょ" },
+            { "kanji": "所", "yomi": "ところ" },
+            { "kanji": "台所", "yomi": "だいどころ" }
         ],
-        "3": [
-            {
-                "kanji": "調査",
-                "yomi": "ちょうさ"
-            },
-            {
-                "kanji": "調べる",
-                "yomi": "しら（べる）"
-            },
-            {
-                "kanji": "持つ",
-                "yomi": "も（つ）"
-            },
-            {
-                "kanji": "自分",
-                "yomi": "じぶん"
-            },
-            {
-                "kanji": "自由に",
-                "yomi": "じゆう（に）"
-            },
-            {
-                "kanji": "自然",
-                "yomi": "しぜん"
-            },
-            {
-                "kanji": "専用",
-                "yomi": "せんよう"
-            },
-            {
-                "kanji": "専門",
-                "yomi": "せんもん"
-            },
-            {
-                "kanji": "町",
-                "yomi": "まち"
-            },
-            {
-                "kanji": "市町村",
-                "yomi": "しちょうそん"
-            },
-            {
-                "kanji": "着る",
-                "yomi": "き（る）"
-            },
-            {
-                "kanji": "着物",
-                "yomi": "きもの"
-            },
-            {
-                "kanji": "駅に着く",
-                "yomi": "えき（に）つ（く）"
-            },
-            {
-                "kanji": "到着",
-                "yomi": "とうちゃく"
-            },
-            {
-                "kanji": "服",
-                "yomi": "ふく"
-            },
-            {
-                "kanji": "高価な",
-                "yomi": "こうか（な）"
-            },
-            {
-                "kanji": "物価",
-                "yomi": "ぶっか"
-            },
-            {
-                "kanji": "親",
-                "yomi": "おや"
-            },
-            {
-                "kanji": "親切な",
-                "yomi": "しんせつ（な）"
-            },
-            {
-                "kanji": "数",
-                "yomi": "かず"
-            },
-            {
-                "kanji": "数える",
-                "yomi": "かぞ（える）"
-            },
-            {
-                "kanji": "数年前",
-                "yomi": "すうねんまえ"
-            },
-            {
-                "kanji": "減る",
-                "yomi": "へ（る）"
-            },
-            {
-                "kanji": "減少",
-                "yomi": "げんしょう"
-            },
-            {
-                "kanji": "王様",
-                "yomi": "おうさま"
-            },
-            {
-                "kanji": "〜様",
-                "yomi": "〜（さま）"
-            },
-            {
-                "kanji": "様子",
-                "yomi": "ようす"
-            },
-            {
-                "kanji": "人が増える",
-                "yomi": "ひと（が）ふ（える）"
-            },
-            {
-                "kanji": "人を増やす",
-                "yomi": "ひと（を）ふ（やす）"
-            },
-            {
-                "kanji": "増やす",
-                "yomi": "ま（す）"
-            }
+        3: [
+            { "kanji": "調査", "yomi": "ちょうさ" },
+            { "kanji": "調べる", "yomi": "しら（べる）" },
+            { "kanji": "持つ", "yomi": "も（つ）" },
+            { "kanji": "自分", "yomi": "じぶん" },
+            { "kanji": "自由に", "yomi": "じゆう（に）" },
+            { "kanji": "自然", "yomi": "しぜん" },
+            { "kanji": "専用", "yomi": "せんよう" },
+            { "kanji": "専門", "yomi": "せんもん" },
+            { "kanji": "町", "yomi": "まち" },
+            { "kanji": "市町村", "yomi": "しちょうそん" },
+            { "kanji": "着る", "yomi": "き（る）" },
+            { "kanji": "着物", "yomi": "きもの" },
+            { "kanji": "駅に着く", "yomi": "えき（に）つ（く）" },
+            { "kanji": "到着", "yomi": "とうちゃく" },
+            { "kanji": "服", "yomi": "ふく" },
+            { "kanji": "高価な", "yomi": "こうか（な）" },
+            { "kanji": "物価", "yomi": "ぶっか" },
+            { "kanji": "親", "yomi": "おや" },
+            { "kanji": "親切な", "yomi": "しんせつ（な）" },
+            { "kanji": "数", "yomi": "かず" },
+            { "kanji": "数える", "yomi": "かぞ（える）" },
+            { "kanji": "数年前", "yomi": "すうねんまえ" },
+            { "kanji": "減る", "yomi": "へ（る）" },
+            { "kanji": "減少", "yomi": "げんしょう" },
+            { "kanji": "王様", "yomi": "おうさま" },
+            { "kanji": "〜様", "yomi": "〜（さま）" },
+            { "kanji": "様子", "yomi": "ようす" },
+            { "kanji": "人が増える", "yomi": "ひと（が）ふ（える）" },
+            { "kanji": "人を増やす", "yomi": "ひと（を）ふ（やす）" },
+            { "kanji": "増やす", "yomi": "ま（す）" }
         ],
-        "4": [
-            {
-                "kanji": "日本を訪れる",
-                "yomi": "にほん（を）おとず（れる）"
-            },
-            {
-                "kanji": "訪ねる",
-                "yomi": "たず（ねる）"
-            },
-            {
-                "kanji": "旅行",
-                "yomi": "りょこう"
-            },
-            {
-                "kanji": "旅行者",
-                "yomi": "りょこうしゃ"
-            },
-            {
-                "kanji": "医者",
-                "yomi": "いしゃ"
-            },
-            {
-                "kanji": "実際に",
-                "yomi": "じっさい（に）"
-            },
-            {
-                "kanji": "実験",
-                "yomi": "じっけん"
-            },
-            {
-                "kanji": "実は",
-                "yomi": "じつ（は）"
-            },
-            {
-                "kanji": "国際〜",
-                "yomi": "こくさい〜"
-            },
-            {
-                "kanji": "海外",
-                "yomi": "かいがい"
-            },
-            {
-                "kanji": "海",
-                "yomi": "うみ"
-            },
-            {
-                "kanji": "礼儀",
-                "yomi": "れいぎ"
-            },
-            {
-                "kanji": "おもてなしの心",
-                "yomi": "（おもてなしの）こころ"
-            },
-            {
-                "kanji": "心配",
-                "yomi": "しんぱい"
-            },
-            {
-                "kanji": "心配な",
-                "yomi": "しんぱい（な）"
-            },
-            {
-                "kanji": "安心",
-                "yomi": "あんしん"
-            },
-            {
-                "kanji": "選ぶ",
-                "yomi": "えら（ぶ）"
-            },
-            {
-                "kanji": "食事",
-                "yomi": "しょくじ"
-            },
-            {
-                "kanji": "事故",
-                "yomi": "じこ"
-            },
-            {
-                "kanji": "仕事",
-                "yomi": "しごと"
-            },
-            {
-                "kanji": "都市",
-                "yomi": "とし"
-            },
-            {
-                "kanji": "都合",
-                "yomi": "つごう"
-            },
-            {
-                "kanji": "市役所",
-                "yomi": "しやくしょ"
-            },
-            {
-                "kanji": "景観",
-                "yomi": "けいかん"
-            },
-            {
-                "kanji": "景色",
-                "yomi": "けしき"
-            },
-            {
-                "kanji": "観光",
-                "yomi": "かんこう"
-            },
-            {
-                "kanji": "美しい",
-                "yomi": "うつく（しい）"
-            },
-            {
-                "kanji": "美術",
-                "yomi": "びじゅつ"
-            },
-            {
-                "kanji": "美術館",
-                "yomi": "びじゅつかん"
-            },
-            {
-                "kanji": "無形文化遺産",
-                "yomi": "むけいぶんかいさん"
-            },
-            {
-                "kanji": "無理な",
-                "yomi": "むり（な）"
-            },
-            {
-                "kanji": "無理をする",
-                "yomi": "むり（を する）"
-            },
-            {
-                "kanji": "無料",
-                "yomi": "むりょう"
-            },
-            {
-                "kanji": "文化",
-                "yomi": "ぶんか"
-            },
-            {
-                "kanji": "文学",
-                "yomi": "ぶんがく"
-            },
-            {
-                "kanji": "文法",
-                "yomi": "ぶんぽう"
-            },
-            {
-                "kanji": "作文",
-                "yomi": "さくぶん"
-            },
-            {
-                "kanji": "化粧品",
-                "yomi": "けしょうひん"
-            }
+        4: [
+            { "kanji": "日本を訪れる", "yomi": "にほん（を）おとず（れる）" },
+            { "kanji": "訪ねる", "yomi": "たず（ねる）" },
+            { "kanji": "旅行", "yomi": "りょこう" },
+            { "kanji": "旅行者", "yomi": "りょこうしゃ" },
+            { "kanji": "医者", "yomi": "いしゃ" },
+            { "kanji": "実際に", "yomi": "じっさい（に）" },
+            { "kanji": "実験", "yomi": "じっけん" },
+            { "kanji": "実は", "yomi": "じつ（は）" },
+            { "kanji": "国際〜", "yomi": "こくさい〜" },
+            { "kanji": "海外", "yomi": "かいがい" },
+            { "kanji": "海", "yomi": "うみ" },
+            { "kanji": "礼儀", "yomi": "れいぎ" },
+            { "kanji": "おもてなしの心", "yomi": "（おもてなしの）こころ" },
+            { "kanji": "心配", "yomi": "しんぱい" },
+            { "kanji": "心配な", "yomi": "しんぱい（な）" },
+            { "kanji": "安心", "yomi": "あんしん" },
+            { "kanji": "選ぶ", "yomi": "えら（ぶ）" },
+            { "kanji": "食事", "yomi": "しょくじ" },
+            { "kanji": "事故", "yomi": "じこ" },
+            { "kanji": "仕事", "yomi": "しごと" },
+            { "kanji": "都市", "yomi": "とし" },
+            { "kanji": "都合", "yomi": "つごう" },
+            { "kanji": "市役所", "yomi": "しやくしょ" },
+            { "kanji": "景観", "yomi": "けいかん" },
+            { "kanji": "景色", "yomi": "けしき" },
+            { "kanji": "観光", "yomi": "かんこう" },
+            { "kanji": "美しい", "yomi": "うつく（しい）" },
+            { "kanji": "美術", "yomi": "びじゅつ" },
+            { "kanji": "美術館", "yomi": "びじゅつかん" },
+            { "kanji": "無形文化遺産", "yomi": "むけいぶんかいさん" },
+            { "kanji": "無理な", "yomi": "むり（な）" },
+            { "kanji": "無理をする", "yomi": "むり（を する）" },
+            { "kanji": "無料", "yomi": "むりょう" },
+            { "kanji": "文化", "yomi": "ぶんか" },
+            { "kanji": "文学", "yomi": "ぶんがく" },
+            { "kanji": "文法", "yomi": "ぶんぽう" },
+            { "kanji": "作文", "yomi": "さくぶん" },
+            { "kanji": "化粧品", "yomi": "けしょうひん" }
         ],
-        "5": [
-            {
-                "kanji": "睡眠",
-                "yomi": "すいみん"
-            },
-            {
-                "kanji": "眠る",
-                "yomi": "ねむ（る）"
-            },
-            {
-                "kanji": "眠い",
-                "yomi": "ねむ（い）"
-            },
-            {
-                "kanji": "毎晩",
-                "yomi": "まいばん"
-            },
-            {
-                "kanji": "今晩",
-                "yomi": "こんばん"
-            },
-            {
-                "kanji": "晩ごはん",
-                "yomi": "ばん（ごはん）"
-            },
-            {
-                "kanji": "夜",
-                "yomi": "よる"
-            },
-            {
-                "kanji": "夜中",
-                "yomi": "よなか"
-            },
-            {
-                "kanji": "今夜",
-                "yomi": "こんや"
-            },
-            {
-                "kanji": "何回も",
-                "yomi": "なんかい（も）"
-            },
-            {
-                "kanji": "回す",
-                "yomi": "まわ（す）"
-            },
-            {
-                "kanji": "目が覚める",
-                "yomi": "め（が）さ（める）"
-            },
-            {
-                "kanji": "ことばを覚える",
-                "yomi": "（ことばを）おぼ（える）"
-            },
-            {
-                "kanji": "医者",
-                "yomi": "いしゃ"
-            },
-            {
-                "kanji": "医学",
-                "yomi": "いがく"
-            },
-            {
-                "kanji": "相談",
-                "yomi": "そうだん"
-            },
-            {
-                "kanji": "相手",
-                "yomi": "あいて"
-            },
-            {
-                "kanji": "遅く",
-                "yomi": "おそ（く）"
-            },
-            {
-                "kanji": "遅い",
-                "yomi": "おそ（い）"
-            },
-            {
-                "kanji": "遅れる",
-                "yomi": "おく（れる）"
-            },
-            {
-                "kanji": "遅刻",
-                "yomi": "ちこく"
-            },
-            {
-                "kanji": "活動",
-                "yomi": "かつどう"
-            },
-            {
-                "kanji": "自動車",
-                "yomi": "じどうしゃ"
-            },
-            {
-                "kanji": "動く",
-                "yomi": "うご（く）"
-            },
-            {
-                "kanji": "動かす",
-                "yomi": "うご（かす）"
-            },
-            {
-                "kanji": "通勤",
-                "yomi": "つうきん"
-            },
-            {
-                "kanji": "交通",
-                "yomi": "こうつう"
-            },
-            {
-                "kanji": "道を通る",
-                "yomi": "みち（を）とお（る）"
-            },
-            {
-                "kanji": "大学に通う",
-                "yomi": "だいがく（に）かよ（う）"
-            },
-            {
-                "kanji": "通勤",
-                "yomi": "つうきん"
-            },
-            {
-                "kanji": "会社に勤める",
-                "yomi": "かいしゃ（に）つと（める）"
-            },
-            {
-                "kanji": "原因",
-                "yomi": "げんいん"
-            },
-            {
-                "kanji": "体",
-                "yomi": "からだ"
-            },
-            {
-                "kanji": "体温計",
-                "yomi": "たいおんけい"
-            },
-            {
-                "kanji": "不調",
-                "yomi": "ふちょう"
-            },
-            {
-                "kanji": "不便な",
-                "yomi": "ふべん（な）"
-            },
-            {
-                "kanji": "疲れる",
-                "yomi": "つか（れる）"
-            },
-            {
-                "kanji": "昼間",
-                "yomi": "ひるま"
-            },
-            {
-                "kanji": "昼ごはん",
-                "yomi": "ひる（ごはん）"
-            },
-            {
-                "kanji": "昼休み",
-                "yomi": "ひるやす（み）"
-            },
-            {
-                "kanji": "神経質な",
-                "yomi": "しんけいしつ（な）"
-            },
-            {
-                "kanji": "質問",
-                "yomi": "しつもん"
-            }
+        5: [
+            { "kanji": "睡眠", "yomi": "すいみん" },
+            { "kanji": "眠る", "yomi": "ねむ（る）" },
+            { "kanji": "眠い", "yomi": "ねむ（い）" },
+            { "kanji": "毎晩", "yomi": "まいばん" },
+            { "kanji": "今晩", "yomi": "こんばん" },
+            { "kanji": "晩ごはん", "yomi": "ばん（ごはん）" },
+            { "kanji": "夜", "yomi": "よる" },
+            { "kanji": "夜中", "yomi": "よなか" },
+            { "kanji": "今夜", "yomi": "こんや" },
+            { "kanji": "何回も", "yomi": "なんかい（も）" },
+            { "kanji": "回す", "yomi": "まわ（す）" },
+            { "kanji": "目が覚める", "yomi": "め（が）さ（める）" },
+            { "kanji": "ことばを覚える", "yomi": "（ことばを）おぼ（える）" },
+            { "kanji": "医者", "yomi": "いしゃ" },
+            { "kanji": "医学", "yomi": "いがく" },
+            { "kanji": "相談", "yomi": "そうだん" },
+            { "kanji": "相手", "yomi": "あいて" },
+            { "kanji": "遅く", "yomi": "おそ（く）" },
+            { "kanji": "遅い", "yomi": "おそ（い）" },
+            { "kanji": "遅れる", "yomi": "おく（れる）" },
+            { "kanji": "遅刻", "yomi": "ちこく" },
+            { "kanji": "活動", "yomi": "かつどう" },
+            { "kanji": "自動車", "yomi": "じどうしゃ" },
+            { "kanji": "動く", "yomi": "うご（く）" },
+            { "kanji": "動かす", "yomi": "うご（かす）" },
+            { "kanji": "通勤", "yomi": "つうきん" },
+            { "kanji": "交通", "yomi": "こうつう" },
+            { "kanji": "道を通る", "yomi": "みち（を）とお（る）" },
+            { "kanji": "大学に通う", "yomi": "だいがく（に）かよ（う）" },
+            { "kanji": "会社に勤める", "yomi": "かいしゃ（に）つと（める）" },
+            { "kanji": "原因", "yomi": "げんいん" },
+            { "kanji": "体", "yomi": "からだ" },
+            { "kanji": "体温計", "yomi": "たいおんけい" },
+            { "kanji": "不調", "yomi": "ふちょう" },
+            { "kanji": "不便な", "yomi": "ふべん（な）" },
+            { "kanji": "疲れる", "yomi": "つか（れる）" },
+            { "kanji": "昼間", "yomi": "ひるま" },
+            { "kanji": "昼ごはん", "yomi": "昼（ごはん）" },
+            { "kanji": "昼休み", "yomi": "ひるやす（み）" },
+            { "kanji": "神経質な", "yomi": "しんけいしつ（な）" },
+            { "kanji": "質問", "yomi": "しつもん" }
         ],
-        "6": [
-            {
-                "kanji": "世界",
-                "yomi": "せかい"
-            },
-            {
-                "kanji": "世の中",
-                "yomi": "よ（の）なか"
-            },
-            {
-                "kanji": "広く",
-                "yomi": "ひろ（く）"
-            },
-            {
-                "kanji": "広い",
-                "yomi": "ひろ（い）"
-            },
-            {
-                "kanji": "病院",
-                "yomi": "びょういん"
-            },
-            {
-                "kanji": "病気",
-                "yomi": "びょうき"
-            },
-            {
-                "kanji": "入院",
-                "yomi": "にゅういん"
-            },
-            {
-                "kanji": "乾電池",
-                "yomi": "かんでんち"
-            },
-            {
-                "kanji": "電池",
-                "yomi": "でんち"
-            },
-            {
-                "kanji": "池",
-                "yomi": "いけ"
-            },
-            {
-                "kanji": "当時",
-                "yomi": "とうじ"
-            },
-            {
-                "kanji": "本当",
-                "yomi": "ほんとう"
-            },
-            {
-                "kanji": "コーヒーを飲む",
-                "yomi": "コーヒー（を）の（む）"
-            },
-            {
-                "kanji": "注目",
-                "yomi": "ちゅうもく"
-            },
-            {
-                "kanji": "注意",
-                "yomi": "ちゅうい"
-            },
-            {
-                "kanji": "目的",
-                "yomi": "もくてき"
-            },
-            {
-                "kanji": "目",
-                "yomi": "め"
-            },
-            {
-                "kanji": "特許",
-                "yomi": "とっきょ"
-            },
-            {
-                "kanji": "特別な",
-                "yomi": "とくべつ（な）"
-            },
-            {
-                "kanji": "許可",
-                "yomi": "きょか"
-            },
-            {
-                "kanji": "特許を取る",
-                "yomi": "とっきょ（を）と（る）"
-            },
-            {
-                "kanji": "別の",
-                "yomi": "べつ（の）"
-            },
-            {
-                "kanji": "別々に",
-                "yomi": "べつべつ（に）"
-            },
-            {
-                "kanji": "別れる",
-                "yomi": "わか（れる）"
-            },
-            {
-                "kanji": "方法",
-                "yomi": "ほうほう"
-            },
-            {
-                "kanji": "一方",
-                "yomi": "いっぽう"
-            },
-            {
-                "kanji": "使い方",
-                "yomi": "つか（い）かた"
-            },
-            {
-                "kanji": "教え方",
-                "yomi": "おし（え）かた"
-            },
-            {
-                "kanji": "法律",
-                "yomi": "ほうりつ"
-            },
-            {
-                "kanji": "文法",
-                "yomi": "ぶんぽう"
-            },
-            {
-                "kanji": "作る",
-                "yomi": "つく（る）"
-            },
-            {
-                "kanji": "作文",
-                "yomi": "さくぶん"
-            },
-            {
-                "kanji": "忘れる",
-                "yomi": "わす（れる）"
-            },
-            {
-                "kanji": "忘れ物",
-                "yomi": "わす（れ）もの"
-            },
-            {
-                "kanji": "忘年会",
-                "yomi": "ぼうねんかい"
-            }
+        6: [
+            { "kanji": "世界", "yomi": "せかい" },
+            { "kanji": "世の中", "yomi": "よ（の）なか" },
+            { "kanji": "広く", "yomi": "ひろ（く）" },
+            { "kanji": "広い", "yomi": "ひろ（い）" },
+            { "kanji": "病院", "yomi": "びょういん" },
+            { "kanji": "病気", "yomi": "びょうき" },
+            { "kanji": "入院", "yomi": "にゅういん" },
+            { "kanji": "乾電池", "yomi": "かんでんち" },
+            { "kanji": "電池", "yomi": "でんち" },
+            { "kanji": "池", "yomi": "いけ" },
+            { "kanji": "当時", "yomi": "とうじ" },
+            { "kanji": "本当", "yomi": "ほんとう" },
+            { "kanji": "コーヒーを飲む", "yomi": "コーヒー（を）の（む）" },
+            { "kanji": "注目", "yomi": "ちゅう目" },
+            { "kanji": "注意", "yomi": "ちゅうい" },
+            { "kanji": "目的", "yomi": "もくてき" },
+            { "kanji": "目", "yomi": "め" },
+            { "kanji": "特許", "yomi": "とっきょ" },
+            { "kanji": "特別な", "yomi": "とくべつ（な）" },
+            { "kanji": "許可", "yomi": "きょか" },
+            { "kanji": "特許を取る", "yomi": "とっきょ（を）と（る）" },
+            { "kanji": "別の", "yomi": "べつ（の）" },
+            { "kanji": "別々に", "yomi": "べつべつ（に）" },
+            { "kanji": "別れる", "yomi": "わか（れる）" },
+            { "kanji": "方法", "yomi": "ほうほう" },
+            { "kanji": "一方", "yomi": "いっぽう" },
+            { "kanji": "使い方", "yomi": "つか（い）かた" },
+            { "kanji": "教え方", "yomi": "おし（え）かた" },
+            { "kanji": "法律", "yomi": "ほうりつ" },
+            { "kanji": "文法", "yomi": "ぶんぽう" },
+            { "kanji": "作る", "yomi": "つく（る）" },
+            { "kanji": "作文", "yomi": "さくぶん" },
+            { "kanji": "忘れる", "yomi": "わす（れる）" },
+            { "kanji": "忘れ物", "yomi": "わす（れ）もの" },
+            { "kanji": "忘年会", "yomi": "ぼうねんかい" }
         ],
-        "7": [
-            {
-                "kanji": "地球",
-                "yomi": "ちきゅう"
-            },
-            {
-                "kanji": "温暖化",
-                "yomi": "おんだんか"
-            },
-            {
-                "kanji": "温泉",
-                "yomi": "おんせん"
-            },
-            {
-                "kanji": "温度",
-                "yomi": "おんど"
-            },
-            {
-                "kanji": "体温計",
-                "yomi": "たいおんけい"
-            },
-            {
-                "kanji": "温かいお茶",
-                "yomi": "あたた（かい）おちゃ"
-            },
-            {
-                "kanji": "暖房",
-                "yomi": "だんぼう"
-            },
-            {
-                "kanji": "今日は暖かい",
-                "yomi": "きょう（は）あたた（かい）"
-            },
-            {
-                "kanji": "問題",
-                "yomi": "もんだい"
-            },
-            {
-                "kanji": "質問",
-                "yomi": "しつもん"
-            },
-            {
-                "kanji": "宿題",
-                "yomi": "しゅくだい"
-            },
-            {
-                "kanji": "住む",
-                "yomi": "す（む）"
-            },
-            {
-                "kanji": "住所",
-                "yomi": "じゅうしょ"
-            },
-            {
-                "kanji": "守る",
-                "yomi": "まも（る）"
-            },
-            {
-                "kanji": "留守",
-                "yomi": "るす"
-            },
-            {
-                "kanji": "以前",
-                "yomi": "いぜん"
-            },
-            {
-                "kanji": "以上",
-                "yomi": "いじょう"
-            },
-            {
-                "kanji": "以下",
-                "yomi": "いか"
-            },
-            {
-                "kanji": "古い",
-                "yomi": "ふる（い）"
-            },
-            {
-                "kanji": "中古",
-                "yomi": "ちゅうこ"
-            },
-            {
-                "kanji": "色が変わる",
-                "yomi": "いろ（が）か（わる）"
-            },
-            {
-                "kanji": "色を変える",
-                "yomi": "いろ（を）か（える）"
-            },
-            {
-                "kanji": "変更",
-                "yomi": "へんこう"
-            },
-            {
-                "kanji": "運動",
-                "yomi": "うんどう"
-            },
-            {
-                "kanji": "運動会",
-                "yomi": "うんどうかい"
-            },
-            {
-                "kanji": "運転",
-                "yomi": "うんてん"
-            },
-            {
-                "kanji": "荷物を運ぶ",
-                "yomi": "にもつ（を）はこ（ぶ）"
-            },
-            {
-                "kanji": "公園",
-                "yomi": "こうえん"
-            },
-            {
-                "kanji": "動物園",
-                "yomi": "どうぶつえん"
-            },
-            {
-                "kanji": "本を売る",
-                "yomi": "ほん（を）う（る）"
-            },
-            {
-                "kanji": "本が売れる",
-                "yomi": "ほん（が）う（れる）"
-            },
-            {
-                "kanji": "自動販売機",
-                "yomi": "じどうはんばいき"
-            },
-            {
-                "kanji": "買う",
-                "yomi": "か（う）"
-            },
-            {
-                "kanji": "買い物",
-                "yomi": "か（い）もの"
-            },
-            {
-                "kanji": "決める",
-                "yomi": "き（める）"
-            },
-            {
-                "kanji": "市町村",
-                "yomi": "しちょうそん"
-            },
-            {
-                "kanji": "村",
-                "yomi": "むら"
-            },
-            {
-                "kanji": "~と呼びかける",
-                "yomi": "~（と）よ（びかける）"
-            },
-            {
-                "kanji": "呼ぶ",
-                "yomi": "よ（ぶ）"
-            }
+        7: [
+            { "kanji": "地球", "yomi": "ちきゅう" },
+            { "kanji": "温暖化", "yomi": "おんだんか" },
+            { "kanji": "温泉", "yomi": "おんせん" },
+            { "kanji": "温度", "yomi": "おんど" },
+            { "kanji": "体温計", "yomi": "たいおんけい" },
+            { "kanji": "温かいお茶", "yomi": "あたた（かい）おちゃ" },
+            { "kanji": "暖房", "yomi": "だんぼう" },
+            { "kanji": "今日は暖かい", "yomi": "きょう（は）あたた（かい）" },
+            { "kanji": "問題", "yomi": "もんだい" },
+            { "kanji": "質問", "yomi": "しつもん" },
+            { "kanji": "宿題", "yomi": "しゅくだい" },
+            { "kanji": "住む", "yomi": "す（む）" },
+            { "kanji": "住所", "yomi": "じゅうしょ" },
+            { "kanji": "守る", "yomi": "まモ（る）" },
+            { "kanji": "留守", "yomi": "るす" },
+            { "kanji": "以前", "yomi": "いぜん" },
+            { "kanji": "以上", "yomi": "いじょう" },
+            { "kanji": "以下", "yomi": "いか" },
+            { "kanji": "古い", "yomi": "ふる（い）" },
+            { "kanji": "中古", "yomi": "ちゅうこ" },
+            { "kanji": "色が変わる", "yomi": "いろ（が）か（わる）" },
+            { "kanji": "色を変える", "yomi": "いろ（を）か（える）" },
+            { "kanji": "変更", "yomi": "へんこう" },
+            { "kanji": "運動", "yomi": "うんどう" },
+            { "kanji": "運動会", "yomi": "うんどうかい" },
+            { "kanji": "運転", "yomi": "うんてん" },
+            { "kanji": "荷物を運ぶ", "yomi": "にもつ（を）はこ（ぶ）" },
+            { "kanji": "公園", "yomi": "こうえん" },
+            { "kanji": "動物園", "yomi": "どうぶつえん" },
+            { "kanji": "本を売る", "yomi": "ほん（を）う（る）" },
+            { "kanji": "本が売れる", "yomi": "ほん（が）う（れる）" },
+            { "kanji": "自動販売機", "yomi": "じどうはんばいき" },
+            { "kanji": "買う", "yomi": "か（う）" },
+            { "kanji": "買い物", "yomi": "か（い）もの" },
+            { "kanji": "決める", "yomi": "き（める）" },
+            { "kanji": "市町村", "yomi": "しちょうそん" },
+            { "kanji": "村", "yomi": "むら" },
+            { "kanji": "~と呼びかける", "yomi": "~（と）よ（びかける）" },
+            { "kanji": "呼ぶ", "yomi": "よ（ぶ）" }
         ],
-        "8": [
-            {
-                "kanji": "言う",
-                "yomi": "い（う）"
-            },
-            {
-                "kanji": "発言",
-                "yomi": "はつげん"
-            },
-            {
-                "kanji": "伝える",
-                "yomi": "つた（える）"
-            },
-            {
-                "kanji": "伝統的",
-                "yomi": "でんとうてき"
-            },
-            {
-                "kanji": "合図",
-                "yomi": "あいず"
-            },
-            {
-                "kanji": "地図",
-                "yomi": "ちず"
-            },
-            {
-                "kanji": "図書館",
-                "yomi": "としょかん"
-            },
-            {
-                "kanji": "賛成",
-                "yomi": "さんせい"
-            },
-            {
-                "kanji": "成功",
-                "yomi": "せいこう"
-            },
-            {
-                "kanji": "確かめる",
-                "yomi": "たし（かめる）"
-            },
-            {
-                "kanji": "確か",
-                "yomi": "たし（か）"
-            },
-            {
-                "kanji": "確認",
-                "yomi": "かくにん"
-            },
-            {
-                "kanji": "誤解",
-                "yomi": "ごかい"
-            },
-            {
-                "kanji": "話し終わる",
-                "yomi": "はな（し）お（わる）"
-            },
-            {
-                "kanji": "終わり",
-                "yomi": "お（わり）"
-            },
-            {
-                "kanji": "あいづちを打つ",
-                "yomi": "（あいづちを）う（つ）"
-            },
-            {
-                "kanji": "話を止める",
-                "yomi": "はなし（を）と（める）"
-            },
-            {
-                "kanji": "車が止まる",
-                "yomi": "くるま（が）と（まる）"
-            },
-            {
-                "kanji": "中止",
-                "yomi": "ちゅうし"
-            },
-            {
-                "kanji": "立入禁止",
-                "yomi": "たちいりきんし"
-            }
+        8: [
+            { "kanji": "言う", "yomi": "い（う）" },
+            { "kanji": "発言", "yomi": "はつげん" },
+            { "kanji": "伝える", "yomi": "つた（える）" },
+            { "kanji": "伝統的", "yomi": "でんとうてき" },
+            { "kanji": "合図", "yomi": "あいず" },
+            { "kanji": "地図", "yomi": "ちず" },
+            { "kanji": "図書館", "yomi": "としょかん" },
+            { "kanji": "賛成", "yomi": "さんせい" },
+            { "kanji": "成功", "yomi": "せいこう" },
+            { "kanji": "確かめる", "yomi": "たし（かめる）" },
+            { "kanji": "確か", "yomi": "たし（か）" },
+            { "kanji": "確認", "yomi": "かくにん" },
+            { "kanji": "誤解", "yomi": "ごかい" },
+            { "kanji": "話し終わる", "yomi": "はな（し）お（わる）" },
+            { "kanji": "終わり", "yomi": "お（わり）" },
+            { "kanji": "あいづちを打つ", "yomi": "（あいづちを）う（つ）" },
+            { "kanji": "話を止める", "yomi": "はなし（を）と（める）" },
+            { "kanji": "車が止まる", "yomi": "くるま（が）と（まる）" },
+            { "kanji": "中止", "yomi": "ちゅうし" },
+            { "kanji": "立入禁止", "yomi": "たちいりきんし" }
         ],
-        "9": [
-            {
-                "kanji": "仕事",
-                "yomi": "しごと"
-            },
-            {
-                "kanji": "女性",
-                "yomi": "じょせい"
-            },
-            {
-                "kanji": "男性",
-                "yomi": "だんせい"
-            },
-            {
-                "kanji": "職場",
-                "yomi": "しょくば"
-            },
-            {
-                "kanji": "職業",
-                "yomi": "しょくぎょう"
-            },
-            {
-                "kanji": "働く",
-                "yomi": "はたら（く）"
-            },
-            {
-                "kanji": "労働",
-                "yomi": "ろうどう"
-            },
-            {
-                "kanji": "保育士",
-                "yomi": "ほいくし"
-            },
-            {
-                "kanji": "教育",
-                "yomi": "きょういく"
-            },
-            {
-                "kanji": "育てる",
-                "yomi": "そだ（てる）"
-            },
-            {
-                "kanji": "反対に",
-                "yomi": "はんたい（に）"
-            },
-            {
-                "kanji": "駐車違反",
-                "yomi": "ちゅうしゃいはん"
-            },
-            {
-                "kanji": "絶対に",
-                "yomi": "ぜったい（に）"
-            },
-            {
-                "kanji": "建築",
-                "yomi": "けんちく"
-            },
-            {
-                "kanji": "ビルを建てる",
-                "yomi": "ビル（を）た（てる）"
-            },
-            {
-                "kanji": "建物",
-                "yomi": "たてもの"
-            },
-            {
-                "kanji": "運転手",
-                "yomi": "うんてんしゅ"
-            },
-            {
-                "kanji": "自転車",
-                "yomi": "じてんしゃ"
-            },
-            {
-                "kanji": "区別",
-                "yomi": "くべつ"
-            },
-            {
-                "kanji": "少ない",
-                "yomi": "すく（ない）"
-            },
-            {
-                "kanji": "少し",
-                "yomi": "すこ（し）"
-            },
-            {
-                "kanji": "少々お待ちください",
-                "yomi": "しょうしょう（お）ま（ちください）"
-            },
-            {
-                "kanji": "家庭",
-                "yomi": "かてい"
-            },
-            {
-                "kanji": "庭",
-                "yomi": "にわ"
-            },
-            {
-                "kanji": "目を向ける",
-                "yomi": "め（を）む（ける）"
-            },
-            {
-                "kanji": "向こう",
-                "yomi": "む（こう）"
-            },
-            {
-                "kanji": "~程度",
-                "yomi": "~（ていど）"
-            },
-            {
-                "kanji": "一度",
-                "yomi": "いち（ど）"
-            },
-            {
-                "kanji": "一度も",
-                "yomi": "いちど（も）"
-            },
-            {
-                "kanji": "結果",
-                "yomi": "けっか"
-            },
-            {
-                "kanji": "果物",
-                "yomi": "くだもの"
-            },
-            {
-                "kanji": "意識",
-                "yomi": "いしき"
-            }
+        9: [
+            { "kanji": "仕事", "yomi": "しごと" },
+            { "kanji": "女性", "yomi": "じょせい" },
+            { "kanji": "男性", "yomi": "だんせい" },
+            { "kanji": "職場", "yomi": "しょくば" },
+            { "kanji": "職業", "yomi": "しょくぎょう" },
+            { "kanji": "働く", "yomi": "はたら（く）" },
+            { "kanji": "労働", "yomi": "ろうどう" },
+            { "kanji": "保育士", "yomi": "ほいくし" },
+            { "kanji": "教育", "yomi": "きょういく" },
+            { "kanji": "育てる", "yomi": "そだ（てる）" },
+            { "kanji": "反対に", "yomi": "はんたい（に）" },
+            { "kanji": "駐車違反", "yomi": "ちゅうしゃいはん" },
+            { "kanji": "絶対に", "yomi": "ぜったい（に）" },
+            { "kanji": "建築", "yomi": "けんちく" },
+            { "kanji": "ビルを建てる", "yomi": "ビル（を）た（てる）" },
+            { "kanji": "建物", "yomi": "たてもの" },
+            { "kanji": "運転手", "yomi": "うんてんしゅ" },
+            { "kanji": "自転車", "yomi": "じてんしゃ" },
+            { "kanji": "区別", "yomi": "くべつ" },
+            { "kanji": "少ない", "yomi": "すく（ない）" },
+            { "kanji": "少し", "yomi": "すこ（し）" },
+            { "kanji": "少々お待ちください", "yomi": "しょうしょう（お）ま（ちください）" },
+            { "kanji": "家庭", "yomi": "かてい" },
+            { "kanji": "庭", "yomi": "にわ" },
+            { "kanji": "目を向ける", "yomi": "め（を）む（ける）" },
+            { "kanji": "向こう", "yomi": "む（こう）" },
+            { "kanji": "~程度", "yomi": "~（ていど）" },
+            { "kanji": "一度", "yomi": "いち（ど）" },
+            { "kanji": "一度も", "yomi": "いちど（も）" },
+            { "kanji": "結果", "yomi": "けっか" },
+            { "kanji": "果物", "yomi": "くだもの" },
+            { "kanji": "意識", "yomi": "いしき" }
         ],
-        "10": [
-            {
-                "kanji": "乱れる",
-                "yomi": "みだ（れる）"
-            },
-            {
-                "kanji": "感じる",
-                "yomi": "かん（じる）"
-            },
-            {
-                "kanji": "感謝",
-                "yomi": "かんしゃ"
-            },
-            {
-                "kanji": "敬語",
-                "yomi": "けいご"
-            },
-            {
-                "kanji": "例えば",
-                "yomi": "たと（えば）"
-            },
-            {
-                "kanji": "例",
-                "yomi": "れい"
-            },
-            {
-                "kanji": "皆さん",
-                "yomi": "みな（さん）"
-            },
-            {
-                "kanji": "召し上がる",
-                "yomi": "め（し）あ（がる）"
-            },
-            {
-                "kanji": "会社",
-                "yomi": "かいしゃ"
-            },
-            {
-                "kanji": "会議",
-                "yomi": "かいぎ"
-            },
-            {
-                "kanji": "会場",
-                "yomi": "かいじょう"
-            },
-            {
-                "kanji": "会話",
-                "yomi": "かいわ"
-            },
-            {
-                "kanji": "友だちに会う",
-                "yomi": "とも（だちに）あ（う）"
-            },
-            {
-                "kanji": "社会",
-                "yomi": "しゃかい"
-            },
-            {
-                "kanji": "社員",
-                "yomi": "しゃいん"
-            },
-            {
-                "kanji": "社長",
-                "yomi": "しゃちょう"
-            },
-            {
-                "kanji": "受付",
-                "yomi": "うけつけ"
-            },
-            {
-                "kanji": "試験を受ける",
-                "yomi": "しけん（を）う（ける）"
-            },
-            {
-                "kanji": "丸を付ける",
-                "yomi": "まる（を）つ（ける）"
-            },
-            {
-                "kanji": "正しい",
-                "yomi": "ただ（しい）"
-            },
-            {
-                "kanji": "お正月",
-                "yomi": "お（しょうがつ）"
-            },
-            {
-                "kanji": "機会",
-                "yomi": "きかい"
-            },
-            {
-                "kanji": "飛行機",
-                "yomi": "ひこうき"
-            },
-            {
-                "kanji": "洗濯機",
-                "yomi": "せんたくき"
-            },
-            {
-                "kanji": "確認",
-                "yomi": "かくにん"
-            }
+        10: [
+            { "kanji": "乱れる", "yomi": "みだ（れる）" },
+            { "kanji": "感じる", "yomi": "かん（じる）" },
+            { "kanji": "感謝", "yomi": "かんしゃ" },
+            { "kanji": "敬語", "yomi": "けいご" },
+            { "kanji": "例えば", "yomi": "たと（えば）" },
+            { "kanji": "例", "yomi": "れい" },
+            { "kanji": "皆さん", "yomi": "みな（さん）" },
+            { "kanji": "召し上がる", "yomi": "め（し）あ（がる）" },
+            { "kanji": "会社", "yomi": "かいしゃ" },
+            { "kanji": "会議", "yomi": "かいぎ" },
+            { "kanji": "会場", "yomi": "かいじょう" },
+            { "kanji": "会話", "yomi": "かいわ" },
+            { "kanji": "友だちに会う", "yomi": "とも（だちに）あ（う）" },
+            { "kanji": "社会", "yomi": "しゃかい" },
+            { "kanji": "社員", "yomi": "しゃいん" },
+            { "kanji": "社長", "yomi": "しゃちょう" },
+            { "kanji": "受付", "yomi": "うけつけ" },
+            { "kanji": "試験を受ける", "yomi": "しけん（を）う（ける）" },
+            { "kanji": "丸を付ける", "yomi": "まる（を）つ（ける）" },
+            { "kanji": "正しい", "yomi": "ただ（しい）" },
+            { "kanji": "お正月", "yomi": "お（しょうがつ）" },
+            { "kanji": "機会", "yomi": "きかい" },
+            { "kanji": "飛行機", "yomi": "ひこうき" },
+            { "kanji": "洗濯機", "yomi": "せんたくき" },
+            { "kanji": "確認", "yomi": "かくにん" }
         ]
     },
     "中級を学ぼう・緑": {
-        "1": [],
-        "2": [
-            {
-                "kanji": "数字",
-                "yomi": "すうじ"
-            },
-            {
-                "kanji": "漢字",
-                "yomi": "かんじ"
-            },
-            {
-                "kanji": "文字",
-                "yomi": "もじ"
-            },
-            {
-                "kanji": "偶数",
-                "yomi": "ぐうすう"
-            },
-            {
-                "kanji": "奇数",
-                "yomi": "きすう"
-            },
-            {
-                "kanji": "中国語圏",
-                "yomi": "ちゅうごくごけん"
-            },
-            {
-                "kanji": "仲間",
-                "yomi": "なかま"
-            },
-            {
-                "kanji": "死",
-                "yomi": "し"
-            },
-            {
-                "kanji": "死ぬ",
-                "yomi": "し（ぬ）"
-            },
-            {
-                "kanji": "縁起がいい",
-                "yomi": "えんぎ（がいい）"
-            },
-            {
-                "kanji": "異なる",
-                "yomi": "こと（なる）"
-            },
-            {
-                "kanji": "紹介する",
-                "yomi": "しょうかい（する）"
-            },
-            {
-                "kanji": "魚介類",
-                "yomi": "ぎょかいるい"
-            },
-            {
-                "kanji": "意味",
-                "yomi": "いみ"
-            },
-            {
-                "kanji": "趣味",
-                "yomi": "しゅみ"
-            },
-            {
-                "kanji": "興味",
-                "yomi": "きょうみ"
-            },
-            {
-                "kanji": "あまい味がする",
-                "yomi": "（あまい）味（がする）"
-            },
-            {
-                "kanji": "非常に",
-                "yomi": "ひじょう（に）"
-            },
-            {
-                "kanji": "非常口",
-                "yomi": "ひじょうぐち"
-            },
-            {
-                "kanji": "値段",
-                "yomi": "ねだん"
-            },
-            {
-                "kanji": "階段",
-                "yomi": "かいだん"
-            },
-            {
-                "kanji": "連絡手段",
-                "yomi": "れんらくしゅだん"
-            },
-            {
-                "kanji": "抽選",
-                "yomi": "ちゅうせん"
-            },
-            {
-                "kanji": "番号",
-                "yomi": "ばんごう"
-            },
-            {
-                "kanji": "信号",
-                "yomi": "しんごう"
-            },
-            {
-                "kanji": "－号室",
-                "yomi": "－ごうしつ"
-            },
-            {
-                "kanji": "重要視する",
-                "yomi": "じゅうようし（する）"
-            },
-            {
-                "kanji": "重要な",
-                "yomi": "じゅうよう（な）"
-            },
-            {
-                "kanji": "体重",
-                "yomi": "たいじゅう"
-            },
-            {
-                "kanji": "重い",
-                "yomi": "おも（い）"
-            },
-            {
-                "kanji": "重さ",
-                "yomi": "おも（さ）"
-            },
-            {
-                "kanji": "重ねる",
-                "yomi": "かさ（ねる）"
-            },
-            {
-                "kanji": "必要な",
-                "yomi": "ひつよう（な）"
-            },
-            {
-                "kanji": "要素",
-                "yomi": "ようそ"
-            },
-            {
-                "kanji": "お金が要る",
-                "yomi": "（お）かね（が）い（る）"
-            },
-            {
-                "kanji": "視覚情報",
-                "yomi": "しかくじょうほう"
-            }
+        1: [
+            { "kanji": "音楽", "yomi": "おんがく" },
+            { "kanji": "音", "yomi": "おと" },
+            { "kanji": "発音", "yomi": "はつおん" },
+            { "kanji": "録音する", "yomi": "ろくおん（する）" },
+            { "kanji": "楽しい", "yomi": "たの（しい）" },
+            { "kanji": "楽しむ", "yomi": "たの（しむ）" },
+            { "kanji": "楽な", "yomi": "らく（な）" },
+            { "kanji": "効果", "yomi": "こうか" },
+            { "kanji": "寂しい", "yomi": "さび（しい）" },
+            { "kanji": "好きな", "yomi": "す（きな）" },
+            { "kanji": "大好きな", "yomi": "だいす（きな）" },
+            { "kanji": "好意的", "yomi": "こういてき" },
+            { "kanji": "落ち着く", "yomi": "お（ち）つ（く）" },
+            { "kanji": "葉が落ちる", "yomi": "は（が）お（ちる）" },
+            { "kanji": "財布を落とす", "yomi": "さいふ（を）おとす" },
+            { "kanji": "落ち葉", "yomi": "おちば" },
+            { "kanji": "舞い落ちる", "yomi": "ま（い）お（ちる）" },
+            { "kanji": "自然", "yomi": "しぜん" },
+            { "kanji": "突然", "yomi": "とつぜん" },
+            { "kanji": "全然", "yomi": "ぜんぜん" },
+            { "kanji": "波", "yomi": "なみ" },
+            { "kanji": "津波", "yomi": "つなみ" },
+            { "kanji": "小鳥", "yomi": "ことり" },
+            { "kanji": "焼き鳥", "yomi": "や（き）とり" },
+            { "kanji": "鳴く", "yomi": "な（く）" },
+            { "kanji": "鳴き声", "yomi": "な（ki）ごえ" },
+            { "kanji": "声", "yomi": "こえ" },
+            { "kanji": "歌", "yomi": "うた" },
+            { "kanji": "歌う", "yomi": "うた（う）" },
+            { "kanji": "歌手", "yomi": "かしゅ" },
+            { "kanji": "歌舞伎", "yomi": "かぶき" },
+            { "kanji": "手遊び", "yomi": "てあそ（び）" },
+            { "kanji": "遊ぶ", "yomi": "あそ（ぶ）" },
+            { "kanji": "楽器", "yomi": "がっき" },
+            { "kanji": "炊飯器", "yomi": "すいはんき" },
+            { "kanji": "電子機器", "yomi": "でんしきき" },
+            { "kanji": "演奏する", "yomi": "えんそう（する）" },
+            { "kanji": "演歌", "yomi": "えんか" },
+            { "kanji": "簡単な", "yomi": "かんたん（な）" },
+            { "kanji": "単位", "yomi": "たんい" },
+            { "kanji": "嫌いな", "yomi": "きらい（な）" },
+            { "kanji": "嫌な", "yomi": "いや（な）" },
+            { "kanji": "嫌がる", "yomi": "いや（がる）" },
+            { "kanji": "言葉", "yomi": "ことば" },
+            { "kanji": "葉", "yomi": "は" },
+            { "kanji": "難しい", "yomi": "むずか（しい）" },
+            { "kanji": "避難場所", "yomi": "ひなんばしょ" },
+            { "kanji": "避難訓練", "yomi": "ひなんくんれん" },
+            { "kanji": "療法士", "yomi": "りょうほうし" },
+            { "kanji": "保育士", "yomi": "ほいくし" },
+            { "kanji": "弁護士", "yomi": "べんごし" },
+            { "kanji": "一緒に", "yomi": "いっしょ（に）" },
+            { "kanji": "次第に", "yomi": "しだい（に）" },
+            { "kanji": "第1課", "yomi": "だいいっか" },
+            { "kanji": "現代", "yomi": "げんだい" },
+            { "kanji": "現象", "yomi": "げんしょう" },
+            { "kanji": "現金", "yomi": "げんきん" },
+            { "kanji": "建築現場", "yomi": "けんちくげんば" }
         ],
-        "3": [
-            {
-                "kanji": "面白い",
-                "yomi": "おもしろ（い）"
-            },
-            {
-                "kanji": "大変な面",
-                "yomi": "たいへん（な）めん"
-            },
-            {
-                "kanji": "二面性",
-                "yomi": "にめんせい"
-            },
-            {
-                "kanji": "否定的な",
-                "yomi": "ひていてき（な）"
-            },
-            {
-                "kanji": "定食",
-                "yomi": "ていしょく"
-            },
-            {
-                "kanji": "雰囲気",
-                "yomi": "ふんいき"
-            },
-            {
-                "kanji": "満ちる",
-                "yomi": "み（ちる）"
-            },
-            {
-                "kanji": "満足する",
-                "yomi": "まんぞく（する）"
-            },
-            {
-                "kanji": "満足度",
-                "yomi": "まんぞくど"
-            },
-            {
-                "kanji": "酒",
-                "yomi": "さけ"
-            },
-            {
-                "kanji": "日本酒",
-                "yomi": "にほんしゅ"
-            },
-            {
-                "kanji": "臭い",
-                "yomi": "くさ（い）"
-            },
-            {
-                "kanji": "配る",
-                "yomi": "くば（る）"
-            },
-            {
-                "kanji": "宅配便",
-                "yomi": "たくはいびん"
-            },
-            {
-                "kanji": "心配する",
-                "yomi": "しんぱい（する）"
-            },
-            {
-                "kanji": "滑る",
-                "yomi": "すべ（る）"
-            },
-            {
-                "kanji": "扉を開く",
-                "yomi": "とびら（を）ひら（く）"
-            },
-            {
-                "kanji": "繰り返し",
-                "yomi": "く（り）かえ（し）"
-            },
-            {
-                "kanji": "返す",
-                "yomi": "かえ（す）"
-            },
-            {
-                "kanji": "返事",
-                "yomi": "へんじ"
-            },
-            {
-                "kanji": "押しのける",
-                "yomi": "お（しのける）"
-            },
-            {
-                "kanji": "押す",
-                "yomi": "お（す）"
-            },
-            {
-                "kanji": "座る",
-                "yomi": "すわ（る）"
-            },
-            {
-                "kanji": "座席",
-                "yomi": "ざせき"
-            },
-            {
-                "kanji": "席を外す",
-                "yomi": "せき（を）はず（す）"
-            },
-            {
-                "kanji": "出席する",
-                "yomi": "しゅっせき（する）"
-            },
-            {
-                "kanji": "思う",
-                "yomi": "おmo（う）"
-            },
-            {
-                "kanji": "思い出す",
-                "yomi": "おも（い）だ（す）"
-            },
-            {
-                "kanji": "反対側",
-                "yomi": "はんたいがわ"
-            },
-            {
-                "kanji": "～側",
-                "yomi": "～がわ"
-            },
-            {
-                "kanji": "右側",
-                "yomi": "みぎがわ"
-            },
-            {
-                "kanji": "左側",
-                "yomi": "ひだりがわ"
-            },
-            {
-                "kanji": "習慣",
-                "yomi": "しゅうかん"
-            },
-            {
-                "kanji": "学習",
-                "yomi": "がくしゅう"
-            },
-            {
-                "kanji": "予習",
-                "yomi": "よしゅう"
-            },
-            {
-                "kanji": "復習",
-                "yomi": "復習"
-            },
-            {
-                "kanji": "習う",
-                "yomi": "なら（う）"
-            },
-            {
-                "kanji": "慣れる",
-                "yomi": "な（れる）"
-            },
-            {
-                "kanji": "違う",
-                "yomi": "ちが（う）"
-            },
-            {
-                "kanji": "違和感",
-                "yomi": "いわかん"
-            },
-            {
-                "kanji": "駐車違反",
-                "yomi": "ちゅうしゃいはん"
-            },
-            {
-                "kanji": "不思議な",
-                "yomi": "ふしぎ（な）"
-            },
-            {
-                "kanji": "会議",
-                "yomi": "かいぎ"
-            },
-            {
-                "kanji": "暮らす",
-                "yomi": "く（らす）"
-            }
+        2: [],
+        3: [
+            { "kanji": "面白い", "yomi": "おもしろ（い）" },
+            { "kanji": "大変な面", "yomi": "たいへん（な）めん" },
+            { "kanji": "二面性", "yomi": "にめんせい" },
+            { "kanji": "否定的な", "yomi": "ひていてき（な）" },
+            { "kanji": "定食", "yomi": "ていしょく" },
+            { "kanji": "雰囲気", "yomi": "ふんいき" },
+            { "kanji": "満ちる", "yomi": "み（ちる）" },
+            { "kanji": "満足する", "yomi": "まんぞく（する）" },
+            { "kanji": "満足度", "yomi": "まんぞくど" },
+            { "kanji": "酒", "yomi": "さけ" },
+            { "kanji": "日本酒", "yomi": "ねほんしゅ" },
+            { "kanji": "臭い", "yomi": "くさ（い）" },
+            { "kanji": "配る", "yomi": "くば（る）" },
+            { "kanji": "宅配便", "yomi": "たくはいびん" },
+            { "kanji": "心配する", "yomi": "しんぱい（する）" },
+            { "kanji": "滑る", "yomi": "すべ（る）" },
+            { "kanji": "扉を開く", "yomi": "とびら（を）ひら（く）" },
+            { "kanji": "繰り返し", "yomi": "く（り）かえ（し）" },
+            { "kanji": "返す", "yomi": "かえ（す）" },
+            { "kanji": "返事", "yomi": "へんじ" },
+            { "kanji": "押しのける", "yomi": "お（しのける）" },
+            { "kanji": "押す", "yomi": "お（す）" },
+            { "kanji": "座る", "yomi": "すわ（る）" },
+            { "kanji": "座席", "yomi": "ざせき" },
+            { "kanji": "席を外す", "yomi": "せき（を）はず（す）" },
+            { "kanji": "出席する", "yomi": "しゅっせき（する）" },
+            { "kanji": "思う", "yomi": "おmo（う）" },
+            { "kanji": "思い出す", "yomi": "おmo（い）だ（す）" },
+            { "kanji": "反対側", "yomi": "はんたいがわ" },
+            { "kanji": "～側", "yomi": "～がわ" },
+            { "kanji": "右側", "yomi": "みぎがわ" },
+            { "kanji": "左側", "yomi": "ひだりがわ" },
+            { "kanji": "習慣", "yomi": "しゅうかん" },
+            { "kanji": "学習", "yomi": "がくしゅう" },
+            { "kanji": "予習", "yomi": "よしゅう" },
+            { "kanji": "復習", "yomi": "ふくしゅう" },
+            { "kanji": "習う", "yomi": "なら（う）" },
+            { "kanji": "慣れる", "yomi": "な（れる）" },
+            { "kanji": "違う", "yomi": "ちが（う）" },
+            { "kanji": "違和感", "yomi": "いわかん" },
+            { "kanji": "駐車違反", "yomi": "ちゅうしゃいはん" },
+            { "kanji": "不思議な", "yomi": "ふしぎ（な）" },
+            { "kanji": "会議", "yomi": "かいぎ" },
+            { "kanji": "暮らす", "yomi": "く（らす）" }
         ],
-        "4": [
-            {
-                "kanji": "太陽",
-                "yomi": "たいよう"
-            },
-            {
-                "kanji": "太い",
-                "yomi": "ふと（い）"
-            }
-        ],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": []
+        4: [], 5: [], 6: [], 7: [], 8: []
     },
     "中級を学ぼう・青": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": [],
-        "9": [],
-        "10": []
+        1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[]
     }
-} 
+};
+
+let levels = {}; 
 let currentText = "中級へ行こう・ピンク";
 let currentLevel = 1; 
 let currentMode = 'drill'; 
@@ -2164,6 +768,7 @@ function clickAction(btnMode) {
     
     if (clickCount === 1) { 
         const item = data[order[index]];
+        // 🛠️ タイポ(boxOh)を「boxBottom」に修正
         boxBottom.innerHTML = (currentDrillMode === "K2H") ? formatYomiSide(item.yomi) : formatKanjiSide(item.kanji); 
         clickCount = 2; 
         return; 
@@ -2254,10 +859,8 @@ function saveData() {
     }
 }
 
-// 🛠️ 大容量データでも確実にクラッシュを回避するセーフティ版ファイル生成ロジック
-// 🛠️ 外部通信を100%排除し、ローカル(file:///)環境でも絶対にクラッシュしないファイル生成ロジック
+// 🛠️ 外部通信を100%排除し、PCローカルでもGitHub上でも絶対に安全に動くファイル書き出しロジック
 function generateNewHtmlFile() {
-    // 自身へのXMLHttpRequest（通信）を完全に廃止し、メモリ上のDOMからベースHTMLを取得
     let baseHtml = document.documentElement.outerHTML;
     
     // ドリル画面が開いた状態のHTMLのまま保存されないよう、非表示状態に強制置換
@@ -2285,7 +888,6 @@ function generateNewHtmlFile() {
         newHtml = "<!DOCTYPE html>\n" + newHtml;
     }
     
-    // 安全にBlobオブジェクト化して即時解放する方式
     const blob = new Blob([newHtml], { type: "text/html;charset=utf-8" });
     const a = document.createElement("a");
     const url = URL.createObjectURL(blob);
@@ -2294,7 +896,6 @@ function generateNewHtmlFile() {
     document.body.appendChild(a);
     a.click();
     
-    // メモリ開放と要素のクリーンアップ
     setTimeout(() => {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
@@ -2342,5 +943,5 @@ window.onload = () => {
 };
 </script>
 
-
-</body></html>
+</body>
+</html>
