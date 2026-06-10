@@ -2685,6 +2685,58 @@ function initApp() {
     showTab(1);
 }
 
+function setupEventListeners() {
+    const textSelect = document.getElementById("textSelect");
+    if (textSelect) {
+        textSelect.addEventListener("change", (e) => {
+            currentText = e.target.value;
+            currentLevel = 1;
+            showTab(1);
+        });
+    }
+
+    const modeSelect = document.getElementById("modeSelect");
+    if (modeSelect) {
+        modeSelect.addEventListener("change", (e) => {
+            currentMode = e.target.value;
+            if (gameActive) {
+                endGame();
+                startGame();
+            }
+        });
+    }
+
+    const startBtn = document.getElementById("startBtn");
+    if (startBtn) {
+        startBtn.addEventListener("click", () => {
+            if (gameActive) {
+                endGame();
+            } else {
+                startGame();
+            }
+        });
+    }
+
+    const kanaInput = document.getElementById("kanaInput");
+    if (kanaInput) {
+        let isComposing = false;
+
+        kanaInput.addEventListener("compositionstart", () => {
+            isComposing = true;
+        });
+
+        kanaInput.addEventListener("compositionend", () => {
+            isComposing = false;
+            checkInput();
+        });
+
+        kanaInput.addEventListener("input", () => {
+            if (isComposing) return;
+            checkInput();
+        });
+    }
+}
+
 window.onload = () => {
     setupEventListeners();
     initApp();
