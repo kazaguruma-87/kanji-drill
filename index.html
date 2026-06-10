@@ -2668,6 +2668,23 @@ function clearAll() {
     alert("削除しました"); 
 }
 
+function initApp() {
+    for (let textName in embeddedLevels) {
+        levels[textName] = {};
+        for (let lvlStr in embeddedLevels[textName]) {
+            const lvl = parseInt(lvlStr);
+            const key = "DATA_" + textName + "_L" + lvl;
+            levels[textName][lvl] = embeddedLevels[textName][lvl];
+            if (embeddedLevels[textName][lvl].length > 0) {
+                localStorage.setItem(key, JSON.stringify(embeddedLevels[textName][lvl]));
+            }
+        }
+    }
+    currentText = document.getElementById("textSelect").value;
+    currentLevel = 1;
+    showTab(1);
+}
+
 window.onload = () => {
     setupEventListeners();
     initApp();
