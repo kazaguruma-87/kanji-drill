@@ -1,5 +1,5 @@
 // 更新するたびにこの数値を v1, v2, v3... と書き換えることで、スマホに強制アップデートをかけます
-const CACHE_NAME = 'k-shiki-v1';
+const CACHE_NAME = 'k-shiki-v2';
 const ASSETS = [
   './',
   './index.html'
