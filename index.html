@@ -101,7 +101,7 @@
                     <th style="width:10%;">削除</th>
                 </tr>
             </thead>
-            <tbody><tr><td><input type="text" value="太陽"></td><td><input type="text" value="たいよう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="太い"></td><td><input type="text" value="ふと（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="光"></td><td><input type="text" value="ひかり"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="暗い"></td><td><input type="text" value="くら（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
+            <tbody><tr><td><input type="text" value="太陽"></td><td><input type="text" value="たいよう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="太い"></td><td><input type="text" value="ふと（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="光"></td><td><input type="text" value="ひかり"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="暗い"></td><td><input type="text" value="くら（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="屋内"></td><td><input type="text" value="おくない"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="屋上"></td><td><input type="text" value="おくじょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="本屋"></td><td><input type="text" value="ほんや"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="部屋"></td><td><input type="text" value="へや"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
         </table>
     </div>
 
@@ -2164,6 +2164,14 @@ const embeddedLevels = {
             {
                 "kanji": "部屋",
                 "yomi": "へや"
+            },
+            {
+                "kanji": "家内",
+                "yomi": "かない"
+            },
+            {
+                "kanji": "案内する",
+                "yomi": "あんない（する）"
             }
         ],
         "5": [],
@@ -2452,28 +2460,12 @@ function clearAll() {
 window.onload = () => {
     initApp();
     if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(regs => { for (let reg of regs) reg.unregister(); });
         navigator.serviceWorker.register('service-worker.js')
-        .then((reg) => {
-            console.log('Service Worker Registered');
-            
-            // アップロードされた新バージョン（更新）があるかチェック
-            reg.onupdatefound = () => {
-                const installingWorker = reg.installing;
-                installingWorker.onstatechange = () => {
-                    if (installingWorker.state === 'installed') {
-                        if (navigator.serviceWorker.controller) {
-                            // 新しいバージョンが準備完了したら、1回だけ自動リロードして画面を最新にする
-                            console.log('New content is available; please refresh.');
-                            window.location.reload();
-                        }
-                    }
-                };
-            };
-        })
+        .then(() => console.log('Service Worker Registered'))
         .catch(err => console.error('Service Worker Failed', err));
     }
 };
-
 </script>
 
 
