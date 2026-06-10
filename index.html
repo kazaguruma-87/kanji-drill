@@ -2197,16 +2197,13 @@ function initApp() {
     Object.keys(embeddedLevels).forEach(textName => {
         levels[textName] = {};
         Object.keys(embeddedLevels[textName]).forEach(lvl => {
-            const key = "DATA_" + textName + "_L" + lvl;
-            const raw = localStorage.getItem(key);
-            if (raw) {
-                levels[textName][lvl] = JSON.parse(raw);
-            } else {
-                levels[textName][lvl] = embeddedLevels[textName][lvl];
-                if (embeddedLevels[textName][lvl].length > 0) {
-                    localStorage.setItem(key, JSON.stringify(embeddedLevels[textName][lvl]));
-                }
-            }
+	const key = "DATA_" + textName + "_L" + lvl;
+	// 起動時は常にGitHub側の最新データ（embeddedLevels）を優先し、LocalStorage側も上書き更新する
+	levels[textName][lvl] = embeddedLevels[textName][lvl];
+	if (embeddedLevels[textName][lvl].length > 0) {
+    		localStorage.setItem(key, JSON.stringify(embeddedLevels[textName][lvl]));
+	}
+
         });
     });
     renderTabButtons();
