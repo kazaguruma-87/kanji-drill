@@ -2459,13 +2459,8 @@ function clearAll() {
 
 window.onload = () => {
     initApp();
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(regs => { for (let reg of regs) reg.unregister(); });
-        navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker Registered'))
-        .catch(err => console.error('Service Worker Failed', err));
-    }
 };
+
 </script>
 
 
