@@ -2485,29 +2485,83 @@ function setupEventListeners() {
 }
 
 // 3. データ展開プログラム
-function initApp() {
-    if (typeof levels === "undefined") {
-        window.levels = {};
+// 1. タブ切り替え（画面側の selectLevel と連動）
+function selectLevel(tabNum) {
+    currentLevel = tabNum;
+    for (let i = 1; i <= 8; i++) {
+        const btn = document.getElementById("tab" + i);
+        if (btn) {
+            if (i === tabNum) {
+                btn.classList.add("active");
+            } else {
+                btn.classList.remove("active");
+            }
+        }
     }
+    loadEditorTable();
+}
+
+// 2. スタートボタン（画面側の startDrill と連動）
+function startDrill() {
+    // 既存のゲーム開始・終了の仕組み（startGame等）に橋渡しする
+    if (typeof gameActive !== "undefined" && gameActive) {
+        if (typeof endGame === "function") endGame();
+    } else {
+        if (typeof startGame === "function") startGame();
+    }
+}
+
+// 3. モード切り替え（画面側の switchMode と連動）
+function switchMode(mode) {
+    if (typeof checkAuth === "function" && !checkAuth()) return;
+    currentMode = mode;
+    
+    const mDrill = document.getElementById("modeDrill");
+    const mEdit = document.getElementById("modeEdit");
+    if (mDrill) mDrill.classList.toggle("active", mode === "drill");
+    if (mEdit) mEdit.classList.toggle("active", mode === "edit");
+    
+    const idMain = document.getElementById("idMain");
+    const editorScreen = document.getElementById("editorScreen");
+    if (idMain) idMain.classList.toggle("active", mode === "drill");
+    if (editorScreen) editorScreen.classList.toggle("active", mode === "edit");
+    
+    if (mode === "edit") loadEditorTable();
+}
+
+// 4. データ展開とリアルタイム文字化け防御の仕込み
+function initApp() {
+    if (typeof levels === "undefined") window.levels = {};
     for (let textName in embeddedLevels) {
         levels[textName] = {};
         for (let lvlStr in embeddedLevels[textName]) {
             const lvl = parseInt(lvlStr);
             const key = "DATA_" + textName + "_L" + lvl;
-            levels[textName][lvl] = embeddedLevels[textName][lvl];
-            if (embeddedLevels[textName][lvl].length > 0) {
-                localStorage.setItem(key, JSON.stringify(embeddedLevels[textName][lvl]));
+            const localData = localStorage.getItem(key);
+            if (localData) {
+                levels[textName][lvl] = JSON.parse(localData);
+            } else {
+                levels[textName][lvl] = embeddedLevels[textName][lvl];
             }
         }
     }
-    const textSelectEl = document.getElementById("textSelector");
-    currentText = textSelectEl ? textSelectEl.value : Object.keys(embeddedLevels)[0];
-    currentLevel = 4; // 元の画面状態に合わせてL4を初期値に
-    setupEventListeners();
-    showTab(4);
+
+    // テーブル内のiOS文字化け（増殖バグ）を根本からせき止める
+    const tbody = document.querySelector("#vocabTable tbody");
+    if (tbody) {
+        let isComposing = false;
+        tbody.addEventListener("compositionstart", () => { isComposing = true; });
+        tbody.addEventListener("compositionend", () => { isComposing = false; });
+        tbody.addEventListener("input", (e) => {
+            if (isComposing) return; // 予測変換中はプログラムの割り込みを完全にブロック
+        });
+    }
+
+    // 画面初期表示（L4）
+    selectLevel(4);
 }
 
-// 4. 起動命令
+// 5. 起動命令
 window.onload = () => {
     initApp();
 };
