@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <title>K式漢字ドリル</title>
 
-    <!-- PWA manifest -->
     <link rel="manifest" href="manifest.json">
 
-    <!-- iOS 用 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -41,7 +39,7 @@
         .black-text { color: #333333; }
 
         .buttonRow { max-width: 600px; margin: 30px auto 0; display: flex; justify-content: space-between; }
-        .actionBtn { width: 48%; padding: 20px 0; font-size: 22px; font-weight: bold; border: none; border-radius: 12px; color: white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .actionBtn { width: 48%; padding: 20px 0; font-size: 22px; font-weight: bold; border: none; border-radius: 12px; color: white; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 10; position: relative; }
         #btnK2H { background: #4caf50; }
         #btnH2K { background: #9c27b0; }
         .actionBtn.selected { outline: 4px solid #333; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
@@ -90,8 +88,8 @@
         <div class="displayBox" id="boxBottom"></div>
 
         <div class="buttonRow">
-            <button id="btnK2H" class="actionBtn" onclick="clickAction('K2H')">漢字→かな</button>
-            <button id="btnH2K" class="actionBtn" onclick="clickAction('H2K')">かな→漢字</button>
+            <button id="btnK2H" class="actionBtn" onclick="clickAction('K2H', event)">漢字→かな</button>
+            <button id="btnH2K" class="actionBtn" onclick="clickAction('H2K', event)">かな→漢字</button>
         </div>
     </div>
 </div>
@@ -109,8 +107,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- 動的に読み込まれるため空でOK -->
-            </tbody>
+                </tbody>
         </table>
     </div>
 
@@ -270,7 +267,7 @@ const embeddedLevels = {
             { "kanji": "海外", "yomi": "かいがい" },
             { "kanji": "海", "yomi": "うみ" },
             { "kanji": "礼儀", "yomi": "れいぎ" },
-            { "kanji": "おもてなしの心", "yomi": "（おもてなしの）こころ" },
+            { "kanji": "おモてなしの心", "yomi": "（おモてなしの）こころ" },
             { "kanji": "心配", "yomi": "しんぱい" },
             { "kanji": "心配な", "yomi": "しんぱい（な）" },
             { "kanji": "安心", "yomi": "あんしん" },
@@ -354,7 +351,7 @@ const embeddedLevels = {
             { "kanji": "当時", "yomi": "とうじ" },
             { "kanji": "本当", "yomi": "ほんとう" },
             { "kanji": "コーヒーを飲む", "yomi": "コーヒー（を）の（む）" },
-            { "kanji": "注目", "yomi": "ちゅうもく" },
+            { "kanji": "注目", "yomi": "ちゅう目" },
             { "kanji": "注意", "yomi": "ちゅうい" },
             { "kanji": "目的", "yomi": "もくてき" },
             { "kanji": "目", "yomi": "め" },
@@ -400,7 +397,7 @@ const embeddedLevels = {
             { "kanji": "中古", "yomi": "ちゅうこ" },
             { "kanji": "色が変わる", "yomi": "いろ（が）か（わる）" },
             { "kanji": "色を変える", "yomi": "いろ（を）か（える）" },
-            { "kanji": "変更", "yomi": "へんこう" },
+            { "kanji": "変更", "yomi": "へん変更" },
             { "kanji": "運動", "yomi": "うんどう" },
             { "kanji": "運動会", "yomi": "うんどうかい" },
             { "kanji": "運転", "yomi": "うんてん" },
@@ -460,7 +457,7 @@ const embeddedLevels = {
             { "kanji": "冷たい", "yomi": "つめ（たい）" },
             { "kanji": "水で冷やす", "yomi": "みず（で）ひ（やす）" },
             { "kanji": "冷蔵庫", "yomi": "れいぞうこ" },
-            { "kanji": "冷房", "yomi": "れいぼう" },
+            { "kanji": "冷房", "yomi": "れい房" },
             { "kanji": "吸い込む", "yomi": "す（い）こ（む）" }
         ]
     },
@@ -485,12 +482,12 @@ function selectText(textName) {
     updateTabBar();
     loadLevelData();
     
-    // 画面をスタートに戻す
+    // 画面をリセット
     document.getElementById("startScreen").style.display = "block";
     document.getElementById("drillScreen").style.display = "none";
 }
 
-// 2. タブバー（L1〜L8）の生成と表示更新
+// 2. タブバー（L1〜L8）の更新
 function updateTabBar() {
     const tabBar = document.getElementById("levelTabBar");
     if (!tabBar) return;
@@ -520,12 +517,11 @@ function selectLevel(lvl) {
     });
     loadLevelData();
 
-    // 画面をスタートに戻す
     document.getElementById("startScreen").style.display = "block";
     document.getElementById("drillScreen").style.display = "none";
 }
 
-// 3. 動作モード切り替え（ドリルをする vs 単語入力）
+// 3. モード切り替え（ドリル vs 入力）
 function switchMode(mode) {
     const modeDrill = document.getElementById("modeDrill");
     const modeEdit = document.getElementById("modeEdit");
@@ -550,7 +546,7 @@ function switchMode(mode) {
     }
 }
 
-// 4. データの読み込み
+// 4. データ読み込み
 function loadLevelData() {
     const key = "DATA_" + currentText + "_L" + currentLevel;
     const localData = localStorage.getItem(key);
@@ -567,8 +563,13 @@ function loadLevelData() {
     }
 }
 
-// 5. ドリル開始・ボタン処理ロジック
-function clickAction(mode) {
+// 5. ドリルロジック（競合バグを徹底ガード）
+function clickAction(mode, event) {
+    // ボタンのタップが親の「全画面タップ」に連鎖するのを完全にガード！
+    if (event && event.stopPropagation) {
+        event.stopPropagation();
+    }
+    
     currentMode = mode;
     
     document.getElementById("btnK2H").classList.remove("selected");
@@ -580,6 +581,7 @@ function clickAction(mode) {
         document.getElementById("btnH2K").classList.add("selected");
     }
     
+    // モード切り替え時は、現在の単語の問題表示（答えは隠す）に戻して再描画
     if (currentDrillWords.length > 0) {
         isShowingAnswer = false; 
         showQuestion();
@@ -602,7 +604,8 @@ function startDrill() {
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("drillScreen").style.display = "block";
     
-    clickAction(currentMode);
+    // 初期選択のボタン表示をリフレッシュ
+    clickAction(currentMode, null);
 }
 
 function showQuestion() {
@@ -751,13 +754,12 @@ window.onload = function() {
         }
     }
 
-    // ドリル画面のタップイベント設定
+    // ドリル画面全体のタップ進行を設定
     document.getElementById("drillScreen").addEventListener("click", function(e) {
-        if (e.target.classList.contains("actionBtn")) return;
         handleScreenTap();
     });
 
-    // 初期状態：ピンクのL1・ドリル画面
+    // 初期状態指定：中級へ行こう・ピンク L1 ドリル
     const textSelector = document.getElementById("textSelector");
     if (textSelector) textSelector.value = currentText;
 
