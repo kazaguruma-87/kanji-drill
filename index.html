@@ -484,18 +484,27 @@ function setDrillMode(mode) {
     currentMode = mode;
     document.getElementById("btnK2H").classList.toggle("selected", mode === "K2H");
     document.getElementById("btnH2K").classList.toggle("selected", mode === "H2K");
+    
     if (currentDrillWords.length > 0) { 
+        // モードを変えた瞬間は、必ず「最初のステップ（正解はまだ隠す）」にリセット
         isShowingAnswer = false; 
         showQuestion(); 
     }
 }
 
 function startDrill() {
-    let words = levels[currentText][currentLevel] || [];
+    // 【修正】外部ファイルを止めたため、埋め込みデータ（embeddedLevels）を直接見に行くように修正
+    const dataSrc = (typeof embeddedLevels !== 'undefined') ? embeddedLevels : (typeof levels !== 'undefined' ? levels : {});
+    
+    let words = dataSrc[currentText]?.[currentLevel] || [];
     currentDrillWords = words.filter(w => w.kanji || w.yomi);
+    
     if (currentDrillWords.length === 0) return alert("データがありません");
+    
     currentDrillWords.sort(() => Math.random() - 0.5);
-    currentIndex = 0; isShowingAnswer = false;
+    currentIndex = 0; 
+    isShowingAnswer = false;
+    
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("drillScreen").style.display = "block";
     setDrillMode(currentMode);
@@ -505,6 +514,7 @@ function showQuestion() {
     const word = currentDrillWords[currentIndex];
     const top = document.getElementById("boxTop");
     const bottom = document.getElementById("boxBottom");
+    
     if (currentMode === "K2H") {
         top.innerHTML = `<span class="black-text">${word.kanji}</span>`;
         bottom.innerHTML = isShowingAnswer ? formatYomiHTML(word.yomi) : "";
@@ -516,16 +526,23 @@ function showQuestion() {
 
 function handleTap() {
     if (currentDrillWords.length === 0) return;
+    
     if (!isShowingAnswer) { 
+        // 【1クリック目⇒2クリック目の動き】
+        // 上の窓はそのままで、下の窓に正解（かな等）を出す
         isShowingAnswer = true; 
         showQuestion(); 
     } else {
+        // 【2クリック目⇒3クリック目の動き】
+        // 下の窓を空白に戻し、次の問題へ進む
         currentIndex++;
         if (currentIndex >= currentDrillWords.length) {
-            alert("終了！"); resetScreen(); return;
+            alert("終了！"); 
+            resetScreen(); 
+            return;
         }
-        isShowingAnswer = false; 
-        showQuestion();
+        isShowingAnswer = false; // フラグを問題表示状態に戻す
+        showQuestion(); // 次の新しい問題を画面に描画
     }
 }
 
@@ -554,21 +571,48 @@ function saveData() {
 }
 
 window.onload = function() {
-    loadLevelData(); updateTabBar();
+    // 1. エラーが出ても強制的に無視して次に進む防壁を設置
+    try {
+        // もし外部読み込み関数が残っていればここで眠らせる
+        // loadLevelData(); 
+    } catch (e) {
+        console.log("外部読み込みエラーをバイパスしました");
+    }
     
-    // ボタンのクリックイベント（画面タップ側への連鎖を完全にシャットアウト）
-    document.getElementById("btnK2H").addEventListener("click", function(e) {
-        e.stopPropagation();
-        setDrillMode("K2H");
-    });
-    document.getElementById("btnH2K").addEventListener("click", function(e) {
-        e.stopPropagation();
-        setDrillMode("H2K");
-    });
+    // 2. 埋め込みデータを確実に最優先でシステムに結合
+    if (typeof embeddedLevels !== 'undefined') {
+        levels = embeddedLevels;
+    }
     
-    // 白いボックス（問題エリア）だけのタップイベント
-    document.getElementById("drillTapArea").addEventListener("click", handleTap);
+    // 3. タブや画面の初期化
+    updateTabBar();
+    
+    // 4. モード切り替えボタン（画面タップへの連鎖を完全にシャットアウト）
+    const btnK2H = document.getElementById("btnK2H");
+    const btnH2K = document.getElementById("btnH2K");
+    
+    if (btnK2H) {
+        btnK2H.onclick = function(e) {
+            e.stopPropagation();
+            setDrillMode("K2H");
+        };
+    }
+    if (btnH2K) {
+        btnH2K.onclick = function(e) {
+            e.stopPropagation();
+            setDrillMode("H2K");
+        };
+    }
+    
+    // 5. 白いボックス（問題エリア）だけのタップイベント
+    const drillArea = document.getElementById("drillTapArea");
+    if (drillArea) {
+        drillArea.onclick = function(e) {
+            handleTap();
+        };
+    }
 };
+
 </script>
 </body>
 </html>
