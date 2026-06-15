@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html>
 <html lang="ja"><head>
     <meta charset="UTF-8">
     <title>K式漢字ドリル</title>
@@ -57,16 +56,47 @@
 
         td button { background: #ff5252; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
         td button:hover { background: #d32f2f; }
+
+#splash {
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+.splash-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.splash-content p {
+    margin: 5px 0;
+}
+
     </style>
 </head>
 
 <body>
 
+<div id="splash">
+    <div class="splash-content">
+        <h1>K式漢字ドリル</h1>
+        <p>Kanji Drill System</p>
+        <p>Version 2.0</p>
+    </div>
+</div>
+
 <div class="selector-bar">
     <select id="textSelector" class="text-select" onchange="selectText(this.value)"><option value="中級へ行こう・ピンク">中級へ行こう・ピンク</option><option value="中級を学ぼう・緑">中級を学ぼう・緑</option><option value="中級を学ぼう・青">中級を学ぼう・青</option></select>
 </div>
 
-<div class="tab-bar" id="levelTabBar"><button id="tab1" class="">L1</button><button id="tab2" class="">L2</button><button id="tab3" class="">L3</button><button id="tab4" class="">L4</button><button id="tab5" class="active">L5</button><button id="tab6">L6</button><button id="tab7">L7</button><button id="tab8">L8</button><button id="tab9">L9</button><button id="tab10">L10</button></div>
+<div class="tab-bar" id="levelTabBar"><button id="tab1" class="">L1</button><button id="tab2">L2</button><button id="tab3">L3</button><button id="tab4">L4</button><button id="tab5">L5</button><button id="tab6" class="active">L6</button><button id="tab7">L7</button><button id="tab8">L8</button></div>
 
 <div class="mode-bar">
     <button id="modeDrill" class="" onclick="switchMode('drill')">🎯 ドリルをやる</button>
@@ -74,13 +104,13 @@
 </div>
 
 <div id="idMain" class="screen">
-    <div id="startScreen" class="sub-screen" style="display: none;">
+    <div id="startScreen" class="sub-screen" style="display: block;">
         <button id="startBtn" onclick="startDrill()">スタート</button>
     </div>
 
-    <div id="drillScreen" class="sub-screen" style="display: block;">
-        <div class="displayBox" id="boxTop">モードを選んでね</div>
-        <div class="displayBox" id="boxBottom">👇</div>
+    <div id="drillScreen" class="sub-screen" style="display: none;">
+        <div class="displayBox" id="boxTop"></div>
+        <div class="displayBox" id="boxBottom"></div>
 
         <div class="buttonRow">
             <button id="btnK2H" class="actionBtn" onclick="clickAction('K2H')">漢字→かな</button>
@@ -90,7 +120,7 @@
 </div>
 
 <div id="editorScreen" class="screen active">
-    <h2 id="editorTitle">✍️ 中級へ行こう・ピンク (L5) 入力</h2>
+    <h2 id="editorTitle">✍️ 中級を学ぼう・緑 (L6) 入力</h2>
 
     <div class="table-container">
         <table id="vocabTable">
@@ -101,7 +131,7 @@
                     <th style="width:10%;">削除</th>
                 </tr>
             </thead>
-            <tbody><tr><td><input type="text" value="睡眠"></td><td><input type="text" value="すいみん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="眠る"></td><td><input type="text" value="ねむ（る）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="眠い"></td><td><input type="text" value="ねむ（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="毎晩"></td><td><input type="text" value="まいばん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="今晚"></td><td><input type="text" value="こんばん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="晩ごはん"></td><td><input type="text" value="ばん（ごはん）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="夜"></td><td><input type="text" value="よる"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="夜中"></td><td><input type="text" value="よなか"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="今夜"></td><td><input type="text" value="こんや"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="何回も"></td><td><input type="text" value="なんかい（も）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="回す"></td><td><input type="text" value="まわ（す）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="目が覚める"></td><td><input type="text" value="め（が）さ（める）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="ことばを覚える"></td><td><input type="text" value="（ことばを）おぼ（える）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="医者"></td><td><input type="text" value="いしゃ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="医学"></td><td><input type="text" value="いがく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="相談"></td><td><input type="text" value="そうだん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="相手"></td><td><input type="text" value="あいて"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="遅く"></td><td><input type="text" value="おそ（く）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="遅い"></td><td><input type="text" value="おそ（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="遅れる"></td><td><input type="text" value="おく（れる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="遅刻"></td><td><input type="text" value="ちこく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="活動"></td><td><input type="text" value="かつどう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="自動車"></td><td><input type="text" value="じどうしゃ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="動く"></td><td><input type="text" value="うご（く）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="動かす"></td><td><input type="text" value="うご（akasｕ）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="通勤"></td><td><input type="text" value="つうきん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="交通"></td><td><input type="text" value="こうつう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="道を通る"></td><td><input type="text" value="みち（を）とお（る）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="大学に通う"></td><td><input type="text" value="だいがく（に）かよ（う）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="通勤"></td><td><input type="text" value="つうきん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="会社に勤める"></td><td><input type="text" value="かいしゃ（に）つto（める）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="原因"></td><td><input type="text" value="げんいん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="体"></td><td><input type="text" value="からだ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="体温計"></td><td><input type="text" value="たいおんけい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="不調"></td><td><input type="text" value="ふちょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="不便な"></td><td><input type="text" value="ふべん（な）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="疲れる"></td><td><input type="text" value="つか（れる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="昼間"></td><td><input type="text" value="ひるま"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="昼ごはん"></td><td><input type="text" value="昼（ごはん）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="昼休み"></td><td><input type="text" value="ひるやす（み）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="神経質な"></td><td><input type="text" value="しんけいしつ（な）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="質問"></td><td><input type="text" value="しつもん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
+            <tbody><tr><td><input type="text" value="かば焼き"></td><td><input type="text" value="（かば）や（き）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="焼き鳥"></td><td><input type="text" value="や（き）とり"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="魚を焼く"></td><td><input type="text" value="さかな（を）や（く）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="魚が焼ける"></td><td><input type="text" value="さかな（が）や（ける）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="平均"></td><td><input type="text" value="へいきん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="平和"></td><td><input type="text" value="へいわ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="20数倍"></td><td><input type="text" value="にじゅう（すうばい）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="２倍"></td><td><input type="text" value="にばい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="江戸"></td><td><input type="text" value="えど"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="江戸時代"></td><td><input type="text" value="えどじだい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="夏ばて"></td><td><input type="text" value="なつ（ばて）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="夏休み"></td><td><input type="text" value="なつやす（み）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="防止"></td><td><input type="text" value="ぼうし"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="宣伝コピー"></td><td><input type="text" value="せんでんコピー"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="宣伝"></td><td><input type="text" value="せんでん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="効果が続く"></td><td><input type="text" value="こうか（が）つづ（く）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="勉強を続ける"></td><td><input type="text" value="べんきょう（を）つづ（ける）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="短い"></td><td><input type="text" value="みじか（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="短時間に"></td><td><input type="text" value="たんじかん（に）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="期間"></td><td><input type="text" value="きかん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="期間限定"></td><td><input type="text" value="きかんげんてい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="集中する"></td><td><input type="text" value="しゅうちゅう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="募集中"></td><td><input type="text" value="ぼしゅうちゅう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="切手を集める"></td><td><input type="text" value="きって（を）あつ（める）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="人が集まる"></td><td><input type="text" value="ひと（が）あつ（まる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="節分"></td><td><input type="text" value="せつぶん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="季節"></td><td><input type="text" value="きせつ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="調節する"></td><td><input type="text" value="ちょうせつ（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="太巻きずし"></td><td><input type="text" value="ふとま（きずし）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="関西"></td><td><input type="text" value="かんさい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="関東"></td><td><input type="text" value="かんとう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="関係"></td><td><input type="text" value="かんけい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="～に関して"></td><td><input type="text" value="～（に）かん（して）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="恵方"></td><td><input type="text" value="えほう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="商業"></td><td><input type="text" value="しょうぎょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="職業"></td><td><input type="text" value="しょくぎょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="営業"></td><td><input type="text" value="えいぎょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="授業"></td><td><input type="text" value="じゅぎょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="卒業する"></td><td><input type="text" value="そつぎょう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="主義"></td><td><input type="text" value="しゅぎ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="主人"></td><td><input type="text" value="しゅじん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="講義"></td><td><input type="text" value="こうぎ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="残る"></td><td><input type="text" value="のこ（る）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="残念"></td><td><input type="text" value="ざんねん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="残業する"></td><td><input type="text" value="ざんぎょう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
         </table>
     </div>
 
@@ -1107,7 +1137,7 @@ const embeddedLevels = {
             },
             {
                 "kanji": "温暖化",
-                "yomi": "おんだん化"
+                "yomi": "おんだんか"
             },
             {
                 "kanji": "温泉",
@@ -1155,7 +1185,7 @@ const embeddedLevels = {
             },
             {
                 "kanji": "守る",
-                "yomi": "まモ（る）"
+                "yomi": "まも（る）"
             },
             {
                 "kanji": "留守",
@@ -1227,7 +1257,7 @@ const embeddedLevels = {
             },
             {
                 "kanji": "自動販売機",
-                "yomi": "じ自動販売機"
+                "yomi": "じどうはんばいき"
             },
             {
                 "kanji": "買う",
@@ -1451,7 +1481,7 @@ const embeddedLevels = {
             },
             {
                 "kanji": "一度",
-                "yomi": "いち度"
+                "yomi": "いちど"
             },
             {
                 "kanji": "一度も",
@@ -2061,11 +2091,11 @@ const embeddedLevels = {
             },
             {
                 "kanji": "思う",
-                "yomi": "おmo（う）"
+                "yomi": "おも（う）"
             },
             {
                 "kanji": "思い出す",
-                "yomi": "おmo（い）だ（す）"
+                "yomi": "おも（い）だ（す）"
             },
             {
                 "kanji": "反対側",
@@ -2132,11 +2162,1024 @@ const embeddedLevels = {
                 "yomi": "く（らす）"
             }
         ],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": []
+        "4": [
+            {
+                "kanji": "太陽",
+                "yomi": "たいよう"
+            },
+            {
+                "kanji": "太い",
+                "yomi": "ふと（い）"
+            },
+            {
+                "kanji": "光",
+                "yomi": "ひかり"
+            },
+            {
+                "kanji": "暗い",
+                "yomi": "くら（い）"
+            },
+            {
+                "kanji": "屋内",
+                "yomi": "おくない"
+            },
+            {
+                "kanji": "屋上",
+                "yomi": "おくじょう"
+            },
+            {
+                "kanji": "本屋",
+                "yomi": "ほんや"
+            },
+            {
+                "kanji": "部屋",
+                "yomi": "へや"
+            },
+            {
+                "kanji": "家内",
+                "yomi": "かない"
+            },
+            {
+                "kanji": "案内する",
+                "yomi": "あんない（する）"
+            },
+            {
+                "kanji": "飛びだす",
+                "yomi": "と（びだす）"
+            },
+            {
+                "kanji": "飛ぶ",
+                "yomi": "と（ぶ）"
+            },
+            {
+                "kanji": "飛行機",
+                "yomi": "ひこうき"
+            },
+            {
+                "kanji": "鼻",
+                "yomi": "はな"
+            },
+            {
+                "kanji": "冷たい",
+                "yomi": "つめ（たい）"
+            },
+            {
+                "kanji": "水で冷やす",
+                "yomi": "みず（で）ひ（やす）"
+            },
+            {
+                "kanji": "冷蔵庫",
+                "yomi": "れいぞうこ"
+            },
+            {
+                "kanji": "冷房",
+                "yomi": "れいぼう"
+            },
+            {
+                "kanji": "吸い込む",
+                "yomi": "す（い）こ（む）"
+            },
+            {
+                "kanji": "吸う",
+                "yomi": "す（う）"
+            },
+            {
+                "kanji": "道が込む",
+                "yomi": "みち（が）こ（む）"
+            },
+            {
+                "kanji": "信号",
+                "yomi": "しんごう"
+            },
+            {
+                "kanji": "自信",
+                "yomi": "じしん"
+            },
+            {
+                "kanji": "信頼",
+                "yomi": "しんらい"
+            },
+            {
+                "kanji": "通信販売",
+                "yomi": "つうしんはんばい"
+            },
+            {
+                "kanji": "信じる",
+                "yomi": "しん（じる）"
+            },
+            {
+                "kanji": "途中",
+                "yomi": "とちゅう"
+            },
+            {
+                "kanji": "神経",
+                "yomi": "しんけい"
+            },
+            {
+                "kanji": "神経質な",
+                "yomi": "しんけいしつ（な）"
+            },
+            {
+                "kanji": "神聖な",
+                "yomi": "しんせい（な）"
+            },
+            {
+                "kanji": "神社",
+                "yomi": "じんじゃ"
+            },
+            {
+                "kanji": "経験",
+                "yomi": "けいけん"
+            },
+            {
+                "kanji": "経済",
+                "yomi": "けいざい"
+            },
+            {
+                "kanji": "刺激",
+                "yomi": "しげき"
+            },
+            {
+                "kanji": "名刺",
+                "yomi": "めいし"
+            },
+            {
+                "kanji": "刺身",
+                "yomi": "さしみ"
+            },
+            {
+                "kanji": "刺激する",
+                "yomi": "しげき（する）"
+            },
+            {
+                "kanji": "花粉症",
+                "yomi": "かふんしょう"
+            },
+            {
+                "kanji": "花",
+                "yomi": "はない"
+            },
+            {
+                "kanji": "花火",
+                "yomi": "はなび"
+            },
+            {
+                "kanji": "花びら",
+                "yomi": "はな（びら）"
+            },
+            {
+                "kanji": "花見",
+                "yomi": "はなみ"
+            },
+            {
+                "kanji": "２、３割",
+                "yomi": "２、３わり"
+            },
+            {
+                "kanji": "割合",
+                "yomi": "わりあい"
+            },
+            {
+                "kanji": "コップが割れる",
+                "yomi": "コップ（が）わ（れる）"
+            },
+            {
+                "kanji": "割引",
+                "yomi": "わりびき"
+            },
+            {
+                "kanji": "症状",
+                "yomi": "しょうじょう"
+            },
+            {
+                "kanji": "年賀状",
+                "yomi": "ねんがじょう"
+            },
+            {
+                "kanji": "子孫",
+                "yomi": "しそん"
+            },
+            {
+                "kanji": "孫",
+                "yomi": "まご"
+            },
+            {
+                "kanji": "一般的な",
+                "yomi": "いっぱんてき（な）"
+            },
+            {
+                "kanji": "男女差",
+                "yomi": "だんじょさ"
+            },
+            {
+                "kanji": "交差点",
+                "yomi": "こうさてん"
+            },
+            {
+                "kanji": "興味深い",
+                "yomi": "きょうみぶか（い）"
+            },
+            {
+                "kanji": "興味",
+                "yomi": "きょうみ"
+            },
+            {
+                "kanji": "深い",
+                "yomi": "ふか（い）"
+            },
+            {
+                "kanji": "生理現象",
+                "yomi": "せいりげんしょう"
+            },
+            {
+                "kanji": "現象",
+                "yomi": "げんしょう"
+            },
+            {
+                "kanji": "印象",
+                "yomi": "いんしょう"
+            },
+            {
+                "kanji": "気象",
+                "yomi": "きしょう"
+            },
+            {
+                "kanji": "象",
+                "yomi": "ぞう"
+            }
+        ],
+        "5": [
+            {
+                "kanji": "過ぎ",
+                "yomi": "す（ぎ）"
+            },
+            {
+                "kanji": "過ごす",
+                "yomi": "す（ごす）"
+            },
+            {
+                "kanji": "朝晩",
+                "yomi": "あさばん"
+            },
+            {
+                "kanji": "朝",
+                "yomi": "あさ"
+            },
+            {
+                "kanji": "朝ご飯",
+                "yomi": "あさ（ご）はん"
+            },
+            {
+                "kanji": "朝食",
+                "yomi": "ちょうしょく"
+            },
+            {
+                "kanji": "早朝出勤する",
+                "yomi": "そうちょうしゅっきん（する）"
+            },
+            {
+                "kanji": "幾分",
+                "yomi": "いくぶん"
+            },
+            {
+                "kanji": "涼しい",
+                "yomi": "すず（しい）"
+            },
+            {
+                "kanji": "一周",
+                "yomi": "いっしゅう"
+            },
+            {
+                "kanji": "池の周り",
+                "yomi": "いけ（の）まわ（り）"
+            },
+            {
+                "kanji": "散歩",
+                "yomi": "さんぽ"
+            },
+            {
+                "kanji": "歩いて",
+                "yomi": "ある（いて）"
+            },
+            {
+                "kanji": "歩く",
+                "yomi": "ある（く）"
+            },
+            {
+                "kanji": "秋",
+                "yomi": "あき"
+            },
+            {
+                "kanji": "入口",
+                "yomi": "いりぐち"
+            },
+            {
+                "kanji": "出口",
+                "yomi": "でぐち"
+            },
+            {
+                "kanji": "非常口",
+                "yomi": "ひじょうぐち"
+            },
+            {
+                "kanji": "口",
+                "yomi": "くち"
+            },
+            {
+                "kanji": "人口",
+                "yomi": "じんこう"
+            },
+            {
+                "kanji": "撮る",
+                "yomi": "と（る）"
+            },
+            {
+                "kanji": "通り抜け",
+                "yomi": "とお（り）ぬ（け）"
+            },
+            {
+                "kanji": "禁止",
+                "yomi": "きんし"
+            },
+            {
+                "kanji": "通り抜け禁止",
+                "yomi": "とお（り）ぬ（け）きんし"
+            },
+            {
+                "kanji": "立入禁止",
+                "yomi": "たちいりきんし"
+            },
+            {
+                "kanji": "禁煙",
+                "yomi": "きんえん"
+            },
+            {
+                "kanji": "進入止め",
+                "yomi": "しんにゅうど（め）"
+            },
+            {
+                "kanji": "進入",
+                "yomi": "しんにゅう"
+            },
+            {
+                "kanji": "進路",
+                "yomi": "しんろ"
+            },
+            {
+                "kanji": "技術が進む",
+                "yomi": "ぎじゅつ（が）すす（む）"
+            },
+            {
+                "kanji": "造る",
+                "yomi": "つく（る）"
+            },
+            {
+                "kanji": "静かな",
+                "yomi": "しず（かな）"
+            },
+            {
+                "kanji": "池沿い",
+                "yomi": "いけぞ（い）"
+            },
+            {
+                "kanji": "小道",
+                "yomi": "こみち"
+            },
+            {
+                "kanji": "道",
+                "yomi": "みち"
+            },
+            {
+                "kanji": "遊具",
+                "yomi": "ゆうぐ"
+            },
+            {
+                "kanji": "北海道",
+                "yomi": "ほっかいどう"
+            },
+            {
+                "kanji": "水道",
+                "yomi": "すいどう"
+            },
+            {
+                "kanji": "浴びる",
+                "yomi": "あ（びる）"
+            },
+            {
+                "kanji": "息抜き",
+                "yomi": "いきぬ（き）"
+            },
+            {
+                "kanji": "息子",
+                "yomi": "むすこ"
+            },
+            {
+                "kanji": "穏やかな",
+                "yomi": "おだ（やかな）"
+            },
+            {
+                "kanji": "包む",
+                "yomi": "つつ（む）"
+            },
+            {
+                "kanji": "幸せ",
+                "yomi": "しあわ（せ）"
+            },
+            {
+                "kanji": "幸福感",
+                "yomi": "こうふくかん"
+            }
+        ],
+        "6": [
+            {
+                "kanji": "かば焼き",
+                "yomi": "（かば）や（き）"
+            },
+            {
+                "kanji": "焼き鳥",
+                "yomi": "や（き）とり"
+            },
+            {
+                "kanji": "魚を焼く",
+                "yomi": "さかな（を）や（く）"
+            },
+            {
+                "kanji": "魚が焼ける",
+                "yomi": "さかな（が）や（ける）"
+            },
+            {
+                "kanji": "平均",
+                "yomi": "へいきん"
+            },
+            {
+                "kanji": "平和",
+                "yomi": "へいわ"
+            },
+            {
+                "kanji": "20数倍",
+                "yomi": "20（すうばい）"
+            },
+            {
+                "kanji": "２倍",
+                "yomi": "２ばい"
+            },
+            {
+                "kanji": "江戸",
+                "yomi": "えど"
+            },
+            {
+                "kanji": "江戸時代",
+                "yomi": "えどじだい"
+            },
+            {
+                "kanji": "夏ばて",
+                "yomi": "なつ（ばて）"
+            },
+            {
+                "kanji": "夏休み",
+                "yomi": "なつやす（み）"
+            },
+            {
+                "kanji": "防止",
+                "yomi": "ぼうし"
+            },
+            {
+                "kanji": "宣伝コピー",
+                "yomi": "せんでんコピー"
+            },
+            {
+                "kanji": "宣伝",
+                "yomi": "せんでん"
+            },
+            {
+                "kanji": "効果が続く",
+                "yomi": "こうか（が）つづ（く）"
+            },
+            {
+                "kanji": "勉強を続ける",
+                "yomi": "べんきょう（を）つづ（ける）"
+            },
+            {
+                "kanji": "短い",
+                "yomi": "みじか（い）"
+            },
+            {
+                "kanji": "短時間に",
+                "yomi": "たんじかん（に）"
+            },
+            {
+                "kanji": "期間",
+                "yomi": "きかん"
+            },
+            {
+                "kanji": "期間限定",
+                "yomi": "きかんげんてい"
+            },
+            {
+                "kanji": "集中する",
+                "yomi": "しゅうちゅう（する）"
+            },
+            {
+                "kanji": "募集中",
+                "yomi": "ぼしゅうちゅう"
+            },
+            {
+                "kanji": "切手を集める",
+                "yomi": "きって（を）あつ（める）"
+            },
+            {
+                "kanji": "人が集まる",
+                "yomi": "ひと（が）あつ（まる）"
+            },
+            {
+                "kanji": "節分",
+                "yomi": "せつぶん"
+            },
+            {
+                "kanji": "季節",
+                "yomi": "きせつ"
+            },
+            {
+                "kanji": "調節する",
+                "yomi": "ちょうせつ（する）"
+            },
+            {
+                "kanji": "太巻きずし",
+                "yomi": "ふとま（きずし）"
+            },
+            {
+                "kanji": "関西",
+                "yomi": "かんさい"
+            },
+            {
+                "kanji": "関東",
+                "yomi": "かんとう"
+            },
+            {
+                "kanji": "関係",
+                "yomi": "かんけい"
+            },
+            {
+                "kanji": "～に関して",
+                "yomi": "～（に）かん（して）"
+            },
+            {
+                "kanji": "恵方",
+                "yomi": "えほう"
+            },
+            {
+                "kanji": "商業",
+                "yomi": "しょうぎょう"
+            },
+            {
+                "kanji": "職業",
+                "yomi": "しょくぎょう"
+            },
+            {
+                "kanji": "営業",
+                "yomi": "えいぎょう"
+            },
+            {
+                "kanji": "授業",
+                "yomi": "じゅぎょう"
+            },
+            {
+                "kanji": "卒業する",
+                "yomi": "そつぎょう（する）"
+            },
+            {
+                "kanji": "主義",
+                "yomi": "しゅぎ"
+            },
+            {
+                "kanji": "主人",
+                "yomi": "しゅじん"
+            },
+            {
+                "kanji": "講義",
+                "yomi": "こうぎ"
+            },
+            {
+                "kanji": "残る",
+                "yomi": "のこ（る）"
+            },
+            {
+                "kanji": "残念",
+                "yomi": "ざんねん"
+            },
+            {
+                "kanji": "残業する",
+                "yomi": "ざんぎょう（する）"
+            }
+        ],
+        "7": [
+            {
+                "kanji": "二面性がある点",
+                "yomi": "にめんせい（がある）てん"
+            },
+            {
+                "kanji": "いい点",
+                "yomi": "（いい）てん"
+            },
+            {
+                "kanji": "試験の点が悪い",
+                "yomi": "しけん（の）てん（が）わる（い）"
+            },
+            {
+                "kanji": "交差点",
+                "yomi": "こうさてん"
+            },
+            {
+                "kanji": "組織",
+                "yomi": "そしき"
+            },
+            {
+                "kanji": "組み立てる",
+                "yomi": "く（み）た（てる）"
+            },
+            {
+                "kanji": "入門する",
+                "yomi": "にゅうもん（する）"
+            },
+            {
+                "kanji": "専門",
+                "yomi": "せんもん"
+            },
+            {
+                "kanji": "共にする",
+                "yomi": "とも（にする）"
+            },
+            {
+                "kanji": "共働き",
+                "yomi": "ともばたら（き）"
+            },
+            {
+                "kanji": "新人",
+                "yomi": "しんじん"
+            },
+            {
+                "kanji": "新年会",
+                "yomi": "しんねんかい"
+            },
+            {
+                "kanji": "新聞",
+                "yomi": "しんぶん"
+            },
+            {
+                "kanji": "新鮮な",
+                "yomi": "しんせん（な）"
+            },
+            {
+                "kanji": "新しい",
+                "yomi": "あたら（しい）"
+            },
+            {
+                "kanji": "弟子",
+                "yomi": "でし"
+            },
+            {
+                "kanji": "弟",
+                "yomi": "おとうと"
+            },
+            {
+                "kanji": "兄弟",
+                "yomi": "きょうだい"
+            },
+            {
+                "kanji": "与える",
+                "yomi": "あた（える）"
+            },
+            {
+                "kanji": "冬",
+                "yomi": "ふゆ"
+            },
+            {
+                "kanji": "冬休み",
+                "yomi": "ふゆやす（み）"
+            },
+            {
+                "kanji": "砂だらけ",
+                "yomi": "すな（だらけ）"
+            },
+            {
+                "kanji": "砂漠化",
+                "yomi": "さばくか"
+            },
+            {
+                "kanji": "頑張る",
+                "yomi": "がんば（る）"
+            },
+            {
+                "kanji": "緊張する",
+                "yomi": "きんちょう（する）"
+            },
+            {
+                "kanji": "台風",
+                "yomi": "たいふう"
+            },
+            {
+                "kanji": "風が吹く",
+                "yomi": "かぜ（が）ふ（く）"
+            },
+            {
+                "kanji": "兄弟子",
+                "yomi": "あにでし"
+            },
+            {
+                "kanji": "兄",
+                "yomi": "あに"
+            },
+            {
+                "kanji": "お兄さん",
+                "yomi": "（お）にい（さん）"
+            },
+            {
+                "kanji": "背中",
+                "yomi": "せなか"
+            },
+            {
+                "kanji": "背が高い",
+                "yomi": "せ（が）たか（い）"
+            },
+            {
+                "kanji": "背中を流す",
+                "yomi": "せなか（を）なが（す）"
+            },
+            {
+                "kanji": "音楽が流れる",
+                "yomi": "おんがく（が）なが（れる）"
+            },
+            {
+                "kanji": "片付け",
+                "yomi": "かたづ（け）"
+            },
+            {
+                "kanji": "部屋を片付ける",
+                "yomi": "へや（を）かたづ（ける）"
+            },
+            {
+                "kanji": "荷物が片付く",
+                "yomi": "にもつ（が）かたづ（く）"
+            },
+            {
+                "kanji": "掃除",
+                "yomi": "そうじ"
+            },
+            {
+                "kanji": "洗濯",
+                "yomi": "せんたく"
+            },
+            {
+                "kanji": "洗濯物",
+                "yomi": "せんたくもの"
+            },
+            {
+                "kanji": "シャツを洗う",
+                "yomi": "シャツ（を）あら（う）"
+            },
+            {
+                "kanji": "お手洗い",
+                "yomi": "（お）てあら（い）"
+            },
+            {
+                "kanji": "再び",
+                "yomi": "ふたた（び）"
+            },
+            {
+                "kanji": "大量",
+                "yomi": "たいりょう"
+            },
+            {
+                "kanji": "量",
+                "yomi": "りょう"
+            },
+            {
+                "kanji": "重さを量る",
+                "yomi": "おも（さを）はか（る）"
+            },
+            {
+                "kanji": "肉類",
+                "yomi": "にくるい"
+            },
+            {
+                "kanji": "魚介類",
+                "yomi": "ぎょかいるい"
+            },
+            {
+                "kanji": "種類",
+                "yomi": "しゅるい"
+            },
+            {
+                "kanji": "野菜",
+                "yomi": "やさい"
+            },
+            {
+                "kanji": "野球",
+                "yomi": "やきゅう"
+            },
+            {
+                "kanji": "野菜類",
+                "yomi": "やさいるい"
+            },
+            {
+                "kanji": "加える",
+                "yomi": "くわ（える）"
+            },
+            {
+                "kanji": "～に加えて",
+                "yomi": "～（に）くわ（えて）"
+            },
+            {
+                "kanji": "参加する",
+                "yomi": "さんか（する）"
+            },
+            {
+                "kanji": "力士",
+                "yomi": "りきし"
+            },
+            {
+                "kanji": "体力",
+                "yomi": "たいりょく"
+            },
+            {
+                "kanji": "日本語能力試験",
+                "yomi": "にほんごのうりょくしけん"
+            },
+            {
+                "kanji": "最低",
+                "yomi": "さいてい"
+            },
+            {
+                "kanji": "低い",
+                "yomi": "ひく（い）"
+            },
+            {
+                "kanji": "泣く",
+                "yomi": "な（く）"
+            },
+            {
+                "kanji": "勝つ",
+                "yomi": "か（つ）"
+            },
+            {
+                "kanji": "優勝する",
+                "yomi": "ゆうしょう（する）"
+            },
+            {
+                "kanji": "給料",
+                "yomi": "きゅりょう"
+            },
+            {
+                "kanji": "賞金",
+                "yomi": "しょうきん"
+            },
+            {
+                "kanji": "形",
+                "yomi": "かたち"
+            },
+            {
+                "kanji": "人形",
+                "yomi": "にんぎょう"
+            },
+            {
+                "kanji": "相撲",
+                "yomi": "すもう"
+            }
+        ],
+        "8": [
+            {
+                "kanji": "印象",
+                "yomi": "いんしょう"
+            },
+            {
+                "kanji": "矢印",
+                "yomi": "やじるし"
+            },
+            {
+                "kanji": "要素",
+                "yomi": "ようそ"
+            },
+            {
+                "kanji": "内容",
+                "yomi": "ないよう"
+            },
+            {
+                "kanji": "美容院",
+                "yomi": "びよういん"
+            },
+            {
+                "kanji": "情報",
+                "yomi": "じょうほう"
+            },
+            {
+                "kanji": "表情",
+                "yomi": "ひょうじょう"
+            },
+            {
+                "kanji": "天気予報",
+                "yomi": "てんきよほう"
+            },
+            {
+                "kanji": "報告",
+                "yomi": "ほうこく"
+            },
+            {
+                "kanji": "津波注意報",
+                "yomi": "つなみちゅういほう"
+            },
+            {
+                "kanji": "聴覚情報",
+                "yomi": "ちょうかくじょうほう"
+            },
+            {
+                "kanji": "聴覚",
+                "yomi": "ちょうかく"
+            },
+            {
+                "kanji": "耳",
+                "yomi": "みみ"
+            },
+            {
+                "kanji": "服装",
+                "yomi": "ふくそう"
+            },
+            {
+                "kanji": "判断する",
+                "yomi": "はんだん（する）"
+            },
+            {
+                "kanji": "説",
+                "yomi": "せつ"
+            },
+            {
+                "kanji": "説明する",
+                "yomi": "せつめい（する）"
+            },
+            {
+                "kanji": "小説",
+                "yomi": "しょうせつ"
+            },
+            {
+                "kanji": "姿勢",
+                "yomi": "しせい"
+            },
+            {
+                "kanji": "笑顔",
+                "yomi": "えがお"
+            },
+            {
+                "kanji": "笑う",
+                "yomi": "わら（う）"
+            },
+            {
+                "kanji": "顔",
+                "yomi": "かお"
+            },
+            {
+                "kanji": "信頼",
+                "yomi": "しんらい"
+            },
+            {
+                "kanji": "頼む",
+                "yomi": "たの（む）"
+            },
+            {
+                "kanji": "寄りかかる",
+                "yomi": "よ（りかかる）"
+            },
+            {
+                "kanji": "お年寄り",
+                "yomi": "（お）としよ（り）"
+            },
+            {
+                "kanji": "威圧感",
+                "yomi": "いあつかん"
+            },
+            {
+                "kanji": "威張る",
+                "yomi": "いば（る）"
+            },
+            {
+                "kanji": "中身",
+                "yomi": "なかみ"
+            },
+            {
+                "kanji": "身振り",
+                "yomi": "みぶ（り）"
+            },
+            {
+                "kanji": "身につける",
+                "yomi": "み（につける）"
+            },
+            {
+                "kanji": "刺身",
+                "yomi": "さしみ"
+            },
+            {
+                "kanji": "独身",
+                "yomi": "どくしん"
+            }
+        ]
     },
     "中級を学ぼう・青": {
         "1": [],
@@ -2178,20 +3221,11 @@ function initApp() {
     textSelector.value = currentText;
     
     Object.keys(embeddedLevels).forEach(textName => {
-        levels[textName] = {};
-        Object.keys(embeddedLevels[textName]).forEach(lvl => {
-            const key = "DATA_" + textName + "_L" + lvl;
-            const raw = localStorage.getItem(key);
-            if (raw) {
-                levels[textName][lvl] = JSON.parse(raw);
-            } else {
-                levels[textName][lvl] = embeddedLevels[textName][lvl];
-                if (embeddedLevels[textName][lvl].length > 0) {
-                    localStorage.setItem(key, JSON.stringify(embeddedLevels[textName][lvl]));
-                }
-            }
-        });
+    levels[textName] = {};
+    Object.keys(embeddedLevels[textName]).forEach(lvl => {
+        levels[textName][lvl] = embeddedLevels[textName][lvl];
     });
+});
     renderTabButtons();
     loadEditorTable();
     resetDrillScreens();
@@ -2337,91 +3371,82 @@ function addRow(kanji = "", yomi = "") {
     tbody.appendChild(tr);
 }
 
-// 【完全修正版】画面の状態には一切依存せず、純粋なデータだけを安全に保存する
 function saveData() {
-    // 1. エディタの入力欄から、最新の文字データだけを純粋に回収する
-    const rows = document.querySelectorAll("#vocabTableBody tr");
-    const updatedData = Array.from(rows).map(r => ({
-        kanji: r.querySelectorAll("input")[0].value,
-        yomi: r.querySelectorAll("input")[1].value
-    }));
+    try {
+        generateNewHtmlFile();
 
-    // 内部のデータ配列を最新状態に更新
-    levels[currentText][currentLevel] = updatedData;
-    embeddedLevels[currentText][currentLevel] = updatedData;
+        alert(
+            "全データを内包した新しい index.html をダウンロードします。\n\nGitHubへアップロード（上書き）してください。"
+        );
 
-    // 2. ブラウザに今見えている画面（DOM）ではなく、「このファイル自身の生のソースコード」をテキストとして取得する
-    fetch(window.location.href)
-        .then(response => response.text())
-        .then(htmlSource => {
-            // 最新のデータをJSON文字列に変換
-            const dataString = JSON.stringify(embeddedLevels, null, 4);
-            // ソースコード内の「const embeddedLevels = { ... };」の部分を見つける正規表現
-            const regex = /const\s+embeddedLevels\s*=\s*\{[\s\S]*?\};/;
+    } catch (e) {
 
-            if (!regex.test(htmlSource)) {
-                alert("エラー：ファイル内のデータ構造（embeddedLevels）が読み取れませんでした。");
-                return;
-            }
+        console.error(e);
 
-            // 元のクリーンなソースコードのデータ部分だけを、最新データにピンポイント置換
-            const finalHtml = htmlSource.replace(regex, `const embeddedLevels = ${dataString};`);
-
-            // 3. 文字化けを防ぐBOM付きUTF-8でファイルを出力
-            const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
-            const blob = new Blob([bom, finalHtml], { type: "text/html;charset=utf-8" });
-            
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "index.html";
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert("「" + currentText + " L" + currentLevel + "」の入力を保存しました。\n新しい index.html をダウンロードしましたので、手元のファイルと置き換えてください。");
-        })
-        .catch(err => {
-            alert("保存エラー：ファイルの読み込みに失敗しました。PCのローカル環境によっては、セキュリティ制限（CORS）で保存できない場合があります。その場合は全体ファイルを再構築しますのでお申し付けください。");
-        });
+        alert(
+            "保存に失敗しました。\n\nF12 → Console の赤いエラーを確認してください。"
+        );
+    }
 }
 
 function generateNewHtmlFile() {
-    const dataString = JSON.stringify(levels, null, 4);
+    // 念のため、今の編集画面の内容を levels に反映
+    const rows = document.querySelectorAll("#vocabTable tbody tr");
+    const data = [];
+
+    rows.forEach(row => {
+        const kanji = row.children[0].querySelector("input").value.trim();
+        const yomi = row.children[1].querySelector("input").value.trim();
+
+        if (kanji !== "" || yomi !== "") {
+            data.push({ kanji, yomi });
+        }
+    });
+
+    levels[currentText][currentLevel] = data;
+
+    // HTMLソース取得
+    let html = document.documentElement.outerHTML;
+    html = html.replace(
+    '<div id="splash" style="display: none;">',
+    '<div id="splash">'
+);
+
     const startMarker = "// START_DATA_MARKER\nconst embeddedLevels = ";
     const endMarker = ";\n// END_DATA_MARKER";
-    
-    // 現在開いているページの「文字データ」をそのまま取得する（昨日のバグ原因だったHTML書き換え処理は完全撤廃）
-    let currentHtmlSource = document.documentElement.outerHTML;
-    
-    // データマーカーに挟まれた古いデータ部分を見つけ出し、最新のJSON文字列に完全に差し替える
-    const idxStart = currentHtmlSource.indexOf(startMarker);
-    const idxEnd = currentHtmlSource.indexOf(endMarker);
-    
-    if (idxStart === -1 || idxEnd === -1) {
-        // 万が一マーカーが壊れた場合の安全なフォールバック
-        alert("テンプレート構造の解析に失敗したため、バックアップ方式で保存します。");
-        const blob = new Blob([currentHtmlSource], { type: "text/html;charset=utf-8" });
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "index.html";
-        a.click();
+
+    const start = html.indexOf(startMarker);
+    const end = html.indexOf(endMarker);
+
+    if (start === -1 || end === -1) {
+        alert("保存用マーカーが見つかりません。");
         return;
     }
-    
-    // マーカーの前後を正確に切り分け、中央のデータ部分だけをガッチャンコする
-    const beforeData = currentHtmlSource.substring(0, idxStart + startMarker.length);
-    const afterData = currentHtmlSource.substring(idxEnd);
-    const newHtml = "<!DOCTYPE html>\n<html lang=\"ja\">\n" + beforeData + dataString + afterData;
 
-    const blob = new Blob([newHtml], { type: "text/html;charset=utf-8" });
+    const newData =
+        startMarker +
+        JSON.stringify(levels, null, 4);
+
+    html =
+        html.substring(0, start) +
+        newData +
+        html.substring(end);
+
+    // 先頭にDOCTYPEを付加
+    if (!html.startsWith("<!DOCTYPE")) {
+        html = "<!DOCTYPE html>\n" + html;
+    }
+
+    const blob = new Blob([html], {
+        type: "text/html;charset=utf-8"
+    });
+
     const a = document.createElement("a");
-    const url = URL.createObjectURL(blob);
-    a.href = url;
+    a.href = URL.createObjectURL(blob);
     a.download = "index.html";
-    document.body.appendChild(a);
     a.click();
-    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
 function loadEditorTable() { 
@@ -2442,7 +3467,6 @@ function loadEditorTable() {
 function clearAll() { 
     if (!confirm(currentText + " の L" + currentLevel + " の単語をすべて削除しますか？")) return; 
     levels[currentText][currentLevel] = []; 
-    localStorage.removeItem("DATA_" + currentText + "_L" + currentLevel); 
     loadEditorTable(); 
     alert("削除しました"); 
 }
@@ -2456,6 +3480,13 @@ window.onload = () => {
         .catch(err => console.error('Service Worker Failed', err));
     }
 };
+
+window.addEventListener("load", function () {
+    setTimeout(function () {
+        document.getElementById("splash").style.display = "none";
+    }, 2000);
+});
+
 </script>
 
 
