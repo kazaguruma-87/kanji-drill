@@ -88,7 +88,7 @@
     <div class="splash-content">
         <h1>K式漢字ドリル</h1>
         <p>Kanji Drill System</p>
-        <p>Version 2.0</p>
+        <p>Version 2.1</p>
     </div>
 </div>
 
@@ -3287,6 +3287,7 @@ function switchMode(mode) {
 
 function startDrill() {
     const data = levels[currentText][currentLevel];
+    playClickSound();
     if (!data || data.length === 0) { alert("このレベルには語彙が登録されていません。"); return; }
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("drillScreen").style.display = "block";
@@ -3305,6 +3306,7 @@ function startDrill() {
 function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } }
 
 function clickAction(btnMode) {
+    playClickSound();
     const data = levels[currentText][currentLevel]; 
     if (!data || data.length === 0) return;
     if (clickCount === 0 || currentDrillMode !== btnMode) {
@@ -3485,6 +3487,29 @@ window.addEventListener("load", function () {
         document.getElementById("splash").style.display = "none";
     }, 2000);
 });
+
+let audioCtx = null;
+
+function playClickSound() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = "square";
+    osc.frequency.value = 1200;
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.03);
+}
 
 </script>
 
