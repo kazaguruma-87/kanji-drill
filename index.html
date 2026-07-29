@@ -96,7 +96,7 @@
     <select id="textSelector" class="text-select" onchange="selectText(this.value)"><option value="できる日本語・赤">できる日本語・赤</option><option value="できる日本語・黄">できる日本語・黄</option><option value="できる日本語・青">できる日本語・青</option><option value="中級へ行こう・ピンク">中級へ行こう・ピンク</option><option value="中級を学ぼう・緑">中級を学ぼう・緑</option><option value="中級を学ぼう・青">中級を学ぼう・青</option></select>
 </div>
 
-<div class="tab-bar" id="levelTabBar"><button id="tab1" class="active">L1</button><button id="tab2">L2</button><button id="tab3">L3</button><button id="tab4">L4</button><button id="tab5">L5</button><button id="tab6">L6</button><button id="tab7">L7</button><button id="tab8">L8</button><button id="tab9">L9</button><button id="tab10">L10</button><button id="tab11">L11</button><button id="tab12">L12</button><button id="tab13">L13</button><button id="tab14">L14</button><button id="tab15">L15</button><button id="tab16">L16</button><button id="tab17">L17</button><button id="tab18">L18</button><button id="tab19">L19</button><button id="tab20">L20</button></div>
+<div class="tab-bar" id="levelTabBar"><button id="tab1" class="">L1</button><button id="tab2">L2</button><button id="tab3">L3</button><button id="tab4">L4</button><button id="tab5">L5</button><button id="tab6">L6</button><button id="tab7">L7</button><button id="tab8">L8</button><button id="tab9" class="">L9</button><button id="tab10" class="active">L10</button><button id="tab11">L11</button><button id="tab12">L12</button><button id="tab13">L13</button><button id="tab14">L14</button><button id="tab15">L15</button><button id="tab16">L16</button><button id="tab17">L17</button><button id="tab18">L18</button><button id="tab19">L19</button><button id="tab20">L20</button></div>
 
 <div class="mode-bar">
     <button id="modeDrill" class="" onclick="switchMode('drill')">🎯 ドリルをやる</button>
@@ -120,7 +120,7 @@
 </div>
 
 <div id="editorScreen" class="screen active">
-    <h2 id="editorTitle">✍️ できる日本語・青 (L1) 入力</h2>
+    <h2 id="editorTitle">✍️ できる日本語・青 (L10) 入力</h2>
 
     <div class="table-container">
         <table id="vocabTable">
@@ -131,7 +131,7 @@
                     <th style="width:10%;">削除</th>
                 </tr>
             </thead>
-            <tbody><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
+            <tbody><tr><td><input type="text" value="海岸線"></td><td><input type="text" value="かいがんせん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="渓谷"></td><td><input type="text" value="けいこく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="トロッコ列車"></td><td><input type="text" value="トロッコれっしゃ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="製造する"></td><td><input type="text" value="せいぞう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="鉄"></td><td><input type="text" value="てつ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="扇風機"></td><td><input type="text" value="せんぷうき"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="石炭"></td><td><input type="text" value="せきたん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="燃やす"></td><td><input type="text" value="も（やす）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="入り込む"></td><td><input type="text" value="はい（り）こ（む）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="揺れる"></td><td><input type="text" value="ゆ（れる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="～産"></td><td><input type="text" value="～さん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="静岡県産"></td><td><input type="text" value="しずおかけんさん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="車窓"></td><td><input type="text" value="しゃそう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="目を向ける"></td><td><input type="text" value="め（を）む（ける）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="通り過ぎる"></td><td><input type="text" value="とお（り）す（ぎる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="土地"></td><td><input type="text" value="とち"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="乗客"></td><td><input type="text" value="じょうきゃく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="思いがけない"></td><td><input type="text" value="おも（いがけない）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="出来事"></td><td><input type="text" value="できごと"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="向かい合う"></td><td><input type="text" value="む（かい）あ（う）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="フリー切符"></td><td><input type="text" value="フリーきっぷ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="乗り降りする"></td><td><input type="text" value="の（り）お（りする）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="配布する"></td><td><input type="text" value="はいふ（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="観光マップ"></td><td><input type="text" value="かんこうマップ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="書き込む"></td><td><input type="text" value="か（き）こ（む）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="薦める"></td><td><input type="text" value="すす（める）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="世界自然遺産"></td><td><input type="text" value="せかいしぜんいさん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="～発"></td><td><input type="text" value="～はつ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="羽田発"></td><td><input type="text" value="はねだはつ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="地元"></td><td><input type="text" value="じもと"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="豊かさ"></td><td><input type="text" value="ゆた（かさ）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="見どころ"></td><td><input type="text" value="み（どころ）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="杉"></td><td><input type="text" value="すぎ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="所要時間"></td><td><input type="text" value="しょようじかん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="歩行距離"></td><td><input type="text" value="ほこうきょり"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="往復する"></td><td><input type="text" value="おうふく（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="樹齢"></td><td><input type="text" value="じゅれい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="神秘的な"></td><td><input type="text" value="しんぴてき（な）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="姿"></td><td><input type="text" value="すがた"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="言い表す"></td><td><input type="text" value="い（い）あらわ（す）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="森"></td><td><input type="text" value="もり"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="日常"></td><td><input type="text" value="にちじょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="海の幸"></td><td><input type="text" value="うみ（の）さち"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="山の幸"></td><td><input type="text" value="やま（の）さち"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="民宿"></td><td><input type="text" value="みんしゅく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="味わう"></td><td><input type="text" value="あじ（わう）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="頂上"></td><td><input type="text" value="ちょうじょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="朝日"></td><td><input type="text" value="あさひ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="積もる"></td><td><input type="text" value="つ（もる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="通る"></td><td><input type="text" value="とお（る）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="電気が通る"></td><td><input type="text" value="でんき（が）とお（る）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="日帰りする"></td><td><input type="text" value="ひがえ（りする）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="滝"></td><td><input type="text" value="たき"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="食材"></td><td><input type="text" value="しょくざい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="門"></td><td><input type="text" value="もん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="国宝"></td><td><input type="text" value="こくほう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="指定する"></td><td><input type="text" value="してい（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="全体"></td><td><input type="text" value="ぜんたい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="彫刻する"></td><td><input type="text" value="ちょうこく（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="彫る"></td><td><input type="text" value="ほ（る）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="豪華さ"></td><td><input type="text" value="ごうか（さ）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="名所"></td><td><input type="text" value="めいしょ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="絵の具"></td><td><input type="text" value="え（の）ぐ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="一気に"></td><td><input type="text" value="いっき（に）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="流れ落ちる"></td><td><input type="text" value="なが（れ）お（ちる）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="迫力満点"></td><td><input type="text" value="はくりょくまんてん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="鯱"></td><td><input type="text" value="しゃちほこ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="～世紀"></td><td><input type="text" value="～せいき"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="代表する"></td><td><input type="text" value="だいひょう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="誇り"></td><td><input type="text" value="ほこ（り）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="戦争する"></td><td><input type="text" value="せんそう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="天守閣"></td><td><input type="text" value="てんしゅかく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="再び"></td><td><input type="text" value="ふたた（び）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="金"></td><td><input type="text" value="きん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="上り"></td><td><input type="text" value="のぼ（り）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="列車"></td><td><input type="text" value="れっしゃ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="発車する"></td><td><input type="text" value="はっしゃ（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="奥"></td><td><input type="text" value="おく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="着払い"></td><td><input type="text" value="ちゃくばら（い）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="宅配便"></td><td><input type="text" value="たくはいびん"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="胸"></td><td><input type="text" value="むね"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="請求する"></td><td><input type="text" value="せいきゅう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="洗面台"></td><td><input type="text" value="せんめんだい"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="車内"></td><td><input type="text" value="しゃない"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="座席"></td><td><input type="text" value="ざせき"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="鉄道"></td><td><input type="text" value="てつどう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="グリーン車"></td><td><input type="text" value="グリーンしゃ"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="販売する"></td><td><input type="text" value="はんばい（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="停車する"></td><td><input type="text" value="ていしゃ（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="時刻"></td><td><input type="text" value="じこく"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="禁煙する"></td><td><input type="text" value="きんえん（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="通話する"></td><td><input type="text" value="つうわ（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="満席"></td><td><input type="text" value="まんせき"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="了承する"></td><td><input type="text" value="りょうしょう（する）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="心より"></td><td><input type="text" value="こころ（より）"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value="車両"></td><td><input type="text" value="しゃりょう"></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr><tr><td><input type="text" value=""></td><td><input type="text" value=""></td><td><button onclick="this.parentNode.parentNode.remove()">X</button></td></tr></tbody>
         </table>
     </div>
 
@@ -5992,15 +5992,2788 @@ const embeddedLevels = {
                 "yomi": "こうかん（する）"
             }
         ],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": [],
-        "9": [],
-        "10": [],
+        "2": [
+            {
+                "kanji": "行列する",
+                "yomi": "ぎょうれつ（する）"
+            },
+            {
+                "kanji": "評判",
+                "yomi": "ひょうばん"
+            },
+            {
+                "kanji": "加わる",
+                "yomi": "くわ（わる）"
+            },
+            {
+                "kanji": "～感",
+                "yomi": "～かん"
+            },
+            {
+                "kanji": "関西",
+                "yomi": "かんさい"
+            },
+            {
+                "kanji": "印象",
+                "yomi": "いんしょう"
+            },
+            {
+                "kanji": "思ったより",
+                "yomi": "おも（ったより）"
+            },
+            {
+                "kanji": "拒否する",
+                "yomi": "きょひ（する）"
+            },
+            {
+                "kanji": "舌",
+                "yomi": "した"
+            },
+            {
+                "kanji": "グルメ番組",
+                "yomi": "グルメばんぐみ"
+            },
+            {
+                "kanji": "お待たせいたしました",
+                "yomi": "（お）ま（たせいたしました）"
+            },
+            {
+                "kanji": "好み",
+                "yomi": "この（み）"
+            },
+            {
+                "kanji": "異なる",
+                "yomi": "こと（なる）"
+            },
+            {
+                "kanji": "お役立ち情報",
+                "yomi": "（お）やくだ（ち）じょうほう"
+            },
+            {
+                "kanji": "予算",
+                "yomi": "よさん"
+            },
+            {
+                "kanji": "検索する",
+                "yomi": "けんさく（する）"
+            },
+            {
+                "kanji": "口コミ",
+                "yomi": "くちコミ"
+            },
+            {
+                "kanji": "感想",
+                "yomi": "かんそう"
+            },
+            {
+                "kanji": "比較する",
+                "yomi": "ひかく（する）"
+            },
+            {
+                "kanji": "参考",
+                "yomi": "さんこう"
+            },
+            {
+                "kanji": "写真立て",
+                "yomi": "しゃしんた（て）"
+            },
+            {
+                "kanji": "登録する",
+                "yomi": "とうろく（する）"
+            },
+            {
+                "kanji": "安全な",
+                "yomi": "あんぜん（な）"
+            },
+            {
+                "kanji": "品",
+                "yomi": "しな"
+            },
+            {
+                "kanji": "手に入る",
+                "yomi": "て（に）はい（る）"
+            },
+            {
+                "kanji": "お買い得",
+                "yomi": "（お）か（い）どく"
+            },
+            {
+                "kanji": "お買い上げ",
+                "yomi": "（お）か（い）あ（げ）"
+            },
+            {
+                "kanji": "次回",
+                "yomi": "じかい"
+            },
+            {
+                "kanji": "来店する",
+                "yomi": "らいてん（する）"
+            },
+            {
+                "kanji": "応募する",
+                "yomi": "おうぼ（する）"
+            },
+            {
+                "kanji": "国内",
+                "yomi": "こくない"
+            },
+            {
+                "kanji": "在住する",
+                "yomi": "ざいじゅう（する）"
+            },
+            {
+                "kanji": "閉店する",
+                "yomi": "へいてん（する）"
+            },
+            {
+                "kanji": "出入り口",
+                "yomi": "でい（り）ぐち"
+            },
+            {
+                "kanji": "駐車する",
+                "yomi": "ちゅうしゃ（する）"
+            },
+            {
+                "kanji": "看板",
+                "yomi": "かんばん"
+            },
+            {
+                "kanji": "試着する",
+                "yomi": "しちゃく（する）"
+            },
+            {
+                "kanji": "裾",
+                "yomi": "すそ"
+            },
+            {
+                "kanji": "受け取る",
+                "yomi": "う（け）と（る）"
+            },
+            {
+                "kanji": "～以降",
+                "yomi": "～いこう"
+            },
+            {
+                "kanji": "延期する",
+                "yomi": "えんき（する）"
+            },
+            {
+                "kanji": "組み立てる",
+                "yomi": "く（み）た（てる）"
+            },
+            {
+                "kanji": "家具",
+                "yomi": "かぐ"
+            },
+            {
+                "kanji": "失敗する",
+                "yomi": "しっぱい（する）"
+            },
+            {
+                "kanji": "福袋",
+                "yomi": "ふくぶくろ"
+            },
+            {
+                "kanji": "品物",
+                "yomi": "しなもの"
+            },
+            {
+                "kanji": "合う",
+                "yomi": "あ（う）"
+            },
+            {
+                "kanji": "中身",
+                "yomi": "なかみ"
+            },
+            {
+                "kanji": "振り仮名",
+                "yomi": "ふ（り）がな"
+            },
+            {
+                "kanji": "家電",
+                "yomi": "かでん"
+            },
+            {
+                "kanji": "エピソード集",
+                "yomi": "エピソードしゅう"
+            }
+        ],
+        "3": [
+            {
+                "kanji": "効率",
+                "yomi": "こうりつ"
+            },
+            {
+                "kanji": "管理する",
+                "yomi": "かんり（する）"
+            },
+            {
+                "kanji": "～法",
+                "yomi": "～ほう"
+            },
+            {
+                "kanji": "少しも",
+                "yomi": "すこ（しも）"
+            },
+            {
+                "kanji": "注目する",
+                "yomi": "ちゅうもく（する）"
+            },
+            {
+                "kanji": "活用する",
+                "yomi": "かつよう（する）"
+            },
+            {
+                "kanji": "～力",
+                "yomi": "～りょく"
+            },
+            {
+                "kanji": "集中力",
+                "yomi": "しゅうちゅうりょく"
+            },
+            {
+                "kanji": "繰り返す",
+                "yomi": "く（り）かえ（す）"
+            },
+            {
+                "kanji": "長め",
+                "yomi": "なが（め）"
+            },
+            {
+                "kanji": "利点",
+                "yomi": "りてん"
+            },
+            {
+                "kanji": "終了する",
+                "yomi": "しゅうりょう（する）"
+            },
+            {
+                "kanji": "鳴る",
+                "yomi": "な（る）"
+            },
+            {
+                "kanji": "関係",
+                "yomi": "かんけい"
+            },
+            {
+                "kanji": "回数",
+                "yomi": "かいすう"
+            },
+            {
+                "kanji": "～気",
+                "yomi": "～き"
+            },
+            {
+                "kanji": "立てる",
+                "yomi": "た（てる）"
+            },
+            {
+                "kanji": "設定する",
+                "yomi": "せってい（する）"
+            },
+            {
+                "kanji": "受信する",
+                "yomi": "じゅしん（する）"
+            },
+            {
+                "kanji": "気が散る",
+                "yomi": "き（が）ち（る）"
+            },
+            {
+                "kanji": "有効な",
+                "yomi": "ゆうこう（な）"
+            },
+            {
+                "kanji": "記事",
+                "yomi": "きじ"
+            },
+            {
+                "kanji": "朝活",
+                "yomi": "あさかつ"
+            },
+            {
+                "kanji": "解消する",
+                "yomi": "かいしょう（する）"
+            },
+            {
+                "kanji": "早起きは三文の徳",
+                "yomi": "はやお（きは）さんもん（の）とく"
+            },
+            {
+                "kanji": "早朝",
+                "yomi": "そうちょう"
+            },
+            {
+                "kanji": "出勤する",
+                "yomi": "しゅっきん（する）"
+            },
+            {
+                "kanji": "講座",
+                "yomi": "こうざ"
+            },
+            {
+                "kanji": "集中する",
+                "yomi": "しゅうちゅう（する）"
+            },
+            {
+                "kanji": "筆者",
+                "yomi": "ひっしゃ"
+            },
+            {
+                "kanji": "初心者",
+                "yomi": "しょしんしゃ"
+            },
+            {
+                "kanji": "信じる",
+                "yomi": "しん（じる）"
+            },
+            {
+                "kanji": "山頂",
+                "yomi": "さんちょう"
+            },
+            {
+                "kanji": "近づく",
+                "yomi": "ちか（づく）"
+            },
+            {
+                "kanji": "眺め",
+                "yomi": "なが（め）"
+            },
+            {
+                "kanji": "一休みする",
+                "yomi": "ひとやす（みする）"
+            },
+            {
+                "kanji": "あっという間",
+                "yomi": "（あっという）ま"
+            },
+            {
+                "kanji": "過ぎる",
+                "yomi": "す（ぎる）"
+            },
+            {
+                "kanji": "時間が過ぎる",
+                "yomi": "じかん（が）す（ぎる）"
+            },
+            {
+                "kanji": "振り返る",
+                "yomi": "ふ（り）かえ（る）"
+            },
+            {
+                "kanji": "結構",
+                "yomi": "けっこう"
+            },
+            {
+                "kanji": "浮かぶ",
+                "yomi": "う（かぶ）"
+            },
+            {
+                "kanji": "頭に浮かぶ",
+                "yomi": "あたま（に）う（かぶ）"
+            },
+            {
+                "kanji": "手帳",
+                "yomi": "てちょう"
+            },
+            {
+                "kanji": "落ち着く",
+                "yomi": "お（ち）つ（く）"
+            },
+            {
+                "kanji": "余裕",
+                "yomi": "よゆう"
+            },
+            {
+                "kanji": "見直す",
+                "yomi": "みなお（す）"
+            },
+            {
+                "kanji": "宝物",
+                "yomi": "たからもの"
+            },
+            {
+                "kanji": "通勤する",
+                "yomi": "つうきん（する）"
+            },
+            {
+                "kanji": "貴重な",
+                "yomi": "きちょう（な）"
+            },
+            {
+                "kanji": "楽しむ",
+                "yomi": "たの（しむ）"
+            },
+            {
+                "kanji": "習い事",
+                "yomi": "なら（い）ごと"
+            },
+            {
+                "kanji": "公民館",
+                "yomi": "こうみんかん"
+            },
+            {
+                "kanji": "太鼓",
+                "yomi": "たいこ"
+            },
+            {
+                "kanji": "実際に",
+                "yomi": "じっさい（に）"
+            },
+            {
+                "kanji": "筆箱",
+                "yomi": "ふでばこ"
+            },
+            {
+                "kanji": "悪いけど",
+                "yomi": "わる（いけど）"
+            },
+            {
+                "kanji": "声をかける",
+                "yomi": "こえ（をかける）"
+            }
+        ],
+        "4": [
+            {
+                "kanji": "公共",
+                "yomi": "こうきょう"
+            },
+            {
+                "kanji": "損な",
+                "yomi": "そん（な）"
+            },
+            {
+                "kanji": "定期的な",
+                "yomi": "ていきてき（な）"
+            },
+            {
+                "kanji": "上映する",
+                "yomi": "じょうえい（する）"
+            },
+            {
+                "kanji": "絵画",
+                "yomi": "かいが"
+            },
+            {
+                "kanji": "格安な",
+                "yomi": "かくやす（な）"
+            },
+            {
+                "kanji": "仲間",
+                "yomi": "なかま"
+            },
+            {
+                "kanji": "計画する",
+                "yomi": "けいかく（する）"
+            },
+            {
+                "kanji": "工夫する",
+                "yomi": "くふう（する）"
+            },
+            {
+                "kanji": "科学",
+                "yomi": "かがく"
+            },
+            {
+                "kanji": "知識",
+                "yomi": "ちしき"
+            },
+            {
+                "kanji": "増やす",
+                "yomi": "ふ（やす）"
+            },
+            {
+                "kanji": "芸術",
+                "yomi": "げいじゅつ"
+            },
+            {
+                "kanji": "鑑賞する",
+                "yomi": "かんしょう（する）"
+            },
+            {
+                "kanji": "喜ぶ",
+                "yomi": "よろこ（ぶ）"
+            },
+            {
+                "kanji": "詳しい",
+                "yomi": "くわ（しい）"
+            },
+            {
+                "kanji": "解説する",
+                "yomi": "かいせつ（する）"
+            },
+            {
+                "kanji": "納得する",
+                "yomi": "なっとく（する）"
+            },
+            {
+                "kanji": "事前に",
+                "yomi": "じぜん（に）"
+            },
+            {
+                "kanji": "専門家",
+                "yomi": "せんもんか"
+            },
+            {
+                "kanji": "和紙",
+                "yomi": "わし"
+            },
+            {
+                "kanji": "織物",
+                "yomi": "おりもの"
+            },
+            {
+                "kanji": "身近な",
+                "yomi": "みぢか（な）"
+            },
+            {
+                "kanji": "市町村",
+                "yomi": "しちょうそん"
+            },
+            {
+                "kanji": "貸し出し",
+                "yomi": "か（し）だ（し）"
+            },
+            {
+                "kanji": "本人",
+                "yomi": "ほんにん"
+            },
+            {
+                "kanji": "例えば",
+                "yomi": "たと（えば）"
+            },
+            {
+                "kanji": "自宅",
+                "yomi": "じたく"
+            },
+            {
+                "kanji": "郵便物",
+                "yomi": "ゆうびんぶつ"
+            },
+            {
+                "kanji": "日当たり",
+                "yomi": "ひあ（たり）"
+            },
+            {
+                "kanji": "職員",
+                "yomi": "しょくいん"
+            },
+            {
+                "kanji": "管理人",
+                "yomi": "かんりにん"
+            },
+            {
+                "kanji": "解決する",
+                "yomi": "かいけつ（する）"
+            },
+            {
+                "kanji": "伺う",
+                "yomi": "うかが（う）"
+            },
+            {
+                "kanji": "通路",
+                "yomi": "つうろ"
+            },
+            {
+                "kanji": "切れる",
+                "yomi": "き（れる）"
+            },
+            {
+                "kanji": "電池が切れる",
+                "yomi": "でんち（が）き（れる）"
+            },
+            {
+                "kanji": "取り換える",
+                "yomi": "と（り）か（える）"
+            },
+            {
+                "kanji": "在勤する",
+                "yomi": "ざいきん（する）"
+            },
+            {
+                "kanji": "在学する",
+                "yomi": "ざいがく（する）"
+            },
+            {
+                "kanji": "講習",
+                "yomi": "こうしゅう"
+            },
+            {
+                "kanji": "器具",
+                "yomi": "きぐ"
+            },
+            {
+                "kanji": "有無",
+                "yomi": "うむ"
+            },
+            {
+                "kanji": "指導する",
+                "yomi": "しどう（する）"
+            },
+            {
+                "kanji": "通年",
+                "yomi": "つうねん"
+            },
+            {
+                "kanji": "卓球",
+                "yomi": "たっきゅう"
+            },
+            {
+                "kanji": "各～",
+                "yomi": "かく～"
+            },
+            {
+                "kanji": "持参する",
+                "yomi": "じさん（する）"
+            },
+            {
+                "kanji": "年齢",
+                "yomi": "ねんれい"
+            },
+            {
+                "kanji": "性別",
+                "yomi": "せいべつ"
+            },
+            {
+                "kanji": "返事する",
+                "yomi": "へんじ（する）"
+            },
+            {
+                "kanji": "天候",
+                "yomi": "てんこう"
+            },
+            {
+                "kanji": "到着する",
+                "yomi": "とうちゃく（する）"
+            },
+            {
+                "kanji": "施設",
+                "yomi": "しせつ"
+            },
+            {
+                "kanji": "様子",
+                "yomi": "ようす"
+            },
+            {
+                "kanji": "特徴",
+                "yomi": "とくちょう"
+            },
+            {
+                "kanji": "寄る",
+                "yomi": "よ（る）"
+            },
+            {
+                "kanji": "作品",
+                "yomi": "さくひん"
+            },
+            {
+                "kanji": "展示する",
+                "yomi": "てんじ（する）"
+            },
+            {
+                "kanji": "気軽な",
+                "yomi": "きがる（な）"
+            },
+            {
+                "kanji": "偶然",
+                "yomi": "ぐうぜん"
+            },
+            {
+                "kanji": "急用",
+                "yomi": "きゅうよう"
+            },
+            {
+                "kanji": "先",
+                "yomi": "さき"
+            },
+            {
+                "kanji": "灰色",
+                "yomi": "はいいろ"
+            },
+            {
+                "kanji": "斜め",
+                "yomi": "なな（め）"
+            },
+            {
+                "kanji": "正面",
+                "yomi": "しょうめん"
+            },
+            {
+                "kanji": "植える",
+                "yomi": "う（える）"
+            },
+            {
+                "kanji": "方針",
+                "yomi": "ほうしん"
+            },
+            {
+                "kanji": "進める",
+                "yomi": "すす（める）"
+            }
+        ],
+        "5": [
+            {
+                "kanji": "防災",
+                "yomi": "ぼうさい"
+            },
+            {
+                "kanji": "国土",
+                "yomi": "こくど"
+            },
+            {
+                "kanji": "陸地",
+                "yomi": "りくち"
+            },
+            {
+                "kanji": "～割",
+                "yomi": "～わり"
+            },
+            {
+                "kanji": "人間",
+                "yomi": "にんげん"
+            },
+            {
+                "kanji": "力",
+                "yomi": "ちから"
+            },
+            {
+                "kanji": "被害",
+                "yomi": "ひがい"
+            },
+            {
+                "kanji": "非常",
+                "yomi": "ひじょう"
+            },
+            {
+                "kanji": "持ち出す",
+                "yomi": "も（ち）だ（す）"
+            },
+            {
+                "kanji": "震災",
+                "yomi": "しんさい"
+            },
+            {
+                "kanji": "被災する",
+                "yomi": "ひさい（する）"
+            },
+            {
+                "kanji": "十分な",
+                "yomi": "じゅうぶん（な）"
+            },
+            {
+                "kanji": "受け入れる",
+                "yomi": "う（け）い（れる）"
+            },
+            {
+                "kanji": "全国",
+                "yomi": "ぜんこく"
+            },
+            {
+                "kanji": "仮設テント",
+                "yomi": "かせつテント"
+            },
+            {
+                "kanji": "張る",
+                "yomi": "は（る）"
+            },
+            {
+                "kanji": "数～",
+                "yomi": "すう～"
+            },
+            {
+                "kanji": "数日",
+                "yomi": "すうじつ"
+            },
+            {
+                "kanji": "送る",
+                "yomi": "おく（る）"
+            },
+            {
+                "kanji": "避難生活を送る",
+                "yomi": "ひなんせいかつ（を）おく（る）"
+            },
+            {
+                "kanji": "設備",
+                "yomi": "せつび"
+            },
+            {
+                "kanji": "普段",
+                "yomi": "ふだん"
+            },
+            {
+                "kanji": "別",
+                "yomi": "べつ"
+            },
+            {
+                "kanji": "役割",
+                "yomi": "やくわり"
+            },
+            {
+                "kanji": "簡易便器",
+                "yomi": "かんいべんき"
+            },
+            {
+                "kanji": "載せる",
+                "yomi": "の（せる）"
+            },
+            {
+                "kanji": "下水道",
+                "yomi": "げすいどう"
+            },
+            {
+                "kanji": "処理する",
+                "yomi": "しょり（する）"
+            },
+            {
+                "kanji": "貯水槽",
+                "yomi": "ちょすいそう"
+            },
+            {
+                "kanji": "くみ上げる",
+                "yomi": "（くみ）あ（げる）"
+            },
+            {
+                "kanji": "用水",
+                "yomi": "ようすい"
+            },
+            {
+                "kanji": "防火",
+                "yomi": "ぼうか"
+            },
+            {
+                "kanji": "電灯",
+                "yomi": "でんとう"
+            },
+            {
+                "kanji": "太陽光",
+                "yomi": "たいようこう"
+            },
+            {
+                "kanji": "発電する",
+                "yomi": "はつでん（する）"
+            },
+            {
+                "kanji": "停電する",
+                "yomi": "ていでん（する）"
+            },
+            {
+                "kanji": "示す",
+                "yomi": "しめ（す）"
+            },
+            {
+                "kanji": "目印",
+                "yomi": "めじるし"
+            },
+            {
+                "kanji": "備えあれば憂いなし",
+                "yomi": "そな（えあれば）うれ（いなし）"
+            },
+            {
+                "kanji": "緊急",
+                "yomi": "きんきゅう"
+            },
+            {
+                "kanji": "速報",
+                "yomi": "そくほう"
+            },
+            {
+                "kanji": "ただ今",
+                "yomi": "（ただ）いま"
+            },
+            {
+                "kanji": "震度",
+                "yomi": "しんど"
+            },
+            {
+                "kanji": "～弱",
+                "yomi": "～じゃく"
+            },
+            {
+                "kanji": "震度５弱",
+                "yomi": "しんど５じゃく"
+            },
+            {
+                "kanji": "念のため",
+                "yomi": "ねん（のため）"
+            },
+            {
+                "kanji": "津波",
+                "yomi": "つなみ"
+            },
+            {
+                "kanji": "警戒する",
+                "yomi": "けいかい（する）"
+            },
+            {
+                "kanji": "身",
+                "yomi": "み"
+            },
+            {
+                "kanji": "確保する",
+                "yomi": "かくほ（する）"
+            },
+            {
+                "kanji": "先ほど",
+                "yomi": "さき（ほど）"
+            },
+            {
+                "kanji": "震源",
+                "yomi": "しんげん"
+            },
+            {
+                "kanji": "沖",
+                "yomi": "おき"
+            },
+            {
+                "kanji": "深さ",
+                "yomi": "ふか（さ）"
+            },
+            {
+                "kanji": "記録する",
+                "yomi": "きろく（する）"
+            },
+            {
+                "kanji": "余震",
+                "yomi": "よしん"
+            },
+            {
+                "kanji": "接近する",
+                "yomi": "せっきん（する）"
+            },
+            {
+                "kanji": "欠航する",
+                "yomi": "けっこう（する）"
+            },
+            {
+                "kanji": "大雨",
+                "yomi": "おおあめ"
+            },
+            {
+                "kanji": "影響する",
+                "yomi": "えいきょう（する）"
+            },
+            {
+                "kanji": "消防署",
+                "yomi": "しょうぼうしょ"
+            },
+            {
+                "kanji": "乾燥する",
+                "yomi": "かんそう（する）"
+            },
+            {
+                "kanji": "火災",
+                "yomi": "かさい"
+            },
+            {
+                "kanji": "発生する",
+                "yomi": "はっせい（する）"
+            },
+            {
+                "kanji": "呼びかける",
+                "yomi": "よ（びかける）"
+            },
+            {
+                "kanji": "固定する",
+                "yomi": "こてい（する）"
+            },
+            {
+                "kanji": "雷雨",
+                "yomi": "らいう"
+            },
+            {
+                "kanji": "状況",
+                "yomi": "じょうきょう"
+            },
+            {
+                "kanji": "変更する",
+                "yomi": "へんこう（する）"
+            },
+            {
+                "kanji": "放送する",
+                "yomi": "ほうそう（する）"
+            },
+            {
+                "kanji": "人身事故",
+                "yomi": "じんしんじこ"
+            },
+            {
+                "kanji": "幸せな",
+                "yomi": "しあわ（せな）"
+            },
+            {
+                "kanji": "心",
+                "yomi": "こころ"
+            },
+            {
+                "kanji": "状態",
+                "yomi": "じょうたい"
+            },
+            {
+                "kanji": "横断歩道",
+                "yomi": "おうだんほどう"
+            },
+            {
+                "kanji": "患者",
+                "yomi": "かんじゃ"
+            },
+            {
+                "kanji": "手首",
+                "yomi": "てくび"
+            },
+            {
+                "kanji": "道路",
+                "yomi": "どうろ"
+            },
+            {
+                "kanji": "足首",
+                "yomi": "あしくび"
+            },
+            {
+                "kanji": "痛める",
+                "yomi": "いた（める）"
+            },
+            {
+                "kanji": "診る",
+                "yomi": "み（る）"
+            },
+            {
+                "kanji": "不思議な",
+                "yomi": "ふしぎ（な）"
+            },
+            {
+                "kanji": "変化する",
+                "yomi": "へんか（する）"
+            },
+            {
+                "kanji": "人々",
+                "yomi": "ひとびと"
+            },
+            {
+                "kanji": "避難する",
+                "yomi": "ひなん（する）"
+            },
+            {
+                "kanji": "訓練する",
+                "yomi": "くんれん（する）"
+            },
+            {
+                "kanji": "注意事項",
+                "yomi": "ちゅういじこう"
+            },
+            {
+                "kanji": "慌てる",
+                "yomi": "あわ（てる）"
+            },
+            {
+                "kanji": "日ごろ",
+                "yomi": "ひ（ごろ）"
+            },
+            {
+                "kanji": "指示する",
+                "yomi": "しじ（する）"
+            },
+            {
+                "kanji": "決して",
+                "yomi": "けっ（して）"
+            },
+            {
+                "kanji": "煙",
+                "yomi": "けむり"
+            },
+            {
+                "kanji": "覆う",
+                "yomi": "おお（う）"
+            },
+            {
+                "kanji": "組む",
+                "yomi": "く（む）"
+            },
+            {
+                "kanji": "災害",
+                "yomi": "さいがい"
+            },
+            {
+                "kanji": "急病",
+                "yomi": "きゅうびょう"
+            },
+            {
+                "kanji": "斜面",
+                "yomi": "しゃめん"
+            },
+            {
+                "kanji": "滑り落ちる",
+                "yomi": "すべ（り）お（ちる）"
+            },
+            {
+                "kanji": "雨上がり",
+                "yomi": "あめあ（がり）"
+            },
+            {
+                "kanji": "飛ばす",
+                "yomi": "と（ばす）"
+            },
+            {
+                "kanji": "崩す",
+                "yomi": "くず（す）"
+            },
+            {
+                "kanji": "血",
+                "yomi": "ち"
+            },
+            {
+                "kanji": "全身",
+                "yomi": "ぜんしん"
+            },
+            {
+                "kanji": "泥",
+                "yomi": "どろ"
+            },
+            {
+                "kanji": "無事な",
+                "yomi": "ぶじ（な）"
+            },
+            {
+                "kanji": "元",
+                "yomi": "もと"
+            },
+            {
+                "kanji": "溺れる",
+                "yomi": "おぼ（れる）"
+            },
+            {
+                "kanji": "助ける",
+                "yomi": "たす（ける）"
+            },
+            {
+                "kanji": "飛び込む",
+                "yomi": "と（び）こ（む）"
+            },
+            {
+                "kanji": "弁当箱",
+                "yomi": "べんとうばこ"
+            },
+            {
+                "kanji": "傷",
+                "yomi": "きず"
+            },
+            {
+                "kanji": "倉庫",
+                "yomi": "そうこ"
+            },
+            {
+                "kanji": "共有する",
+                "yomi": "きょうゆう（する）"
+            }
+        ],
+        "6": [
+            {
+                "kanji": "快適な",
+                "yomi": "かいてき（な）"
+            },
+            {
+                "kanji": "梅雨",
+                "yomi": "つゆ"
+            },
+            {
+                "kanji": "焼ける",
+                "yomi": "や（ける）"
+            },
+            {
+                "kanji": "太陽",
+                "yomi": "たいよう"
+            },
+            {
+                "kanji": "今でこそ",
+                "yomi": "いま（でこそ）"
+            },
+            {
+                "kanji": "普及する",
+                "yomi": "ふきゅう（する）"
+            },
+            {
+                "kanji": "魔除け",
+                "yomi": "まよ（け）"
+            },
+            {
+                "kanji": "打ち水",
+                "yomi": "う（ち）みず"
+            },
+            {
+                "kanji": "地面",
+                "yomi": "じめん"
+            },
+            {
+                "kanji": "光景",
+                "yomi": "こうけい"
+            },
+            {
+                "kanji": "蒸発する",
+                "yomi": "じょうはつ（する）"
+            },
+            {
+                "kanji": "奪う",
+                "yomi": "うば（う）"
+            },
+            {
+                "kanji": "近年",
+                "yomi": "きんねん"
+            },
+            {
+                "kanji": "作戦",
+                "yomi": "さくせん"
+            },
+            {
+                "kanji": "開催する",
+                "yomi": "かいさい（する）"
+            },
+            {
+                "kanji": "水道水",
+                "yomi": "すいどうすい"
+            },
+            {
+                "kanji": "残り湯",
+                "yomi": "のこ（り）ゆ"
+            },
+            {
+                "kanji": "雨水",
+                "yomi": "あまみず"
+            },
+            {
+                "kanji": "平均",
+                "yomi": "へいきん"
+            },
+            {
+                "kanji": "降水量",
+                "yomi": "こうすいりょう"
+            },
+            {
+                "kanji": "気候",
+                "yomi": "きこう"
+            },
+            {
+                "kanji": "南北",
+                "yomi": "なんぼく"
+            },
+            {
+                "kanji": "島",
+                "yomi": "しま"
+            },
+            {
+                "kanji": "山林",
+                "yomi": "さんりん"
+            },
+            {
+                "kanji": "～分の～",
+                "yomi": "～ぶん（の）～"
+            },
+            {
+                "kanji": "地形",
+                "yomi": "ちけい"
+            },
+            {
+                "kanji": "温帯",
+                "yomi": "おんたい"
+            },
+            {
+                "kanji": "位置する",
+                "yomi": "いち（する）"
+            },
+            {
+                "kanji": "蒸し暑い",
+                "yomi": "む（し）あつ（い）"
+            },
+            {
+                "kanji": "～側",
+                "yomi": "～がわ"
+            },
+            {
+                "kanji": "太平洋側",
+                "yomi": "たいへいようがわ"
+            },
+            {
+                "kanji": "割合",
+                "yomi": "わりあい"
+            },
+            {
+                "kanji": "例年",
+                "yomi": "れいねん"
+            },
+            {
+                "kanji": "連なる",
+                "yomi": "つら（なる）"
+            },
+            {
+                "kanji": "恵まれる",
+                "yomi": "めぐ（まれる）"
+            },
+            {
+                "kanji": "展望台",
+                "yomi": "てんぼうだい"
+            },
+            {
+                "kanji": "美しい",
+                "yomi": "うつく（しい）"
+            },
+            {
+                "kanji": "平野",
+                "yomi": "へいや"
+            },
+            {
+                "kanji": "庭",
+                "yomi": "にわ"
+            },
+            {
+                "kanji": "石垣",
+                "yomi": "いしがき"
+            },
+            {
+                "kanji": "名園",
+                "yomi": "めいえん"
+            },
+            {
+                "kanji": "音声",
+                "yomi": "おんせい"
+            },
+            {
+                "kanji": "瓦",
+                "yomi": "かわら"
+            },
+            {
+                "kanji": "軒",
+                "yomi": "のき"
+            },
+            {
+                "kanji": "塀",
+                "yomi": "へい"
+            },
+            {
+                "kanji": "石",
+                "yomi": "いし"
+            },
+            {
+                "kanji": "合わせる",
+                "yomi": "あ（わせる）"
+            },
+            {
+                "kanji": "日差し",
+                "yomi": "ひざ（し）"
+            },
+            {
+                "kanji": "固める",
+                "yomi": "かた（める）"
+            },
+            {
+                "kanji": "鉄筋",
+                "yomi": "てっきん"
+            },
+            {
+                "kanji": "気象",
+                "yomi": "きしょう"
+            },
+            {
+                "kanji": "小論文",
+                "yomi": "しょうろんぶん"
+            },
+            {
+                "kanji": "畳",
+                "yomi": "たたみ"
+            },
+            {
+                "kanji": "現金",
+                "yomi": "げんきん"
+            },
+            {
+                "kanji": "電子マネー",
+                "yomi": "でんしマネー"
+            },
+            {
+                "kanji": "体調",
+                "yomi": "たいちょう"
+            },
+            {
+                "kanji": "和菓子",
+                "yomi": "わがし"
+            },
+            {
+                "kanji": "港",
+                "yomi": "みなと"
+            },
+            {
+                "kanji": "栄える",
+                "yomi": "さか（える）"
+            },
+            {
+                "kanji": "現在",
+                "yomi": "げんざい"
+            },
+            {
+                "kanji": "人口",
+                "yomi": "じんこう"
+            },
+            {
+                "kanji": "都市",
+                "yomi": "とし"
+            },
+            {
+                "kanji": "県庁",
+                "yomi": "けんちょう"
+            },
+            {
+                "kanji": "～周辺",
+                "yomi": "～しゅうへん"
+            },
+            {
+                "kanji": "駅周辺",
+                "yomi": "えきしゅうへん"
+            },
+            {
+                "kanji": "地区",
+                "yomi": "ちく"
+            },
+            {
+                "kanji": "商業",
+                "yomi": "しょうぎょう"
+            },
+            {
+                "kanji": "砂浜",
+                "yomi": "すなはま"
+            },
+            {
+                "kanji": "～年代",
+                "yomi": "～ねんだい"
+            },
+            {
+                "kanji": "～街",
+                "yomi": "～がい"
+            },
+            {
+                "kanji": "中華街",
+                "yomi": "ちゅうかがい"
+            },
+            {
+                "kanji": "今では",
+                "yomi": "いま（では）"
+            },
+            {
+                "kanji": "訪れる",
+                "yomi": "おとず（れる）"
+            },
+            {
+                "kanji": "海洋",
+                "yomi": "かいよう"
+            },
+            {
+                "kanji": "生物",
+                "yomi": "せいぶつ"
+            },
+            {
+                "kanji": "化石",
+                "yomi": "かせき"
+            },
+            {
+                "kanji": "辺り",
+                "yomi": "あた（り）"
+            },
+            {
+                "kanji": "産業",
+                "yomi": "さんぎょう"
+            },
+            {
+                "kanji": "盛ん",
+                "yomi": "さか（ん）"
+            },
+            {
+                "kanji": "企業",
+                "yomi": "きぎょう"
+            },
+            {
+                "kanji": "発展する",
+                "yomi": "はってん（する）"
+            },
+            {
+                "kanji": "特産物",
+                "yomi": "とくさんぶつ"
+            },
+            {
+                "kanji": "空っ風",
+                "yomi": "から（っ）かぜ"
+            },
+            {
+                "kanji": "吹く",
+                "yomi": "ふ（く）"
+            },
+            {
+                "kanji": "湿る",
+                "yomi": "しめ（る）"
+            },
+            {
+                "kanji": "越える",
+                "yomi": "こ（える）"
+            },
+            {
+                "kanji": "風力",
+                "yomi": "ふうりょく"
+            },
+            {
+                "kanji": "凧揚げ",
+                "yomi": "たこあ（げ）"
+            },
+            {
+                "kanji": "揚げる",
+                "yomi": "あ（げる）"
+            },
+            {
+                "kanji": "思い浮かべる",
+                "yomi": "おも（い）う（かべる）"
+            }
+        ],
+        "7": [
+            {
+                "kanji": "同年代",
+                "yomi": "どうねんだい"
+            },
+            {
+                "kanji": "返る",
+                "yomi": "かえ（る）"
+            },
+            {
+                "kanji": "タメ口",
+                "yomi": "タメぐち"
+            },
+            {
+                "kanji": "違和感",
+                "yomi": "いわかん"
+            },
+            {
+                "kanji": "共通する",
+                "yomi": "きょうつう（する）"
+            },
+            {
+                "kanji": "友人",
+                "yomi": "ゆうじん"
+            },
+            {
+                "kanji": "対等な",
+                "yomi": "たいとう（な）"
+            },
+            {
+                "kanji": "回答する",
+                "yomi": "かいとう（する）"
+            },
+            {
+                "kanji": "初対面",
+                "yomi": "しょたいめん"
+            },
+            {
+                "kanji": "話題",
+                "yomi": "わだい"
+            },
+            {
+                "kanji": "分野",
+                "yomi": "ぶんや"
+            },
+            {
+                "kanji": "判断する",
+                "yomi": "はんだん（する）"
+            },
+            {
+                "kanji": "思い切って",
+                "yomi": "おも（い）き（って）"
+            },
+            {
+                "kanji": "体験談",
+                "yomi": "たいけんだん"
+            },
+            {
+                "kanji": "海岸",
+                "yomi": "かいがん"
+            },
+            {
+                "kanji": "年代",
+                "yomi": "ねんだい"
+            },
+            {
+                "kanji": "～分け",
+                "yomi": "～わ（け）"
+            },
+            {
+                "kanji": "年配",
+                "yomi": "ねんぱい"
+            },
+            {
+                "kanji": "要る",
+                "yomi": "い（る）"
+            },
+            {
+                "kanji": "～以外",
+                "yomi": "～いがい"
+            },
+            {
+                "kanji": "景気",
+                "yomi": "けいき"
+            },
+            {
+                "kanji": "都心",
+                "yomi": "としん"
+            },
+            {
+                "kanji": "努力する",
+                "yomi": "どりょく（する）"
+            },
+            {
+                "kanji": "当然な",
+                "yomi": "とうぜん（な）"
+            },
+            {
+                "kanji": "数",
+                "yomi": "かず"
+            },
+            {
+                "kanji": "～代",
+                "yomi": "～だい"
+            },
+            {
+                "kanji": "お互い",
+                "yomi": "（お）たが（い）"
+            },
+            {
+                "kanji": "気がする",
+                "yomi": "き（がする）"
+            },
+            {
+                "kanji": "掛け声",
+                "yomi": "か（け）ごえ"
+            },
+            {
+                "kanji": "瞬間",
+                "yomi": "しゅんかん"
+            },
+            {
+                "kanji": "意外な",
+                "yomi": "いがい（な）"
+            },
+            {
+                "kanji": "出会い",
+                "yomi": "であ（い）"
+            },
+            {
+                "kanji": "出店する",
+                "yomi": "しゅってん（する）"
+            },
+            {
+                "kanji": "中古品",
+                "yomi": "ちゅうこひん"
+            },
+            {
+                "kanji": "介助犬",
+                "yomi": "かいじょけん"
+            },
+            {
+                "kanji": "育成する",
+                "yomi": "いくせい（する）"
+            },
+            {
+                "kanji": "寄付する",
+                "yomi": "きふ（する）"
+            },
+            {
+                "kanji": "～金",
+                "yomi": "～きん"
+            },
+            {
+                "kanji": "寄付金",
+                "yomi": "きふきん"
+            },
+            {
+                "kanji": "受ける",
+                "yomi": "う（ける）"
+            },
+            {
+                "kanji": "誘いを受ける",
+                "yomi": "さそ（いを）う（ける）"
+            },
+            {
+                "kanji": "売り上げ",
+                "yomi": "う（り）あ（げ）"
+            },
+            {
+                "kanji": "一部",
+                "yomi": "いちぶ"
+            },
+            {
+                "kanji": "今ごろ",
+                "yomi": "いま（ごろ）"
+            },
+            {
+                "kanji": "点",
+                "yomi": "てん"
+            },
+            {
+                "kanji": "団体",
+                "yomi": "だんたい"
+            },
+            {
+                "kanji": "学園祭",
+                "yomi": "がくえんさい"
+            },
+            {
+                "kanji": "全て",
+                "yomi": "すべ（て）"
+            },
+            {
+                "kanji": "苦しむ",
+                "yomi": "くる（しむ）"
+            },
+            {
+                "kanji": "世代",
+                "yomi": "せだい"
+            },
+            {
+                "kanji": "定年",
+                "yomi": "ていねん"
+            },
+            {
+                "kanji": "退職する",
+                "yomi": "たいしょく（する）"
+            },
+            {
+                "kanji": "人見知りする",
+                "yomi": "ひとみし（りする）"
+            },
+            {
+                "kanji": "～同士",
+                "yomi": "～どうし"
+            },
+            {
+                "kanji": "男同士",
+                "yomi": "おとこどうし"
+            },
+            {
+                "kanji": "頑張ろうな",
+                "yomi": "がんば（ろうな）"
+            },
+            {
+                "kanji": "素晴らしい",
+                "yomi": "すば（らしい）"
+            },
+            {
+                "kanji": "月日",
+                "yomi": "つきひ"
+            },
+            {
+                "kanji": "夢中な",
+                "yomi": "むちゅう（な）"
+            },
+            {
+                "kanji": "迎える",
+                "yomi": "むか（える）"
+            },
+            {
+                "kanji": "感動する",
+                "yomi": "かんどう（する）"
+            },
+            {
+                "kanji": "若々しい",
+                "yomi": "わかわか（しい）"
+            },
+            {
+                "kanji": "持ち上げる",
+                "yomi": "も（ち）あ（げる）"
+            },
+            {
+                "kanji": "孫",
+                "yomi": "まご"
+            },
+            {
+                "kanji": "気象庁",
+                "yomi": "きしょうちょう"
+            },
+            {
+                "kanji": "暖冬",
+                "yomi": "だんとう"
+            },
+            {
+                "kanji": "期待する",
+                "yomi": "きたい（する）"
+            },
+            {
+                "kanji": "親孝行する",
+                "yomi": "おやこうこう（する）"
+            },
+            {
+                "kanji": "立派な",
+                "yomi": "りっぱ（な）"
+            }
+        ],
+        "8": [
+            {
+                "kanji": "包装する",
+                "yomi": "ほうそう（する）"
+            },
+            {
+                "kanji": "仕方",
+                "yomi": "しかた"
+            },
+            {
+                "kanji": "任せる",
+                "yomi": "まか（せる）"
+            },
+            {
+                "kanji": "箱",
+                "yomi": "はこ"
+            },
+            {
+                "kanji": "包装紙",
+                "yomi": "ほうそうし"
+            },
+            {
+                "kanji": "貴族",
+                "yomi": "きぞく"
+            },
+            {
+                "kanji": "当時",
+                "yomi": "とうじ"
+            },
+            {
+                "kanji": "高価な",
+                "yomi": "こうか（な）"
+            },
+            {
+                "kanji": "表れ",
+                "yomi": "あらわ（れ）"
+            },
+            {
+                "kanji": "破る",
+                "yomi": "やぶ（る（"
+            },
+            {
+                "kanji": "含める",
+                "yomi": "ふく（める）"
+            },
+            {
+                "kanji": "許可する",
+                "yomi": "きょか（する）"
+            },
+            {
+                "kanji": "～末",
+                "yomi": "～まつ"
+            },
+            {
+                "kanji": "来月末",
+                "yomi": "らいげつまつ"
+            },
+            {
+                "kanji": "全く",
+                "yomi": "まった（く）"
+            },
+            {
+                "kanji": "同僚",
+                "yomi": "どうりょう"
+            },
+            {
+                "kanji": "迷惑をかける",
+                "yomi": "めいわく（をかける）"
+            },
+            {
+                "kanji": "回収する",
+                "yomi": "かいしゅう（する）"
+            },
+            {
+                "kanji": "置き場",
+                "yomi": "お（き）ば"
+            },
+            {
+                "kanji": "色違い",
+                "yomi": "いろちが（い）"
+            },
+            {
+                "kanji": "申し訳ありません",
+                "yomi": "もう（し）わけ（ありません）"
+            },
+            {
+                "kanji": "朝礼",
+                "yomi": "ちょうれい"
+            },
+            {
+                "kanji": "一時帰国",
+                "yomi": "いちじきこく"
+            },
+            {
+                "kanji": "帰国する",
+                "yomi": "きこく（する）"
+            },
+            {
+                "kanji": "一筆箋",
+                "yomi": "いっぴつせん"
+            },
+            {
+                "kanji": "伝わる",
+                "yomi": "つた（わる）"
+            },
+            {
+                "kanji": "縦",
+                "yomi": "たて"
+            },
+            {
+                "kanji": "細長い",
+                "yomi": "ほそなが（い）"
+            },
+            {
+                "kanji": "便箋",
+                "yomi": "びんせん"
+            },
+            {
+                "kanji": "堅い",
+                "yomi": "かた（い）"
+            },
+            {
+                "kanji": "本題",
+                "yomi": "ほんだい"
+            },
+            {
+                "kanji": "手書き",
+                "yomi": "てが（き）"
+            },
+            {
+                "kanji": "贈り物",
+                "yomi": "おく（り）もの"
+            },
+            {
+                "kanji": "お世話になっています",
+                "yomi": "（お）せわ（になっています）"
+            },
+            {
+                "kanji": "気が利く",
+                "yomi": "き（が）き（く）"
+            },
+            {
+                "kanji": "機械",
+                "yomi": "きかい"
+            },
+            {
+                "kanji": "印刷する",
+                "yomi": "いんさつ（する）"
+            },
+            {
+                "kanji": "済ませる",
+                "yomi": "す（ませる）"
+            },
+            {
+                "kanji": "思い",
+                "yomi": "おも（い）"
+            },
+            {
+                "kanji": "先日",
+                "yomi": "せんじつ"
+            },
+            {
+                "kanji": "近況",
+                "yomi": "きんきょう"
+            },
+            {
+                "kanji": "お久しぶりです",
+                "yomi": "（お）ひさ（しぶりです）"
+            },
+            {
+                "kanji": "相変わらず",
+                "yomi": "あいか（わらず）"
+            },
+            {
+                "kanji": "出産する",
+                "yomi": "しゅっさん（する）"
+            },
+            {
+                "kanji": "一言",
+                "yomi": "ひとこと"
+            },
+            {
+                "kanji": "添える",
+                "yomi": "そ（える）"
+            },
+            {
+                "kanji": "気に入る",
+                "yomi": "き（に）い（る）"
+            },
+            {
+                "kanji": "愚痴",
+                "yomi": "ぐち"
+            },
+            {
+                "kanji": "追加する",
+                "yomi": "ついか（する）"
+            },
+            {
+                "kanji": "生ビール",
+                "yomi": "なまビール"
+            },
+            {
+                "kanji": "渋滞する",
+                "yomi": "じゅうたい（する）"
+            },
+            {
+                "kanji": "帰宅する",
+                "yomi": "きたく（する）"
+            },
+            {
+                "kanji": "久しぶりな",
+                "yomi": "ひさ（しぶりな）"
+            },
+            {
+                "kanji": "壊す",
+                "yomi": "こわ（す）"
+            },
+            {
+                "kanji": "割る",
+                "yomi": "わ（る）"
+            },
+            {
+                "kanji": "言葉遣い",
+                "yomi": "ことばづか（い）"
+            },
+            {
+                "kanji": "間違う",
+                "yomi": "まちが（う）"
+            },
+            {
+                "kanji": "受ける",
+                "yomi": "う（ける）"
+            },
+            {
+                "kanji": "落ち込む",
+                "yomi": "お（ち）こ（む）"
+            },
+            {
+                "kanji": "倒す",
+                "yomi": "たお（す）"
+            },
+            {
+                "kanji": "汚す",
+                "yomi": "よご（す）"
+            },
+            {
+                "kanji": "本気な",
+                "yomi": "ほんき（な）"
+            },
+            {
+                "kanji": "後悔する",
+                "yomi": "こうかい（する）"
+            }
+        ],
+        "9": [
+            {
+                "kanji": "変な",
+                "yomi": "へん（な）"
+            },
+            {
+                "kanji": "～軒",
+                "yomi": "～けん"
+            },
+            {
+                "kanji": "お参りする",
+                "yomi": "（お）まい（りする）"
+            },
+            {
+                "kanji": "村人",
+                "yomi": "むらびと"
+            },
+            {
+                "kanji": "平気な",
+                "yomi": "へいき（な）"
+            },
+            {
+                "kanji": "和尚",
+                "yomi": "おしょう"
+            },
+            {
+                "kanji": "やって来る",
+                "yomi": "（やって）く（る）"
+            },
+            {
+                "kanji": "口々に",
+                "yomi": "くちぐち（に）"
+            },
+            {
+                "kanji": "裸",
+                "yomi": "はだか"
+            },
+            {
+                "kanji": "誤解する",
+                "yomi": "ごかい（する）"
+            },
+            {
+                "kanji": "文章",
+                "yomi": "ぶんしょう"
+            },
+            {
+                "kanji": "笑い出す",
+                "yomi": "わら（い）だ（す）"
+            },
+            {
+                "kanji": "訳",
+                "yomi": "わけ"
+            },
+            {
+                "kanji": "早口言葉",
+                "yomi": "はやくちことば"
+            },
+            {
+                "kanji": "柿",
+                "yomi": "かき"
+            },
+            {
+                "kanji": "食う",
+                "yomi": "く（う）"
+            },
+            {
+                "kanji": "回文",
+                "yomi": "かいぶん"
+            },
+            {
+                "kanji": "崖",
+                "yomi": "がけ"
+            },
+            {
+                "kanji": "詩",
+                "yomi": "し"
+            },
+            {
+                "kanji": "載る",
+                "yomi": "の（る）"
+            },
+            {
+                "kanji": "小鳥",
+                "yomi": "ことり"
+            },
+            {
+                "kanji": "鈴",
+                "yomi": "すず"
+            },
+            {
+                "kanji": "両手",
+                "yomi": "りょうて"
+            },
+            {
+                "kanji": "広げる",
+                "yomi": "ひろ（げる）"
+            },
+            {
+                "kanji": "空",
+                "yomi": "そら"
+            },
+            {
+                "kanji": "地べた",
+                "yomi": "ぢ（べた）"
+            },
+            {
+                "kanji": "唄",
+                "yomi": "うた"
+            },
+            {
+                "kanji": "暮らす",
+                "yomi": "く（らす）"
+            },
+            {
+                "kanji": "～後",
+                "yomi": "～ご"
+            },
+            {
+                "kanji": "帰国後",
+                "yomi": "きこくご"
+            },
+            {
+                "kanji": "励ます",
+                "yomi": "はげ（ます）"
+            },
+            {
+                "kanji": "生きる",
+                "yomi": "い（きる）"
+            },
+            {
+                "kanji": "時代",
+                "yomi": "じだい"
+            },
+            {
+                "kanji": "個性",
+                "yomi": "こせい"
+            },
+            {
+                "kanji": "認める",
+                "yomi": "みと（める）"
+            },
+            {
+                "kanji": "込める",
+                "yomi": "こ（める）"
+            },
+            {
+                "kanji": "許す",
+                "yomi": "ゆる（す）"
+            },
+            {
+                "kanji": "消費する",
+                "yomi": "しょうひ（する）"
+            },
+            {
+                "kanji": "～者",
+                "yomi": "～しゃ"
+            },
+            {
+                "kanji": "消費者",
+                "yomi": "しょうひしゃ"
+            },
+            {
+                "kanji": "開発する",
+                "yomi": "かいはつ（する）"
+            },
+            {
+                "kanji": "実話",
+                "yomi": "じつわ"
+            },
+            {
+                "kanji": "～製",
+                "yomi": "～せい"
+            },
+            {
+                "kanji": "革製",
+                "yomi": "かわせい"
+            },
+            {
+                "kanji": "かけ間違い",
+                "yomi": "（かけ）まちが（い）"
+            },
+            {
+                "kanji": "文字",
+                "yomi": "もじ"
+            },
+            {
+                "kanji": "数える",
+                "yomi": "かぞ（える）"
+            },
+            {
+                "kanji": "遠足",
+                "yomi": "えんそく"
+            },
+            {
+                "kanji": "作家",
+                "yomi": "さっか"
+            },
+            {
+                "kanji": "４こま漫画",
+                "yomi": "４（こま）まんが"
+            },
+            {
+                "kanji": "登場人物",
+                "yomi": "とうじょうじんぶつ"
+            },
+            {
+                "kanji": "駄目な",
+                "yomi": "だめ（な）"
+            },
+            {
+                "kanji": "勘違いする",
+                "yomi": "かんちが（いする）"
+            },
+            {
+                "kanji": "顔が広い",
+                "yomi": "かお（が）ひろ（い）"
+            },
+            {
+                "kanji": "顔から火が出る",
+                "yomi": "かお（から）ひ（が）で（る）"
+            },
+            {
+                "kanji": "表現する",
+                "yomi": "ひょうげん（する）"
+            },
+            {
+                "kanji": "黙る",
+                "yomi": "だま（る）"
+            },
+            {
+                "kanji": "必死な",
+                "yomi": "ひっし（な）"
+            },
+            {
+                "kanji": "もう少しで",
+                "yomi": "（もう）すこ（しで）"
+            },
+            {
+                "kanji": "優勝する",
+                "yomi": "ゆうしょう（する）"
+            },
+            {
+                "kanji": "飛び上がる",
+                "yomi": "と（び）あ（がる）"
+            },
+            {
+                "kanji": "疑問",
+                "yomi": "ぎもん"
+            },
+            {
+                "kanji": "女子高生",
+                "yomi": "じょしこうせい"
+            },
+            {
+                "kanji": "男",
+                "yomi": "おとこ"
+            },
+            {
+                "kanji": "女",
+                "yomi": "おんな"
+            },
+            {
+                "kanji": "男女",
+                "yomi": "だんじょ"
+            },
+            {
+                "kanji": "目上",
+                "yomi": "めうえ"
+            },
+            {
+                "kanji": "使い分ける",
+                "yomi": "つか（い）わ（ける）"
+            },
+            {
+                "kanji": "若者",
+                "yomi": "わかもの"
+            },
+            {
+                "kanji": "我慢する",
+                "yomi": "がまん（する）"
+            }
+        ],
+        "10": [
+            {
+                "kanji": "海岸線",
+                "yomi": "かいがんせん"
+            },
+            {
+                "kanji": "渓谷",
+                "yomi": "けいこく"
+            },
+            {
+                "kanji": "トロッコ列車",
+                "yomi": "トロッコれっしゃ"
+            },
+            {
+                "kanji": "製造する",
+                "yomi": "せいぞう（する）"
+            },
+            {
+                "kanji": "鉄",
+                "yomi": "てつ"
+            },
+            {
+                "kanji": "扇風機",
+                "yomi": "せんぷうき"
+            },
+            {
+                "kanji": "石炭",
+                "yomi": "せきたん"
+            },
+            {
+                "kanji": "燃やす",
+                "yomi": "も（やす）"
+            },
+            {
+                "kanji": "入り込む",
+                "yomi": "はい（り）こ（む）"
+            },
+            {
+                "kanji": "揺れる",
+                "yomi": "ゆ（れる）"
+            },
+            {
+                "kanji": "～産",
+                "yomi": "～さん"
+            },
+            {
+                "kanji": "静岡県産",
+                "yomi": "しずおかけんさん"
+            },
+            {
+                "kanji": "車窓",
+                "yomi": "しゃそう"
+            },
+            {
+                "kanji": "目を向ける",
+                "yomi": "め（を）む（ける）"
+            },
+            {
+                "kanji": "通り過ぎる",
+                "yomi": "とお（り）す（ぎる）"
+            },
+            {
+                "kanji": "土地",
+                "yomi": "とち"
+            },
+            {
+                "kanji": "乗客",
+                "yomi": "じょうきゃく"
+            },
+            {
+                "kanji": "思いがけない",
+                "yomi": "おも（いがけない）"
+            },
+            {
+                "kanji": "出来事",
+                "yomi": "できごと"
+            },
+            {
+                "kanji": "向かい合う",
+                "yomi": "む（かい）あ（う）"
+            },
+            {
+                "kanji": "フリー切符",
+                "yomi": "フリーきっぷ"
+            },
+            {
+                "kanji": "乗り降りする",
+                "yomi": "の（り）お（りする）"
+            },
+            {
+                "kanji": "配布する",
+                "yomi": "はいふ（する）"
+            },
+            {
+                "kanji": "観光マップ",
+                "yomi": "かんこうマップ"
+            },
+            {
+                "kanji": "書き込む",
+                "yomi": "か（き）こ（む）"
+            },
+            {
+                "kanji": "薦める",
+                "yomi": "すす（める）"
+            },
+            {
+                "kanji": "世界自然遺産",
+                "yomi": "せかいしぜんいさん"
+            },
+            {
+                "kanji": "～発",
+                "yomi": "～はつ"
+            },
+            {
+                "kanji": "羽田発",
+                "yomi": "はねだはつ"
+            },
+            {
+                "kanji": "地元",
+                "yomi": "じもと"
+            },
+            {
+                "kanji": "豊かさ",
+                "yomi": "ゆた（かさ）"
+            },
+            {
+                "kanji": "見どころ",
+                "yomi": "み（どころ）"
+            },
+            {
+                "kanji": "杉",
+                "yomi": "すぎ"
+            },
+            {
+                "kanji": "所要時間",
+                "yomi": "しょようじかん"
+            },
+            {
+                "kanji": "歩行距離",
+                "yomi": "ほこうきょり"
+            },
+            {
+                "kanji": "往復する",
+                "yomi": "おうふく（する）"
+            },
+            {
+                "kanji": "樹齢",
+                "yomi": "じゅれい"
+            },
+            {
+                "kanji": "神秘的な",
+                "yomi": "しんぴてき（な）"
+            },
+            {
+                "kanji": "姿",
+                "yomi": "すがた"
+            },
+            {
+                "kanji": "言い表す",
+                "yomi": "い（い）あらわ（す）"
+            },
+            {
+                "kanji": "森",
+                "yomi": "もり"
+            },
+            {
+                "kanji": "日常",
+                "yomi": "にちじょう"
+            },
+            {
+                "kanji": "海の幸",
+                "yomi": "うみ（の）さち"
+            },
+            {
+                "kanji": "山の幸",
+                "yomi": "やま（の）さち"
+            },
+            {
+                "kanji": "民宿",
+                "yomi": "みんしゅく"
+            },
+            {
+                "kanji": "味わう",
+                "yomi": "あじ（わう）"
+            },
+            {
+                "kanji": "頂上",
+                "yomi": "ちょうじょう"
+            },
+            {
+                "kanji": "朝日",
+                "yomi": "あさひ"
+            },
+            {
+                "kanji": "積もる",
+                "yomi": "つ（もる）"
+            },
+            {
+                "kanji": "通る",
+                "yomi": "とお（る）"
+            },
+            {
+                "kanji": "電気が通る",
+                "yomi": "でんき（が）とお（る）"
+            },
+            {
+                "kanji": "日帰りする",
+                "yomi": "ひがえ（りする）"
+            },
+            {
+                "kanji": "滝",
+                "yomi": "たき"
+            },
+            {
+                "kanji": "食材",
+                "yomi": "しょくざい"
+            },
+            {
+                "kanji": "門",
+                "yomi": "もん"
+            },
+            {
+                "kanji": "国宝",
+                "yomi": "こくほう"
+            },
+            {
+                "kanji": "指定する",
+                "yomi": "してい（する）"
+            },
+            {
+                "kanji": "全体",
+                "yomi": "ぜんたい"
+            },
+            {
+                "kanji": "彫刻する",
+                "yomi": "ちょうこく（する）"
+            },
+            {
+                "kanji": "彫る",
+                "yomi": "ほ（る）"
+            },
+            {
+                "kanji": "豪華さ",
+                "yomi": "ごうか（さ）"
+            },
+            {
+                "kanji": "名所",
+                "yomi": "めいしょ"
+            },
+            {
+                "kanji": "絵の具",
+                "yomi": "え（の）ぐ"
+            },
+            {
+                "kanji": "一気に",
+                "yomi": "いっき（に）"
+            },
+            {
+                "kanji": "流れ落ちる",
+                "yomi": "なが（れ）お（ちる）"
+            },
+            {
+                "kanji": "迫力満点",
+                "yomi": "はくりょくまんてん"
+            },
+            {
+                "kanji": "鯱",
+                "yomi": "しゃちほこ"
+            },
+            {
+                "kanji": "～世紀",
+                "yomi": "～せいき"
+            },
+            {
+                "kanji": "代表する",
+                "yomi": "だいひょう（する）"
+            },
+            {
+                "kanji": "誇り",
+                "yomi": "ほこ（り）"
+            },
+            {
+                "kanji": "戦争する",
+                "yomi": "せんそう（する）"
+            },
+            {
+                "kanji": "天守閣",
+                "yomi": "てんしゅかく"
+            },
+            {
+                "kanji": "再び",
+                "yomi": "ふたた（び）"
+            },
+            {
+                "kanji": "金",
+                "yomi": "きん"
+            },
+            {
+                "kanji": "上り",
+                "yomi": "のぼ（り）"
+            },
+            {
+                "kanji": "列車",
+                "yomi": "れっしゃ"
+            },
+            {
+                "kanji": "発車する",
+                "yomi": "はっしゃ（する）"
+            },
+            {
+                "kanji": "奥",
+                "yomi": "おく"
+            },
+            {
+                "kanji": "着払い",
+                "yomi": "ちゃくばら（い）"
+            },
+            {
+                "kanji": "宅配便",
+                "yomi": "たくはいびん"
+            },
+            {
+                "kanji": "胸",
+                "yomi": "むね"
+            },
+            {
+                "kanji": "請求する",
+                "yomi": "せいきゅう（する）"
+            },
+            {
+                "kanji": "洗面台",
+                "yomi": "せんめんだい"
+            },
+            {
+                "kanji": "車内",
+                "yomi": "しゃない"
+            },
+            {
+                "kanji": "座席",
+                "yomi": "ざせき"
+            },
+            {
+                "kanji": "鉄道",
+                "yomi": "てつどう"
+            },
+            {
+                "kanji": "グリーン車",
+                "yomi": "グリーンしゃ"
+            },
+            {
+                "kanji": "販売する",
+                "yomi": "はんばい（する）"
+            },
+            {
+                "kanji": "停車する",
+                "yomi": "ていしゃ（する）"
+            },
+            {
+                "kanji": "時刻",
+                "yomi": "じこく"
+            },
+            {
+                "kanji": "禁煙する",
+                "yomi": "きんえん（する）"
+            },
+            {
+                "kanji": "通話する",
+                "yomi": "つうわ（する）"
+            },
+            {
+                "kanji": "満席",
+                "yomi": "まんせき"
+            },
+            {
+                "kanji": "了承する",
+                "yomi": "りょうしょう（する）"
+            },
+            {
+                "kanji": "心より",
+                "yomi": "こころ（より）"
+            },
+            {
+                "kanji": "車両",
+                "yomi": "しゃりょう"
+            },
+            {
+                "kanji": "内回り",
+                "yomi": "うちまわ（り）"
+            },
+            {
+                "kanji": "見合わせる",
+                "yomi": "みあ（わせる）"
+            },
+            {
+                "kanji": "尋ねる",
+                "yomi": "たず（ねる）"
+            },
+            {
+                "kanji": "幸運な",
+                "yomi": "こううん（な）"
+            },
+            {
+                "kanji": "雲",
+                "yomi": "くも"
+            },
+            {
+                "kanji": "早速",
+                "yomi": "さっそく"
+            },
+            {
+                "kanji": "路面電車",
+                "yomi": "ろめんでんしゃ"
+            },
+            {
+                "kanji": "天井",
+                "yomi": "てんじょう"
+            },
+            {
+                "kanji": "満足な",
+                "yomi": "まんぞく（な）"
+            },
+            {
+                "kanji": "再会する",
+                "yomi": "さいかい（する）"
+            },
+            {
+                "kanji": "香り",
+                "yomi": "かお（り）"
+            },
+            {
+                "kanji": "旅行記",
+                "yomi": "りょこうき"
+            }
+        ],
         "11": [],
         "12": [],
         "13": [],
